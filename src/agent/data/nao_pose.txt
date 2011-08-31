@@ -1,0 +1,690 @@
+aaww1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+aaww2
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -0.06	llj2 13.01	llj3 5.92	llj4 -7.23	llj5 6.3	llj6 -13
+
+aaww3
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -90	laj2 95	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 11	rlj3 3.78	rlj4 -6.15	rlj5 6.9	rlj6 -13.65	llj1 -29	llj2 21	llj3 -3	llj4 -27	llj5 11	llj6 -16
+
+aaww4
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 11	rlj3 3.78	rlj4 -6.15	rlj5 6.9	rlj6 -17	llj1 -41	llj2 45	llj3 -3	llj4 -27	llj5 11	llj6 -16
+
+aaww5
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 11	rlj3 3.78	rlj4 -6.15	rlj5 6.9	rlj6 -17	llj1 -54	llj2 20	llj3 -3	llj4 -17	llj5 -3	llj6 9
+
+aaww6
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 11	rlj3 3.78	rlj4 -6.15	rlj5 6.9	rlj6 -16	llj1 -90	llj2 -25	llj3 -3	llj4 -17	llj5 -16	llj6 17
+
+Laaww1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 90	laj4 0	rlj1 0	rlj2 -0	rlj3 35	rlj4 -60	rlj5 34	rlj6 -0	llj1 0	llj2 -0	llj3 35	llj4 -60	llj5 34	llj6 -0
+
+Laaww2
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 90	laj4 30	rlj1 -0.06	rlj2 -13.01	rlj3 5.92	rlj4 -7.23	rlj5 6.3	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+Laaww3
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 48	laj4 2	rlj1 -29	rlj2 -21	rlj3 -3	rlj4 -27	rlj5 11	rlj6 16	llj1 -0.01	llj2 -11	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 13.65
+
+Laaww4
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 48	laj4 2	rlj1 -41	rlj2 -45	rlj3 -3	rlj4 -27	rlj5 11	rlj6 16	llj1 -0.01	llj2 -11	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 17
+
+Laaww5
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 48	laj4 2	rlj1 -54	rlj2 -20	rlj3 -3	rlj4 -17	rlj5 -3	rlj6 -9	llj1 -0.01	llj2 -11	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 17
+
+Laaww6
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 48	laj4 2	rlj1 -90	rlj2 25	rlj3 -3	rlj4 -17	rlj5 -16	rlj6 -17	llj1 -0.01	llj2 -11	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 16
+
+ac1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+ac2
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -0.06	llj2 13.01	llj3 5.92	llj4 -7.23	llj5 6.3	llj6 -13
+
+ac3
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -0.06	llj2 13.01	llj3 22	llj4 -48	llj5 31	llj6 -13
+
+ac4
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -0.06	llj2 41	llj3 28	llj4 -48	llj5 31	llj6 -13
+
+Lac1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 -90	raj4 0	laj1 -90	laj2 0	laj3 90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+Lac2
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 -90	raj4 30	laj1 -90	laj2 95	laj3 90	laj4 -30	rlj1 -0.06	rlj2 -13.01	rlj3 5.92	rlj4 -7.23	rlj5 6.3	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+Lac3
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 -90	raj4 30	laj1 -90	laj2 95	laj3 90	laj4 -30	rlj1 -0.06	rlj2 -13.01	rlj3 22	rlj4 -48	rlj5 31	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+Lac4
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 -90	raj4 30	laj1 -90	laj2 95	laj3 90	laj4 -30	rlj1 -0.06	rlj2 -45	rlj3 28	rlj4 -48	rlj5 31	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+aw01
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+aw02
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -0.06	llj2 13.01	llj3 5.92	llj4 -7.23	llj5 6.3	llj6 -13
+
+aw03
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -90	laj2 95	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 11	rlj3 3.78	rlj4 -6.15	rlj5 6.9	rlj6 -13.65	llj1 -29	llj2 21	llj3 -3	llj4 -27	llj5 11	llj6 -16
+
+aw04
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 11	rlj3 3.78	rlj4 -6.15	rlj5 6.9	rlj6 -17	llj1 -41	llj2 45	llj3 -3	llj4 -27	llj5 11	llj6 -16
+
+aw05
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 11	rlj3 3.78	rlj4 -6.15	rlj5 6.9	rlj6 -17	llj1 -54	llj2 20	llj3 -3	llj4 -17	llj5 -3	llj6 9
+
+aw06
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 48	raj4 2	laj1 -100	laj2 95	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 11	rlj3 3.78	rlj4 -6.15	rlj5 6.9	rlj6 -16	llj1 -90	llj2 -25	llj3 -3	llj4 -17	llj5 -16	llj6 17
+
+Law01
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 -90	raj4 0	laj1 -90	laj2 0	laj3 90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+Law02
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 -90	raj4 30	laj1 -90	laj2 95	laj3 90	laj4 -30	rlj1 -0.06	rlj2 -13.01	rlj3 5.92	rlj4 -7.23	rlj5 6.3	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+Law03
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 -48	raj4 2	laj1 -100	laj2 95	laj3 48	laj4 -2	rlj1 -29	rlj2 -21	rlj3 -3	rlj4 -27	rlj5 11	rlj6 16	llj1 -0.01	llj2 -11	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 13.65
+
+Law04
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 -48	raj4 2	laj1 -100	laj2 95	laj3 48	laj4 -2	rlj1 -41	rlj2 -45	rlj3 -3	rlj4 -27	rlj5 11	rlj6 16	llj1 -0.01	llj2 -11	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 17
+
+Law05
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 -48	raj4 2	laj1 -100	laj2 95	laj3 48	laj4 -2	rlj1 -54	rlj2 -20	rlj3 -3	rlj4 -17	rlj5 -3	rlj6 -9	llj1 -0.01	llj2 -11	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 17
+
+Law06
+hj1 0	hj2 -42	raj1 -100	raj2 -95	raj3 -48	raj4 2	laj1 -100	laj2 95	laj3 48	laj4 -2	rlj1 -90	rlj2 25	rlj3 -3	rlj4 -17	rlj5 -16	rlj6 -17	llj1 -0.01	llj2 -11	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 16
+
+awgood1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+awgood2
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -0.06	llj2 13.01	llj3 5.92	llj4 -7.23	llj5 6.3	llj6 -13
+
+awgood3
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -0.06	llj2 13.01	llj3 22	llj4 -48	llj5 31	llj6 -13
+
+awgood4
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -90	llj2 41	llj3 -9	llj4 -48	llj5 9	llj6 -13
+
+awgood5
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 11	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13	llj1 -56	llj2 41	llj3 18	llj4 -13	llj5 -45	llj6 -13
+
+Lawgood1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+Lawgood2
+hj1 0	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 -13.01	rlj3 5.92	rlj4 -7.23	rlj5 6.3	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+Lawgood3
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 -13.01	rlj3 22	rlj4 -48	rlj5 31	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+Lawgood4
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -90	rlj2 -41	rlj3 -9	rlj4 -48	rlj5 9	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13	UnknowSensor 0
+
+Lawgood5
+hj1 120	hj2 -42	raj1 -90	raj2 -95	raj3 90	raj4 30	laj1 -90	laj2 95	laj3 -90	laj4 -30	rlj1 -90	rlj2 -41	rlj3 18	rlj4 -13	rlj5 -45	rlj6 13	llj1 -0.06	llj2 -11	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+ATT_p1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+ATT_p2
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 -10	rlj3 35	rlj4 -60	rlj5 34	rlj6 10	llj1 0	llj2 -10	llj3 35	llj4 -60	llj5 34	llj6 10
+
+ATT_p3
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 -10	rlj3 35	rlj4 -60	rlj5 34	rlj6 10	llj1 0	llj2 -10	llj3 20	llj4 -30	llj5 19	llj6 13
+
+ATT_p4
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 -10	rlj3 25	rlj4 -60	rlj5 34	rlj6 10	llj1 0	llj2 -7	llj3 25	llj4 0	llj5 4	llj6 13
+
+ATT_p5
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 -10	rlj3 32	rlj4 -54	rlj5 29	rlj6 10	llj1 0	llj2 -7	llj3 23	llj4 0	llj5 4	llj6 13
+
+ATT_p6
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 -10	rlj3 90	rlj4 0	rlj5 -40	rlj6 10	llj1 0	llj2 -7	llj3 5	llj4 0	llj5 4	llj6 13
+
+ATTL_p1
+hj1 0	hj2 0	raj1 -90	raj2 -0	raj3 90	raj4 0	laj1 -90	laj2 -0	laj3 -90	laj4 0	rlj1 0	rlj2 -0	rlj3 35	rlj4 -60	rlj5 34	rlj6 -0	llj1 0	llj2 -0	llj3 35	llj4 -60	llj5 34	llj6 -0
+
+ATTL_p2
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 10	rlj3 35	rlj4 -60	rlj5 34	rlj6 -10	llj1 0	llj2 10	llj3 35	llj4 -60	llj5 34	llj6 -10
+
+ATTL_p3
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 10	rlj3 20	rlj4 -30	rlj5 19	rlj6 -13	llj1 0	llj2 10	llj3 35	llj4 -60	llj5 34	llj6 -10
+
+ATTL_p4
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 7	rlj3 25	rlj4 0	rlj5 4	rlj6 -13	llj1 0	llj2 10	llj3 25	llj4 -60	llj5 34	llj6 -10
+
+ATTL_p5
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 7	rlj3 23	rlj4 0	rlj5 4	rlj6 -13	llj1 0	llj2 10	llj3 32	llj4 -54	llj5 29	llj6 -10
+
+ATTL_p6
+hj1 0	hj2 0	raj1 -90	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 7	rlj3 5	rlj4 0	rlj5 4	rlj6 -13	llj1 0	llj2 10	llj3 90	llj4 0	llj5 -40	llj6 -10
+
+BTT_p1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+BTT_p2
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 90	raj4 30	laj1 -90	laj2 0	laj3 -90	laj4 -30	rlj1 -0.06	rlj2 13	rlj3 5.51	rlj4 -6.07	rlj5 5.91	rlj6 -13.00	llj1 -0.06	llj2 13.01	llj3 5.92	llj4 -7.23	llj5 6.30	llj6 -13.00
+
+BTT_p3
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 48	raj4 2	laj1 -90	laj2 0	laj3 -48	laj4 -2	rlj1 -0.01	rlj2 13.65	rlj3 3.78	rlj4 -6.15	rlj5 6.90	rlj6 -13.65	llj1 -0.01	llj2 13.65	llj3 3.22	llj4 -49.38	llj5 42.10	llj6 -13.65
+
+BTT_p4
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 13	raj4 -3	laj1 -90	laj2 0	laj3 -13	laj4 3	rlj1 0.01	rlj2 13.11	rlj3 4.78	rlj4 -7.94	rlj5 7.91	rlj6 -13.11	llj1 0.01	llj2 13.11	llj3 17.21	llj4 -67.02	llj5 31.47	llj6 -13.10
+
+BTT_p5
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 13	raj4 2	laj1 -90	laj2 0	laj3 -13	laj4 -2	rlj1 0.01	rlj2 13.11	rlj3 4.78	rlj4 -7.94	rlj5 7.91	rlj6 -13.11	llj1 0.01	llj2 13.11	llj3 31.26	llj4 -67.02	llj5 25.49	llj6 -13.10
+
+BTT_p6
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 13	raj4 2	laj1 -90	laj2 0	laj3 -13	laj4 -2	rlj1 0.01	rlj2 13.11	rlj3 -4.85	rlj4 -7.94	rlj5 7.91	rlj6 -13.11	llj1 0.01	llj2 13.11	llj3 52.30	llj4 -46.20	llj5 45.95	llj6 -13.11
+
+BTTL_p1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0	rlj3 35	rlj4 -60	rlj5 34	rlj6 -0	llj1 0	llj2 -0	llj3 35	llj4 -60	llj5 34	llj6 -0
+
+BTTL_p2
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 90	raj4 -30	laj1 -90	laj2 0	laj3 -90	laj4 30	rlj1 -0.06	rlj2 -13.01	rlj3 5.92	rlj4 -7.23	rlj5 6.3	rlj6 13	llj1 -0.06	llj2 -13	llj3 5.51	llj4 -6.07	llj5 5.91	llj6 13
+
+BTTL_p3
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 90	raj4 -2	laj1 -90	laj2 0	laj3 -90	laj4 2	rlj1 -0.01	rlj2 -13.65	rlj3 3.22	rlj4 -49.38	rlj5 42.1	rlj6 13.65	llj1 -0.01	llj2 -13.65	llj3 3.78	llj4 -6.15	llj5 6.9	llj6 13.65
+
+BTTL_p4
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 90	raj4 3	laj1 -90	laj2 0	laj3 -90	laj4 -3	rlj1 0.01	rlj2 -13.11	rlj3 17.21	rlj4 -67.02	rlj5 31.47	rlj6 13.1	llj1 0.01	llj2 -13.11	llj3 4.78	llj4 -7.94	llj5 7.91	llj6 13.11
+
+BTTL_p5
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 90	raj4 -2	laj1 -90	laj2 0	laj3 -90	laj4 2	rlj1 0.01	rlj2 -13.11	rlj3 31.26	rlj4 -67.02	rlj5 25.49	rlj6 13.1	llj1 0.01	llj2 -13.11	llj3 4.78	llj4 -7.94	llj5 7.91	llj6 13.11
+
+BTTL_p6
+hj1 0	hj2 -42	raj1 -90	raj2 0	raj3 90	raj4 -2	laj1 -90	laj2 0	laj3 -90	laj4 2	rlj1 0.01	rlj2 -13.11	rlj3 52.3	rlj4 -46.2	rlj5 45.95	rlj6 13.11	llj1 0.01	llj2 -13.11	llj3 -4.85	llj4 -7.94	llj5 7.91	llj6 13.11
+
+LFToLie1_wcy
+hj1 0	hj2 0	raj1 -24	raj2 1	raj3 90	raj4 -0	laj1 -24	laj2 -0	laj3 -0	laj4 -0	rlj1 0	rlj2 -23	rlj3 35	rlj4 -86	rlj5 52	rlj6 14	llj1 1	llj2 -2	llj3 50	llj4 -114	llj5 70	llj6 -0
+
+LFToLie2_wcy
+hj1 0	hj2 0	raj1 68	raj2 -0	raj3 90	raj4 -0	laj1 69	laj2 -0	laj3 -90	laj4 -0	rlj1 1	rlj2 -45	rlj3 0	rlj4 0	rlj5 0	rlj6 -0	llj1 1	llj2 -25	llj3 72	llj4 -130	llj5 56	llj6 -9
+
+LFToLie3_wcy
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 -1	laj1 -89	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LFToLie4_wcy
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 -1	laj1 -60	laj2 20	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RFToLie1_wcy
+hj1 0	hj2 0	raj1 -24	raj2 0	raj3 0	raj4 0  laj1 -24	laj2 -1	laj3 -90	laj4 0		rlj1 1	rlj2 2	rlj3 50	rlj4 -114	rlj5 70	rlj6 0	 llj1 0	llj2 23	llj3 35	llj4 -86	llj5 52	llj6 -14
+
+RFToLie2_wcy
+hj1 0	hj2 0	raj1 69	raj2 0	raj3 90	raj4 0  laj1 68	laj2 0	laj3 -90	laj4 0		rlj1 1	rlj2 25	rlj3 72	rlj4 -130	rlj5 56	rlj6 9	 llj1 1	llj2 45	llj3 0	llj4 0	llj5 0	llj6 0
+
+RFToLie3_wcy
+hj1 0	hj2 0	raj1 -89	raj2 -0	raj3 90	raj4 -0  laj1 -90	laj2 -0	laj3 -90	laj4 1		rlj1 0	rlj2 -0	rlj3 0	rlj4 0	rlj5 0	rlj6 -0	 llj1 0	llj2 -0	llj3 0	llj4 0	llj5 0	llj6 -0
+
+RFToLie4_wcy
+hj1 0	hj2 0	raj1 -60	raj2 -20	raj3 90	raj4 -0  laj1 -90	laj2 -0	laj3 -90	laj4 1		rlj1 0	rlj2 -0	rlj3 0	rlj4 0	rlj5 0	rlj6 -0	 llj1 0	llj2 -0	llj3 0	llj4 0	llj5 0	llj6 -0
+
+backfall1
+hj1 0	hj2 0	raj1 80	raj2 0	raj3 90	raj4 0	laj1 79	laj2 0	laj3 -90	laj4 0	rlj1 1	rlj2 -0.00062561	rlj3 54	rlj4 -109	rlj5 26	rlj6 0	llj1 1	llj2 0	llj3 54	llj4 -109	llj5 25	llj6 -0.00141341
+
+backfall2
+hj1 0	hj2 0	raj1 79	raj2 0	raj3 90	raj4 0	laj1 81	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 53	rlj4 -14	rlj5 -45	rlj6 0	llj1 0	llj2 0	llj3 30	llj4 -40	llj5 -40	llj6 -0.00141341
+
+backfall3
+hj1 0	hj2 0	raj1 68	raj2 0	raj3 90	raj4 0	laj1 67	laj2 0	laj3 -90	laj4 0	rlj1 1	rlj2 -0.00062561	rlj3 53	rlj4 -12	rlj5 -45	rlj6 0	llj1 -17	llj2 2	llj3 3	llj4 -17	llj5 -45	llj6 -0.00141341
+
+frontfall1
+raj1 21	laj1 23	rlj3 59	rlj4 -99	rlj5 75	llj3 59	llj4 -95	llj5 75
+
+frontfall2
+raj1 77	laj1 78	rlj3 27	rlj4 -39	rlj5 20	llj3 27	llj4 -38	llj5 17
+
+frontfall3
+raj1 78	raj2 1	raj3 46	raj4 8	laj1 84	laj3 41	laj4 -7	rlj1 1	rlj2 12	rlj3 11	rlj4 -21	rlj5 -45	llj2 8	llj3 -4	llj4 -25	llj5 -45
+
+CoM2L
+rlj2 -13	rlj3 0	rlj4 0	rlj5 0	rlj6 13	llj2 -13	llj6 13
+
+LAHitBall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 90	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LAHitBall1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 90	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LF
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 0	raj4 0	laj1 -10	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 25	llj4 -75	llj5 45	llj6 -45
+
+LF1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 0	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LFToLeftFall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 0	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LFToLeftFall1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LFToLie
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 0	raj4 0	laj1 75	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LFToLie1
+hj1 0	hj2 0	raj1 -60	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LPNTGToLieProne
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+LPNTGToLieProne1
+hj1 0	hj2 0	raj1 -5	raj2 0	raj3 0	raj4 0	laj1 -5	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 30	rlj6 -4	llj1 0	llj2 0	llj3 0	llj4 0	llj5 30	llj6 0
+
+RF
+hj1 0	hj2 0	raj1 -10	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 25	rlj4 -75	rlj5 45	rlj6 45	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RF1
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RFToLie
+hj1 0	hj2 0	raj1 75	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RFToLie1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -60	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RFToLieProne
+hj1 0	hj2 0	raj1 120	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RFToLieProne1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RFToRightFall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 0	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RFToRightFall1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RHHitBall
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+RHipHitBall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 100	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 45	llj4 0	llj5 0	llj6 0
+
+RLAHitBall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 90	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+TT_p1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 34	llj6 0
+
+TT_p2
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 10	rlj3 35	rlj4 -60	rlj5 34	rlj6 -10	llj1 0	llj2 10	llj3 35	llj4 -60	llj5 34	llj6 -10
+
+TT_p3
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 18	rlj3 20	rlj4 -40	rlj5 34	rlj6 -18	llj1 0	llj2 18	llj3 70	llj4 -80	llj5 34	llj6 -18
+
+TT_p4
+hj1 0	hj2 0	raj1 -40	raj2 0	raj3 90	raj4 0	laj1 -110	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -9	rlj3 0	rlj4 -10	rlj5 34	rlj6 9	llj1 0	llj2 -9	llj3 50	llj4 -26	llj5 0	llj6 9
+
+TT_p5
+hj1 0	hj2 0	raj1 -70	raj2 0	raj3 90	raj4 0	laj1 -20	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -9	rlj3 0	rlj4 -10	rlj5 34	rlj6 9	llj1 0	llj2 -18	llj3 50	llj4 -26	llj5 10	llj6 18
+
+TT_p6
+hj1 0	hj2 0	raj1 -110	raj2 0	raj3 90	raj4 0	laj1 70	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -9	rlj3 -15	rlj4 -60	rlj5 34	rlj6 9	llj1 0	llj2 -18	llj3 40	llj4 0	llj5 10	llj6 18
+
+TT_p7
+hj1 0	hj2 0	raj1 -110	raj2 0	raj3 90	raj4 0	laj1 0	laj2 0	laj3 -20	laj4 -70	rlj1 0	rlj2 -20	rlj3 60	rlj4 -60	rlj5 15	rlj6 0	llj1 0	llj2 -18	llj3 -15	llj4 0	llj5 -15	llj6 18
+
+archkick
+raj1 -120	raj2 -20	laj1 0	laj2 95	rlj1 -44	rlj2 -45	rlj3 3	rlj4 -92	rlj5 75	rlj6 -25	llj2 -18	llj4 -15	llj5 14	llj6 18
+
+archkick1
+raj1 -120	raj2 -20	laj1 -45	laj2 0	rlj1 -59	rlj2 4	rlj3 15	rlj4 -12	rlj5 -23	rlj6 37	llj2 -18	llj4 -15	llj5 14	llj6 18
+
+archkickII
+hj1 0	raj1 0	laj1 -90	laj2 90	rlj1 -41	rlj2 -45	rlj3 19	rlj4 -65	rlj5 28	rlj6 -25	llj1 0	llj2 -13	llj3 0	llj4 0	llj5 0	llj6 13
+
+archkickII2
+hj1 0	laj1 -90	laj2 90	rlj1 -64	rlj2 25	rlj3 0	rlj4 -39	rlj5 -10	rlj6 29	llj2 -13	llj6 13
+
+bend_leg2
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 90	laj1 0	laj2 0	laj3 0	laj4 -90	rlj1 -72	rlj2 0	rlj3 -25	rlj4 -130	rlj5 -27	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 75	llj6 0
+
+gpLieToQianqi
+hj1 0	hj2 0	raj1 90	raj2 -95	raj3 0	raj4 0	laj1 90	laj2 95	laj3 0	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34	llj6 0
+
+gpLieToQianqi2
+hj1 0	hj2 0	raj1 90	raj2 -95	raj3 -90	raj4 0	laj1 90	laj2 95	laj3 90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34	llj6 0
+
+gpLieToQianqi3
+hj1 0	hj2 0	raj1 -90	raj2 -90	raj3 90	raj4 0	laj1 -90	laj2 90	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+houdao
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 -45	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 -45	llj6 0
+
+houqi_1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 0	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+houqi_2
+hj1 0	hj2 0	raj1 -45	raj2 0	raj3 90	raj4 0	laj1 -45	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 100	rlj4 0	rlj5 0	rlj6 -1	llj1 0	llj2 0	llj3 100	llj4 0	llj5 0	llj6 0
+
+houqi_3
+raj1 -20	laj1 -20	rlj1 -90	rlj2 0	rlj3 64	llj1 -90	llj2 0	llj3 64
+
+houqi_4
+raj1 30	laj1 30	rlj1 -90	rlj2 25	rlj3 100	rlj4 -130	rlj5 -4	rlj6 45	llj1 -90	llj2 25	llj3 100	llj4 -130	llj5 -4	llj6 25
+
+houqi_5
+raj1 0	laj1 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+houqi_6
+hj1 0	hj2 0	raj1 15	raj2 0	raj3 90	raj4 0	laj1 15	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 30	rlj4 -60	rlj5 40	rlj6 0	llj1 0	llj2 0	llj3 30	llj4 -60	llj5 40	llj6 0
+
+houqi_lv_1
+raj1 0	laj1 0	rlj1 0	rlj2 0	rlj3 100	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 100	llj4 0	llj5 0	llj6 0
+
+houqi_lv_2
+raj1 0	laj1 0	rlj1 -90	rlj2 10	rlj3 100	rlj4 -130	rlj5 -20	rlj6 -25	llj1 -90	llj2 10	llj3 100	llj4 -130	llj5 -20	llj6 15
+
+houqi_lv_init
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0	UnknowSensor 0
+
+hu_Acc
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 -45	rlj3 100	rlj4 1	rlj5 -45	rlj6 45	llj1 0	llj2 -18	llj3 20	llj4 0	llj5 0	llj6 18
+
+hu_Accyu
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 -38	rlj3 100	rlj4 1	rlj5 -45	rlj6 45	llj1 0	llj2 -15	llj3 -5	llj4 0	llj5 0	llj6 18
+
+hu_MoveCOM
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 0	rlj4 0	rlj5 0	rlj6 18	llj1 0	llj2 -18	llj3 0	llj4 0	llj5 0	llj6 18
+
+hu_back_1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 18	rlj3 0	rlj4 0	rlj5 0	rlj6 -18	llj1 0	llj2 18	llj3 0	llj4 0	llj5 0	llj6 -18
+
+hu_back_2
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -12	rlj3 39	rlj4 -77	rlj5 39	rlj6 12	llj1 0	llj2 -12	llj3 0	llj4 0	llj5 0	llj6 12
+
+hu_back_3
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 36	rlj4 -40	rlj5 11	rlj6 18	llj1 0	llj2 -18	llj3 -13	llj4 0	llj5 0	llj6 18
+
+hu_back_4
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 -25	rlj4 -55	rlj5 47	rlj6 18	llj1 0	llj2 -18	llj3 10	llj4 0	llj5 0	llj6 18
+
+hu_baitui
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 1	rlj2 -45	rlj3 -25	rlj4 -130	rlj5 -45	rlj6 -25	llj1 0	llj2 -18	llj3 13	llj4 0	llj5 0	llj6 18
+
+hu_kick1
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 0	rlj4 0	rlj5 0	rlj6 18	llj1 0	llj2 -18	llj3 0	llj4 0	llj5 0	llj6 18
+
+hu_kick2
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 45	rlj4 -105	rlj5 60	rlj6 18	llj1 0	llj2 -18	llj3 0	llj4 0	llj5 0	llj6 18
+
+hu_kick3
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 1	rlj2 -18	rlj3 17	rlj4 -70	rlj5 40	rlj6 18	llj1 0	llj2 -18	llj3 13	llj4 0	llj5 0	llj6 18
+
+hu_kick4
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 77	rlj4 1	rlj5 -45	rlj6 18	llj1 0	llj2 -18	llj3 -10	llj4 0	llj5 0	llj6 18
+
+hu_kick4.3
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 53	rlj4 1	rlj5 -12	rlj6 18	llj1 0	llj2 -18	llj3 -10	llj4 0	llj5 0	llj6 18
+
+hu_kick5
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 1	rlj2 -18	rlj3 56	rlj4 1	rlj5 75	rlj6 18	llj1 0	llj2 -18	llj3 -10	llj4 0	llj5 0	llj6 18
+
+hu_squat
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 30	rlj4 -80	rlj5 50	rlj6 0	llj1 0	llj2 0	llj3 30	llj4 -80	llj5 50	llj6 0
+
+hu_taijiao
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 -16	rlj3 45	rlj4 -105	rlj5 60	rlj6 18	llj1 0	llj2 -18	llj3 0	llj4 0	llj5 0	llj6 18
+
+hu_wait
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 0	rlj4 0	rlj5 0	rlj6 18	llj1 0	llj2 -18	llj3 0	llj4 0	llj5 0	llj6 18
+
+hu_wait2
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+init
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+init1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+instepkick
+raj1 -22	raj2 -8	laj1 -90	laj2 95	rlj1 1	rlj2 -15	rlj3 -25	rlj4 -117	rlj5 -45	rlj6 9	llj2 -4	llj3 0	llj4 -21	llj5 31	llj6 18
+
+instepkick2
+raj1 -90	raj2 -25	laj1 -45	laj2 0	rlj1 0	rlj2 -15	rlj3 51	rlj4 1	rlj5 19	rlj6 0	llj2 -4	llj3 -8	llj4 -12	llj5 13	llj6 24
+
+instepsidepass
+raj1 -120	raj2 -20	laj1 0	laj2 95	rlj1 0	rlj2 -30	rlj3 3	rlj4 -92	rlj5 75	rlj6 9	llj2 -4	llj4 -15	llj5 14	llj6 18
+
+leftArmHitBall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+leftArmHitBall1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+leftFall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 0	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 25	llj4 -75	llj5 45	llj6 -45
+
+leftFall1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+leftFall2
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+leftFallToLie
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -60	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+leftFallToLie1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+leftFallToLieProne
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -120	laj2 15	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+leftFallToLieProne1
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+leftFallToLieProne2
+hj1 0	hj2 0	raj1 -5	raj2 0	raj3 0	raj4 0	laj1 -5	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 30	rlj6 -4	llj1 0	llj2 0	llj3 0	llj4 0	llj5 30	llj6 0
+
+leftHipHitBall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 45	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 100	llj4 0	llj5 0	llj6 0
+
+leftfall_pt_init
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 50	llj4 -80	llj5 34.4635	llj6 -0.00141341
+
+leftfall_pt_init2
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 -90	rlj2 -45	rlj3 45	rlj4 0	rlj5 0	rlj6 0	llj1 -90	llj2 45	llj3 45	llj4 0	llj5 34	llj6 -0.00141341
+
+lie
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 -23	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 -23	llj6 0
+
+null
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 0	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+picha
+raj1 0	laj1 0	rlj1 -90	rlj2 -45	rlj3 100	rlj4 -130	rlj5 50	llj1 -90	llj2 45	llj3 100	llj4 -130	llj5 50
+
+picha2
+raj1 -38	laj1 -38	rlj1 -90	rlj2 -45	rlj3 100	rlj4 -130	rlj5 50	llj1 -90	llj2 45	llj3 100	llj4 -130	llj5 50
+
+pituipq
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 -90	rlj2 -45	rlj3 45	rlj4 0	rlj5 0	rlj6 0	llj1 -90	llj2 45	llj3 45	llj4 0	llj5 0	llj6 -0.00141341
+
+pituipq1
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 0	rlj2 -0.00062561	rlj3 35.6247	rlj4 -60.0884	rlj5 34	rlj6 0	llj1 -90	llj2 45	llj3 45	llj4 0	llj5 0	llj6 0
+
+pituipq2
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 -90	rlj2 -45	rlj3 45	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0.0011198	llj3 35.6264	llj4 -60.0899	llj5 34.4635	llj6 -0.00141341
+
+pronate
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 33	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 33	llj6 0
+
+pushup_1
+hj1 0	hj2 0	raj1 -90	raj2 -30	raj3 90	raj4 0	laj1 -90	laj2 30	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+pushup_2
+hj1 0	hj2 0	raj1 -5	raj2 0	raj3 0	raj4 0	laj1 -5	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 30	rlj6 -4	llj1 0	llj2 0	llj3 0	llj4 0	llj5 30	llj6 0
+
+qiandao
+hj1 0	hj2 0	raj1 -5	raj2 0	raj3 0	raj4 0	laj1 -5	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 30	rlj6 -4	llj1 0	llj2 0	llj3 0	llj4 0	llj5 30	llj6 0
+
+qianqi_1
+raj1 -5	raj2 0	raj3 0	raj4 0	laj1 -5	laj2 0	laj3 0	laj4 0	rlj1 -90	rlj2 0	rlj3 100	rlj4 -130	rlj5 0	rlj6 -15	llj1 -90	llj2 0	llj3 100	llj4 -130	llj5 0	llj6 -15
+
+qianqi_2
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 -45	rlj2 0	rlj3 50	rlj4 -65	rlj5 10	rlj6 -10	llj1 -45	llj2 0	llj3 50	llj4 -65	llj5 10	llj6 -10
+
+qianqi_3
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+qianqi_lv_1
+raj1 0	raj2 -70	raj3 0	raj4 0	laj1 0	laj2 70	laj3 0	laj4 0	rlj1 -90	rlj2 0	rlj3 100	rlj4 -130	rlj5 0	rlj6 25	llj1 -90	llj2 0	llj3 100	llj4 -130	llj5 0	llj6 -25
+
+qianqi_lv_2
+raj1 -30	raj2 0	raj3 0	raj4 0	laj1 -30	laj2 0	laj3 0	laj4 0	rlj1 -90	rlj2 0	rlj3 100	rlj4 -130	rlj5 0	rlj6 19	llj1 -90	llj2 0	llj3 100	llj4 -130	llj5 0	llj6 -19
+
+qianqi_lv_init
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+raisefootR
+raj1 -90	laj1 -90	rlj1 0	rlj2 -13	rlj3 30	rlj4 -82	rlj5 59	rlj6 0	llj1 0	llj2 -13	llj3 0	llj4 0	llj5 0	llj6 13
+
+rightArmHitBall
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightArmHitBall1
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightArmHitBallWhenLie
+hj1 0	hj2 0	raj1 -105	raj2 0	raj3 90	raj4 0	laj1 -105	laj2 0	laj3 -90	laj4 0	rlj1 -5	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightArmHitBallWhenLie1
+hj1 0	hj2 0	raj1 -105	raj2 0	raj3 90	raj4 0	laj1 -105	laj2 0	laj3 -90	laj4 0	rlj1 -5	rlj2 -45	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightFall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 25	rlj4 -75	rlj5 45	rlj6 45	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightFall1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightFall2
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightFallToLie
+hj1 0	hj2 0	raj1 -60	raj2 -15	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightFallToLie1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightFallToLieProne
+hj1 0	hj2 0	raj1 -120	raj2 -15	raj3 76	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 1	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightFallToLieProne1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 0	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+rightFallToLieProne2
+hj1 0	hj2 0	raj1 -5	raj2 0	raj3 0	raj4 0	laj1 -5	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 30	rlj6 -4	llj1 0	llj2 0	llj3 0	llj4 0	llj5 30	llj6 0
+
+rightHipHitBall
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 0	rlj3 100	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 45	llj4 0	llj5 0	llj6 0
+
+rightfall_lv
+hj1 0	hj2 0	raj1 60	raj2 0	raj3 90	raj4 0	laj1 60	laj2 0	laj3 -90	laj4 0	rlj1 -60	rlj2 22	rlj3 35	rlj4 -60	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 35	llj4 -60	llj5 40	llj6 0
+
+rightfall_pt_2_1
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 -90	rlj2 -45	rlj3 45	rlj4 0	rlj5 0	rlj6 0	llj1 -90	llj2 45	llj3 45	llj4 0	llj5 0	llj6 -0.00141341
+
+rightfall_pt_2_init2
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 -90	rlj2 -45	rlj3 45	rlj4 0	rlj5 34	rlj6 0	llj1 -90	llj2 45	llj3 45	llj4 0	llj5 0	llj6 -0.00141341
+
+rightfall_pt_init
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 0	rlj2 -0.00062561	rlj3 50	rlj4 -80	rlj5 34	rlj6 0	llj1 0	llj2 0.0011198	llj3 0	llj4 0	llj5 0	llj6 -0.00141341
+
+roll
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 90	laj1 0	laj2 0	laj3 0	laj4 -90	rlj1 -62	rlj2 0	rlj3 -25	rlj4 -130	rlj5 -27	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 75	llj6 0
+
+roll2
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 90	laj1 0	laj2 0	laj3 0	laj4 -90	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 26	llj3 -25	llj4 -80	llj5 0	llj6 0
+
+roll3
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 90	laj1 0	laj2 0	laj3 0	laj4 -90	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+roll4
+hj1 0	hj2 0	raj1 0	raj2 0	raj3 0	raj4 0	laj1 0	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+sidekick2
+raj1 -90	raj2 0	raj3 0	raj4 0	laj1 -90	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 8	rlj3 42	rlj4 -33	rlj5 -4	rlj6 31	llj1 0	llj2 -13	llj3 0	llj4 0	llj5 0	llj6 12
+
+sidekick3
+raj1 -90	laj1 -90	rlj1 0	rlj2 -45	rlj3 42	rlj4 -33	rlj5 -4	rlj6 -9	llj1 0	llj2 -13	llj3 0	llj4 0	llj5 0	llj6 13
+
+sidelongpass
+raj1 -90	laj1 -90	laj2 90	rlj1 0	rlj2 -36	rlj3 43	rlj4 -32	rlj5 -5	rlj6 -25	llj1 0	llj2 -4	llj3 0	llj4 0	llj5 0	llj6 14
+
+sidelongpass0
+raj1 -90	laj1 0	laj2 90	rlj1 0	rlj2 -10	rlj3 49	rlj4 -104	rlj5 56	rlj6 9	llj2 -13	llj3 0	llj4 0	llj5 0	llj6 13
+
+sidelongpass2
+raj1 -90	laj1 -90	laj2 90	rlj1 0	rlj2 25	rlj3 43	rlj4 -32	rlj5 -5	rlj6 44	llj2 -11	llj6 13
+
+sidelongpassII
+raj1 -90	laj1 -90	rlj1 0	rlj2 25	rlj3 47	rlj4 -17	rlj5 -24	rlj6 13	llj2 -13	llj6 13
+
+sidelongpassII2
+raj1 -90	laj1 -90	rlj1 0	rlj2 -20	rlj3 47	rlj4 -17	rlj5 -24	rlj6 13	llj2 -13	llj6 13
+
+sit
+raj1 -48	laj1 -48	rlj1 -90	rlj2 0	rlj3 100	rlj4 -130	rlj5 -4	llj1 -90	llj2 0	llj3 100	llj4 -130	llj5 -4
+
+squat
+hj1 0	hj2 0	raj1 -120	raj2 0	raj3 90	raj4 60	laj1 -120	laj2 0	laj3 -90	laj4 -60	rlj1 0	rlj2 -0.00062561	rlj3 35.6247	rlj4 -60.0884	rlj5 34	rlj6 0	llj1 0	llj2 0.0011198	llj3 35.6264	llj4 -60.0899	llj5 34.4635	llj6 -0.00141341
+
+squat_1
+hj1 0	hj2 0	raj1 -10	raj2 0	raj3 0	raj4 0	laj1 -10	laj2 0	laj3 0	laj4 0	rlj1 0	rlj2 0	rlj3 30	rlj4 -60	rlj5 40	rlj6 0	llj1 0	llj2 0	llj3 30	llj4 -60	llj5 40	llj6 0
+
+stand1
+raj1 -48	laj1 -48	rlj1 -75	rlj2 0	rlj3 25	rlj4 -49	rlj5 0	rlj6 7	llj1 -75	llj2 0	llj3 25	llj4 -49	llj5 0	llj6 -6
+
+stand3
+raj1 0	laj1 0	rlj1 0	rlj2 0	rlj3 0	rlj4 0	rlj5 0	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 0	llj6 0
+
+swingfootRbackward
+rlj1 -16	rlj2 -30	rlj3 -19	rlj4 -60	rlj5 30	rlj6 9	llj2 -9	llj6 9
+
+taitui
+hj1 0	hj2 0	raj1 -36	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 45	rlj4 -105	rlj5 60	rlj6 18	llj1 0	llj2 -18	llj3 0	llj4 0	llj5 0	llj6 18
+
+taitui1
+hj1 0	hj2 0	raj1 -90	raj2 0	raj3 90	raj4 0	laj1 -90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -18	rlj3 45	rlj4 -105	rlj5 60	rlj6 18	llj1 0	llj2 -18	llj3 0	llj4 0	llj5 0	llj6 18
+
+testfall
+hj1 0	hj2 0	raj1 60	raj2 0	raj3 90	raj4 0	laj1 60	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 35.6247	rlj4 -60.0884	rlj5 40	rlj6 0	llj1 -60	llj2 -22	llj3 35.6264	llj4 -60.0899	llj5 34.4635	llj6 -0.00141341
+
+testfall_1
+hj1 0	hj2 0	raj1 60	raj2 0	raj3 90	raj4 0	laj1 60	laj2 0	laj3 -90	laj4 0	rlj1 1	rlj2 -0.00062561	rlj3 35.6247	rlj4 -60.0884	rlj5 40	rlj6 28	llj1 -60	llj2 -22	llj3 35.6264	llj4 -60.0899	llj5 34.4635	llj6 -0.00141341
+
+testfall_2
+hj1 0	hj2 0	raj1 60	raj2 0	raj3 90	raj4 0	laj1 60	laj2 0	laj3 -90	laj4 0	rlj1 1	rlj2 -0.00062561	rlj3 35.6247	rlj4 -60.0884	rlj5 40	rlj6 28	llj1 -60	llj2 -22	llj3 35.6264	llj4 -60.0899	llj5 34.4635	llj6 -0.00141341
+
+testfall_2_1
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34	llj6 0
+
+testfall_2_2
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34.4635	llj6 -0.00141341
+
+testfall_2_3
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34.4635	llj6 -0.00141341
+
+testfall_2_4
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34.4635	llj6 -0.00141341
+
+testfall_2_5
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34.4635	llj6 -0.00141341
+
+testfall_2_6
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34.4635	llj6 -0.00141341
+
+testfall_2_7
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34.4635	llj6 -0.00141341
+
+testfall_2_8
+hj1 0	hj2 0	raj1 90	raj2 0	raj3 90	raj4 0	laj1 90	laj2 0	laj3 -90	laj4 0	rlj1 0	rlj2 -0.00062561	rlj3 0	rlj4 0	rlj5 34	rlj6 0	llj1 0	llj2 0	llj3 0	llj4 0	llj5 34.4635	llj6 -0.00141341
+
+testfall_3
+hj1 0	hj2 0	raj1 60	raj2 0	raj3 90	raj4 0	laj1 60	laj2 0	laj3 -90	laj4 0	rlj1 1	rlj2 -0.00062561	rlj3 35.6247	rlj4 -60.0884	rlj5 40	rlj6 28	llj1 -60	llj2 -22	llj3 35.6264	llj4 -60.0899	llj5 34.4635	llj6 -0.00141341
+
+testfall_4
+hj1 0	hj2 0	raj1 60	raj2 0	raj3 90	raj4 0	laj1 60	laj2 0	laj3 -90	laj4 0	rlj1 1	rlj2 -0.00062561	rlj3 35.6247	rlj4 -60.0884	rlj5 40	rlj6 28	llj1 -60	llj2 -22	llj3 35.6264	llj4 -60.0899	llj5 34.4635	llj6 -0.00141341
+

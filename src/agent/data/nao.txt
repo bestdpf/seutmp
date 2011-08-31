@@ -1,0 +1,1068 @@
+;houqi_lv_init_2
+init 0.4 0 0 houqi_lv_init2_1 0
+
+ac1
+ac1 0.1 0 0 ac2 0
+
+ac2
+ac2 0.3 0 0 ac3 0
+
+ac3
+ac3 0.16 0 0 ac4 0
+
+ac4
+ac4 0.04 0 0 null 0
+
+Lac1
+Lac1 0.1 0 0 Lac2 0
+
+Lac2
+Lac2 0.3 0 0 Lac3 0
+
+Lac3
+Lac3 0.16 0 0 Lac4 0
+
+Lac4
+Lac4 0.04 0 0 null 0
+
+aw01
+aw01 0.1 0 0 aw02 0
+
+aw02
+aw02 0.2 0 0 aw03 0
+
+aw03
+aw03 0.12 0 0 aw04 0
+
+aw04
+aw04 0.1 0 0 aw05 0
+
+aw05
+aw05 0.08 0 0 aw06 0
+
+aw06
+aw06 0.12 0 0 null 0
+
+Law01
+Law01 0.1 0 0 Law02 0
+
+Law02
+Law02 0.2 0 0 Law03 0
+
+Law03
+Law03 0.12 0 0 Law04 0
+
+Law04
+Law04 0.1 0 0 Law05 0
+
+Law05
+Law05 0.04 0 0 Law06 0
+
+Law06
+Law06 0.06 0 0 null 0
+
+aaww1
+aaww1 0.1 0 0 aaww2 0
+
+aaww2
+aaww2 0.2 0 0 aaww3 0
+
+aaww3
+aaww3 0.12 0 0 aaww4 0
+
+aaww4
+aaww4 0.1 0 0 aaww5 0
+
+aaww5
+aaww5 0.04 0 0 aaww6 0
+
+aaww6
+aaww6 0.06 0 0 null 0
+
+Laaww1
+Laaww1 0.1 0 0 Laaww2 0
+
+Laaww2
+Laaww2 0.2 0 0 Laaww3 0
+
+Laaww3
+Laaww3 0.12 0 0 Laaww4 0
+
+Laaww4
+Laaww4 0.1 0 0 Laaww5 0
+
+Laaww5
+Laaww5 0.04 0 0 Laaww6 0
+
+Laaww6
+Laaww6 0.06 0 0 null 0
+
+awgood1
+awgood1 0.1 0 0 awgood2 0
+
+awgood2
+awgood2 0.3 0 0 awgood3 0
+
+awgood3
+awgood3 0.1 0 0 awgood4 0
+
+awgood4
+awgood4 0.06 0 0 awgood5 0
+
+awgood5
+awgood5 0.06 0 0 null 0
+
+Lawgood1
+Lawgood1 0.1 0 0 Lawgood2 0
+
+Lawgood2
+Lawgood2 0.3 0 0 Lawgood3 0
+
+Lawgood3
+Lawgood3 0.1 0 0 Lawgood4 0
+
+Lawgood4
+Lawgood4 0.06 0 0 Lawgood5 0
+
+Lawgood5
+Lawgood5 0.06 0 0 null 0
+
+ATT_t1
+ATT_p1 0.1 0 0 ATT_t2 0
+
+ATT_t2
+ATT_p2 0.2 0 0 ATT_t3 0
+
+ATT_t3
+ATT_p3 0.2 0 0 ATT_t4 0
+
+ATT_t4
+ATT_p4 0.2 0 0 ATT_t5 0
+
+ATT_t5
+ATT_p5 0.04 0 0 ATT_t6 0
+
+ATT_t6
+ATT_p6 0.14 0 0 null 0
+
+ATTL_t1
+ATTL_p1 0.1 0 0 ATTL_t2 0
+
+ATTL_t2
+ATTL_p2 0.2 0 0 ATTL_t3 0
+
+ATTL_t3
+ATTL_p3 0.2 0 0 ATTL_t4 0
+
+ATTL_t4
+ATTL_p4 0.2 0 0 ATTL_t5 0
+
+ATTL_t5
+ATTL_p5 0.04 0 0 ATTL_t6 0
+
+ATTL_t6
+ATTL_p6 0.14 0 0 null 0
+
+BTT_t1
+BTT_p1 0.1 0 0 BTT_t2 0
+
+BTT_t2
+BTT_p2 0.4 0 0 BTT_t3 0
+
+BTT_t3
+BTT_p3 0.12 0 0 BTT_t4 0
+
+BTT_t4
+BTT_p4 0.10 0 0 BTT_t5 0
+
+BTT_t5
+BTT_p5 0.04 0 0 BTT_t6 0
+
+BTT_t6
+BTT_p6 0.06 0 0 null 0
+
+BTTL_t1
+BTTL_p1 0.1 0 0 BTTL_t2 0
+
+BTTL_t2
+BTTL_p2 0.4 0 0 BTTL_t3 0
+
+BTTL_t3
+BTTL_p3 0.12 0 0 BTTL_t4 0
+
+BTTL_t4
+BTTL_p4 0.10 0 0 BTTL_t5 0
+
+BTTL_t5
+BTTL_p5 0.04 0 0 BTTL_t6 0
+
+BTTL_t6
+BTTL_p6 0.06 0 0 null 0
+
+LFToLie1_wcy
+LFToLie1_wcy 0.2 0 0 LFToLie2_wcy 0
+
+LFToLie2_wcy
+LFToLie2_wcy 0.3 0 0 LFToLie3_wcy 0
+
+LFToLie3_wcy
+LFToLie3_wcy 1.2 0 0 LFToLie4_wcy 0
+
+LFToLie4_wcy
+LFToLie4_wcy 0.6 0 0 null 0
+
+RFToLie1_wcy
+RFToLie1_wcy 0.2 0 0 RFToLie2_wcy 0
+
+RFToLie2_wcy
+RFToLie2_wcy 0.3 0 0 RFToLie3_wcy 0
+
+RFToLie3_wcy
+RFToLie3_wcy 1.2 0 0 RFToLie4_wcy 0
+
+RFToLie4_wcy
+RFToLie4_wcy 0.6 0 0 null 0
+
+backfall1
+backfall1 0.2 0 0 backfall2 1
+
+backfall2
+backfall2 0.2 0 0 backfall3 1
+
+backfall3
+backfall3 0.2 0 0 null 1
+
+frontfall1
+frontfall1 0.2 0 0 frontfall2 0
+
+frontfall2
+frontfall2 0.2 0 0 frontfall3 0
+
+frontfall3
+frontfall3 0 0 0 null 1
+
+CoM2L
+CoM2L 2 0 0 null 0
+
+LAHitBall
+LAHitBall 0.3 0 0 LAHitBall 0
+
+LAHitBall1
+LAHitBall1 0.3 0 0 LAHitBall1 0
+
+LF
+LF 0.3 0 0 LF1 0
+
+LF1
+LF1 0.6 0 0 LF2 0
+
+LF2
+LF1 0.4 0 0 null 0
+
+LFTL
+LFToLie 0.2 0 0 LFTL1 0
+
+LFTL1
+LFToLie1 0.3 0 0 null 0
+
+LFTL2
+qianqi_lv_init 0.2 0 0 null 0
+
+LFTLP
+leftFallToLieProne 0.2 0 0 LFTLP1 0
+
+LFTLP1
+leftFallToLieProne1 0.5 0 0 null 0
+
+LFTLP2
+leftFallToLieProne2 0.5 0 0 null 0
+
+LFToLeftFall
+LFToLeftFall 0.3 0 0 LFToLeftFall1 0
+
+LFToLeftFall1
+LFToLeftFall1 0.3 0 0 LFToLeftFall1 0
+
+LFToLie
+LFToLie 0.2 0 0 LFToLie1 0
+
+LFToLie1
+LFToLie1 0.8 0 0 LFToLie1 0
+
+LPNTGToLieProne
+LPNTGToLieProne 0.1 0 0 LPNTGToLieProne1 0
+
+LPNTGToLieProne1
+LPNTGToLieProne1 0.3 0 0 null 0
+
+PassSidelong1L
+sidelongpass0 0.2 0 0 PassSidelong2 1
+
+PassSidelong1R
+sidelongpass0 0.2 0 0 PassSidelong2 0
+
+PassSidelong2
+sidelongpass 0.3 0 0 PassSidelong3 0
+
+PassSidelong3
+sidelongpass2 0.14 0 0 null 0
+
+RF
+RF 0.3 0 0 RF1 0
+
+RF1
+RF1 0.6 0 0 RF2 0
+
+RF2
+RF2 0.4 0 0 null 0
+
+RFTL
+RFToLie 0.2 0 0 RFTL1 0
+
+RFTL1
+RFToLie1 0.3 0 0 RFTL2 0
+
+RFTL2
+qianqi_lv_init 0.2 0 0 null 0
+
+RFTLP
+rightFallToLieProne 0.2 0 0 RFTLP1 0
+
+RFTLP1
+rightFallToLieProne1 0.5 0 0 RFTLP2 0
+
+RFTLP2
+rightFallToLieProne2 0.5 0 0 null 0
+
+RFToLie
+RFToLie 0.2 0 0 RFToLie1 0
+
+RFToLie1
+RFToLie1 0.5 0 0 null 0
+
+RFToLieProne
+RFToLieProne 0.2 0 0 RFToLieProne1 0
+
+RFToLieProne1
+RFToLieProne1 0.5 0 0 RFToLieProne1 0
+
+RFToRightFall
+RFToRightFall 0.3 0 0 RFToRightFall1 0
+
+RFToRightFall1
+RFToRightFall1 0.3 0 0 RFToRightFall1 0
+
+RHHitBall
+RHHitBall 0.3 0 0 null 0
+
+RHipHitBall
+RHipHitBall 0.3 0 0 RHipHitBall 0
+
+RLAHitBall
+RLAHitBall 0.25 0 0 RLAHitBall 0
+
+TT_t1
+TT_p1 0.1 0 0 TT_t2 0
+
+TT_t2
+TT_p2 0.2 0 0 TT_t3 0
+
+TT_t3
+TT_p3 0.2 0 0 TT_t4 0
+
+TT_t4
+TT_p4 0.3 0 0 TT_t5 0
+
+TT_t5
+TT_p5 0.3 0 0 TT_t6 0
+
+TT_t6
+TT_p6 0.3 0 0 TT_t7 0
+
+TT_t7
+TT_p7 0.18 0 0 null 0
+
+archkick
+archkick 2 0 0 null 0
+
+archkick1
+archkick1 0.16 0 0 null 0
+
+archkickII
+archkickII 1 0 0 archkickII2 0
+
+archkickII2
+archkickII2 0.4 0 0 null 0
+
+bend_leg
+bend_leg 2 0 0 bend_leg2 0
+
+bend_leg2
+bend_leg2 3 0 0 roll2 0
+
+gpLieToQianqi
+gpLieToQianqi 0.05 0 0 gpLieToQianqi_1 0
+
+gpLieToQianqi2
+gpLieToQianqi2 0.05 0 0 gpLieToQianqi3 0
+
+gpLieToQianqi3
+gpLieToQianqi3 0.05 0 0 gpLieToQianqi3_1 0
+
+gpLieToQianqi3_1
+gpLieToQianqi3 0.05 0 0 gpLieToQianqi3_2 0
+
+gpLieToQianqi3_2
+gpLieToQianqi3 0.05 0 0 gpLieToQianqi3_3 0
+
+gpLieToQianqi3_3
+gpLieToQianqi3 0.05 0 0 gpLieToQianqi3_4 0
+
+gpLieToQianqi3_4
+gpLieToQianqi3 0.05 0 0 gpLieToQianqi3_5 0
+
+gpLieToQianqi3_5
+gpLieToQianqi3 0.05 0 0 gpLieToQianqi3_6 0
+
+gpLieToQianqi3_6
+gpLieToQianqi3 0.05 0 0 gpLieToQianqi3_7 0
+
+gpLieToQianqi3_7
+gpLieToQianqi3 0.05 0 0 null 0
+
+gpLieToQianqi_1
+gpLieToQianqi 0.05 0 0 gpLieToQianqi_2 0
+
+gpLieToQianqi_2
+gpLieToQianqi 0.05 0 0 gpLieToQianqi2 0
+
+houdao
+houdao 3 0 0 null 0
+
+houqi_1
+houqi_1 0.6 0 0 houqi_2 0
+
+houqi_2
+houqi_2 0.1 0 0 houqi_3 0
+
+houqi_3
+houqi_3 0.6 0 0 houqi_4 0
+
+houqi_4
+houqi_4 0.8 0 0 houqi_6 0
+
+houqi_4_1
+houqi_lv_2 0.2 0 0 houqi_4_2 0
+
+houqi_4_2
+houqi_lv_2 0.2 0 0 s_1 0
+
+houqi_5
+houqi_5 0.8 0 0 houqi_6 0
+
+houqi_5_2
+houqi_lv_1 0.1 0 0 houqi_5_3 0
+
+houqi_5_3
+houqi_lv_1 0.1 0 0 houqi_4_1 0
+
+houqi_6
+houqi_6 0.8 0 0 null 0
+
+houqi_lv_init
+houqi_lv_init 0.1 0 0 houqi_lv_init2 0
+
+houqi_lv_init2
+houqi_lv_init 0.1 0 0 null 0
+
+houqi_lv_init_2
+houqi_lv_init 0.4 0 0 houqi_lv_start 0
+
+houqi_lv_start
+houqi_lv_1 0.3 0 0 houqi_4_1 0
+
+hu_Acc
+hu_Acc 0.3 0 0 null 0
+
+hu_Acc.2
+hu_Acc.2 0.15 0 0 null 0
+
+hu_Acc.3
+hu_Acc.3 0.2 0 0 null 0
+
+hu_Acc.4
+hu_Acc.4 0.3 0 0 null 0
+
+hu_Acc.5
+hu_Acc.5 0.2 0 0 null 0
+
+hu_Acc.5.1
+hu_Acc.5.1 0.24 0 0 null 0
+
+hu_Acc1
+hu_Acc1 0.2 0 0 null 0
+
+hu_Acc1.1
+hu_Acc1.1 0.25 0 0 null 0
+
+hu_Acc1.2
+hu_Acc1.2 0.3 0 0 null 0
+
+hu_Acc2
+hu_Acc2 0.4 0 0 null 0
+
+hu_Acc2.2
+hu_Acc2.2 0.15 0 0 null 0
+
+hu_Acc2.3
+hu_Acc2.3 0.1 0 0 null 0
+
+hu_Acc3
+hu_Acc3 0.2 0 0 null 0
+
+hu_Acc4
+hu_Acc4 0.16 0 0 null 0
+
+hu_Accyu
+hu_Accyu 0.2 0 0 null 0
+
+hu_MoveCOM
+hu_MoveCOM 0.4 0 0 hu_taijiaoR 0
+
+hu_back3
+7.19743e-34 208 1 0  0
+
+hu_back_1
+hu_back_1 1 0 0 hu_back_2 0
+
+hu_back_2L
+hu_kick2 0.2 0 0 hu_back_3 1
+
+hu_back_2R
+hu_kick2 0.2 0 0 hu_back_3 0
+
+hu_back_3
+hu_back_3 0.3 0 0 hu_back_4 0
+
+hu_back_4
+hu_back_4 0.1 0 0 null 0
+
+hu_baitui
+hu_baitui 1 0 0 hu_Acc 0
+
+hu_baitui.2
+hu_baitui.2 0.5 0 0 hu_baitui 0
+
+hu_baitui2
+hu_baitui2 2 0 0 null 0
+
+hu_kick1
+hu_kick1 2.4 0 0 hu_kick 0
+
+hu_kick2L
+hu_kick2 0.24 0 0 hu_kick3L 1
+
+hu_kick2R
+hu_kick2 0.2 0 0 hu_kick3R 0
+
+hu_kick3L
+hu_kick4 0.02 0 0 hu_kick4L 1
+
+hu_kick3R
+hu_kick3 0.3 0 0 hu_kick4R 0
+
+hu_kick4.1
+hu_kick4.1 0.1 0 0 null 1
+
+hu_kick4.2
+hu_kick4.2 0.08 0 0 null 1
+
+hu_kick4.3
+hu_kick4.3 0.09 0 0 null 1
+
+hu_kick4L
+hu_kick5 0.02 0 0 null 1
+
+hu_kick4R
+hu_kick4 0.1 0 0 null 0
+
+hu_right
+hu_right 3 0 0 null 0
+
+hu_right.1
+hu_right.1 0.2 0 0 null 0
+
+hu_right.2
+hu_right.2 0.08 0 0 null 0
+
+hu_right.3
+hu_right.3 0.06 0 0 null 0
+
+hu_right_1
+hu_right_1 1 0 0 hu_right_2 0
+
+hu_right_2
+hu_right_2 1 0 0 232 0
+
+hu_right_22
+hu_right_22 1 0 0 232 0
+
+hu_right_33
+hu_right_33 0.4 0 0 null 0
+
+hu_right_33.1
+hu_right_33.1 0.1 0 0 null 0
+
+hu_right_33.2
+hu_right_33.2 0.06 0 0 null 0
+
+hu_squat
+hu_squat 3 0 0 null 0
+
+hu_taijiaoL
+hu_taijiao 0.3 0 0 hu_baitui 1
+
+hu_taijiaoR
+hu_taijiao 0.3 0 0 hu_baitui 0
+
+hu_wait
+hu_wait 0.02 0 0 null 0
+
+hu_wait2
+hu_wait2 0.02 0 0 null 0
+
+init
+init 1 0 0 null 0
+
+init1
+init1 1 0 0 null 0
+
+instepkick
+instepkick 2 0 0 null 0
+
+instepkick2
+instepkick2 0.26 0 0 null 0
+
+instepsidepass
+instepsidepass 2 0 0 null 0
+
+leftArmHitBall
+leftArmHitBall 0.3 0 0 leftArmHitBall1 0
+
+leftArmHitBall1
+leftArmHitBall1 0.3 0 0 null 0
+
+leftFall
+leftFall 0.3 0 0 leftFall1 0
+
+leftFall1
+leftFall1 0.6 0 0 leftFall2 0
+
+leftFall2
+leftFall2 0.3 0 0 null 0
+
+leftFallToLie
+leftFallToLie 0.2 0 0 leftFallToLie1 0
+
+leftFallToLie1
+leftFallToLie1 0.5 0 0 null 0
+
+leftFallToLieProne
+leftFallToLieProne 0.2 0 0 leftFallToLieProne1 0
+
+leftFallToLieProne1
+leftFallToLieProne1 0.5 0 0 leftFallToLieProne2 0
+
+leftFallToLieProne2
+leftFallToLieProne2 0.5 0 0 leftFallToLieProne2 0
+
+leftHipHitBall
+leftHipHitBall 0.3 0 0 null 0
+
+leftfall_lv
+testfall 0.05 0 0 testfall_1 0
+
+leftfall_pt
+pituipq2 0.05 0 0 leftfall_pt2 0
+
+leftfall_pt2
+pituipq2 0.05 0 0 leftfall_pt_2_1 0
+
+leftfall_pt_2_1
+pituipq 0.05 0 0 leftfall_pt_2_2 0
+
+leftfall_pt_2_2
+pituipq 0.05 0 0 leftfall_pt_2_3 0
+
+leftfall_pt_2_3
+pituipq 0.05 0 0 leftfall_pt_2_4 0
+
+leftfall_pt_2_4
+pituipq 0.05 0 0 leftfall_pt_2_5 0
+
+leftfall_pt_2_5
+pituipq 0.05 0 0 leftfall_pt_2_6 0
+
+leftfall_pt_2_6
+pituipq 0.3 0 0 leftfall_pt_2_7 0
+
+leftfall_pt_2_7
+pituipq 0.3 0 0 null 0
+
+leftfall_pt_init
+leftfall_pt_init 0.05 0 0 leftfall_pt_init2 0
+
+leftfall_pt_init1
+leftfall_pt_init 0.03 0 0 leftfall_pt_2_1 0
+
+leftfall_pt_init2
+leftfall_pt_init2 0.05 0 0 leftfall_pt_2_2 0
+
+leftfall_pt_init_squat
+squat 0.1 0 0 leftfall_pt_init 0
+
+lie
+lie 3 0 0 null 0
+
+null
+null 0.6 0 0 null 0
+
+oblique45I
+CoM2L 2 0 0 oblique45IIR 0
+
+oblique45III
+archkickII 0.3 0 0 oblique45IV 0
+
+oblique45IIL
+raisefootR 0.2 0 0 oblique45III 1
+
+oblique45IIR
+raisefootR 0.2 0 0 oblique45III 0
+
+oblique45IV
+archkickII2 0.14 0 0 null 0
+
+picha
+picha 2 0 0 sit 0
+
+picha2
+picha2 1 0 0 sit 0
+
+pituipq
+pituipq 0.05 0 0 pituipq 0
+
+pituipq1
+pituipq1 0.05 0 0 null 0
+
+pituipq2
+pituipq2 0.05 0 0 pituipq2 0
+
+pronate
+pronate 3 0 0 null 0
+
+pushup_1
+pushup_1 0.3 0 0 pushup_2 0
+
+pushup_2
+pushup_2 0.3 0 0 qianqi_1 0
+
+pushup_lv_init
+init 1 0 0 qianqi_lv_start 0
+
+qiandao
+qiandao 1.5 0 0 null 0
+
+qianqi_1
+qianqi_1 0.8 0 0 qianqi_2 0
+
+qianqi_2
+qianqi_2 0.8 0 0 squat_2 0
+
+qianqi_3
+qianqi_3 0.2 0 0 qiandao 0
+
+qianqi_lv_1
+qianqi_lv_1 0.1 0 0 qianqi_lv_2 0
+
+qianqi_lv_2
+qianqi_lv_1 0.1 0 0 qianqi_lv_3 0
+
+qianqi_lv_3
+qianqi_lv_2 0.1 0 0 qianqi_lv_4 0
+
+qianqi_lv_4
+qianqi_lv_2 0.1 0 0 qianqi_lv_5 0
+
+qianqi_lv_5
+qianqi_lv_2 0.1 0 0 qianqi_lv_6 0
+
+qianqi_lv_6
+qianqi_lv_2 0.2 0 0 qianqi_lv_7 0
+
+qianqi_lv_7
+squat 0.2 0 0 qianqi_lv_8 0
+
+qianqi_lv_8
+squat 0.1 0 0 qianqi_lv_end 0
+
+qianqi_lv_end
+squat 0.2 0 0 null 0
+
+qianqi_lv_init
+qianqi_lv_init 0.1 0 0 qianqi_lv_init2 0
+
+qianqi_lv_init1
+qianqi_lv_init1 0.3 0 0 null 0
+
+qianqi_lv_init2
+qianqi_lv_init 0.1 0 0 null 0
+
+qianqi_lv_init_fall_dive
+qianqi_lv_init 0.4 0 0 qianqi_lv_start 0
+
+qianqi_lv_start
+qianqi_lv_1 0.1 0 0 qianqi_lv_1 0
+
+qianqi_lv_start_init
+init 0.4 0 0 qianqi_lv_start 0
+
+raisefootR
+raisefootR 0.5 0 0 null 0
+
+rightArmHitBall
+rightArmHitBall 0.3 0 0 rightArmHitBall1 0
+
+rightArmHitBall1
+rightArmHitBall1 0.3 0 0 null 0
+
+rightArmHitBallWhenLie
+rightArmHitBallWhenLie 0.3 0 0 rightArmHitBallWhenLie1 0
+
+rightArmHitBallWhenLie1
+rightArmHitBallWhenLie1 0.3 0 0 rightArmHitBallWhenLie1 0
+
+rightFall
+rightFall 0.3 0 0 rightFall1 0
+
+rightFall1
+rightFall1 0.6 0 0 rightFall2 0
+
+rightFall2
+rightFall2 0.3 0 0 null 0
+
+rightFallToLie
+rightFallToLie 0.2 0 0 rightFallToLie1 0
+
+rightFallToLie1
+rightFallToLie1 0.5 0 0 rightFallToLie1 0
+
+rightFallToLieProne
+rightFallToLieProne 0.2 0 0 rightFallToLieProne1 0
+
+rightFallToLieProne1
+rightFallToLieProne1 0.5 0 0 rightFallToLieProne2 0
+
+rightFallToLieProne2
+rightFallToLieProne2 0.5 0 0 rightFallToLieProne2 0
+
+rightHipHitBall
+rightHipHitBall 0.3 0 0 null 0
+
+rightfall_lv
+rightfall_lv 0.05 0 0 rightfall_lv_1 0
+
+rightfall_lv1
+7.01437e-34 100 0 -1078547356 252 1
+
+rightfall_lv_1
+rightfall_lv 0.05 0 0 rightfall_lv_2 0
+
+rightfall_lv_2
+rightfall_lv 0.05 0 0 rightfall_lv_3 0
+
+rightfall_lv_3
+rightfall_lv 0.05 0 0 rightfall_lv_4 0
+
+rightfall_lv_4
+rightfall_lv 0.05 0 0 rightfall_lv_5 0
+
+rightfall_lv_5
+rightfall_lv 0.05 0 0 testfall_2_1 0
+
+rightfall_pt
+pituipq1 0.05 0 0 rightfall_pt2 0
+
+rightfall_pt2
+pituipq1 0.05 0 0 rightfall_pt_2_1 0
+
+rightfall_pt_2_1
+rightfall_pt_2_1 0.05 0 0 rightfall_pt_2_2 0
+
+rightfall_pt_2_2
+pituipq 0.05 0 0 rightfall_pt_2_3 0
+
+rightfall_pt_2_3
+pituipq 0.05 0 0 rightfall_pt_2_4 0
+
+rightfall_pt_2_4
+pituipq 0.05 0 0 rightfall_pt_2_5 0
+
+rightfall_pt_2_5
+pituipq 0.05 0 0 rightfall_pt_2_6 0
+
+rightfall_pt_2_6
+pituipq 0.3 0 0 rightfall_pt_2_7 0
+
+rightfall_pt_2_7
+pituipq 0.3 0 0 null 0
+
+rightfall_pt_init
+rightfall_pt_init 0.05 0 0 rightfall_pt_init2 0
+
+rightfall_pt_init1
+rightfall_pt_init 0.05 0 0 rightfall_pt_2_1 0
+
+rightfall_pt_init2
+rightfall_pt_2_init2 0.05 0 0 rightfall_pt_2_2 0
+
+rightfall_pt_init_squat
+squat 0.1 0 0 rightfall_pt_init 0
+
+roll
+roll 3 0 0 roll2 0
+
+roll2
+roll2 3 0 0 roll3 0
+
+roll3
+roll3 3 0 0 roll4 0
+
+s_1
+squat 0.2 0 0 s_2 0
+
+s_2
+squat 0.2 0 0 null 0
+
+shoot1
+init 1 0 0 shoot2 0
+
+shoot2
+CoM2L 2 0 0 shoot3 0
+
+shoot3
+raisefootR 2 0 0 shoot4 0
+
+shoot4
+instepkick 2 0 0 shoot5 0
+
+shoot5
+instepkick2 0.26 0 0 null 0
+
+sidekick1L
+raisefootR 0.2 0 0 sidekick2 1
+
+sidekick1R
+raisefootR 0.2 0 0 sidekick2 0
+
+sidekick2
+sidekick2 0.3 0 0 sidekick3 0
+
+sidekick3
+sidekick3 0.14 0 0 null 0
+
+sidelongpass
+sidelongpass 2 0 0 null 0
+
+sidelongpass0
+sidelongpass0 2 0 0 null 0
+
+sidelongpass2
+sidelongpass2 0.14 0 0 null 0
+
+sidelongpassII
+sidelongpassII 2 0 0 null 0
+
+sidelongpassII2
+sidelongpassII2 0.08 0 0 null 0
+
+sit
+sit 2 0 0 stand1 0
+
+squat
+squat 1 0 0 null 0
+
+squat_1
+squat_1 1 0 0 null 0
+
+squat_2
+squat 0.3 0 0 null 0
+
+squat_3
+squat 0.5 0 0 null 0
+
+stand1
+stand1 3 0 0 stand3 0
+
+stand3
+stand3 3 0 0 pronate 0
+
+swingfootRbackward
+swingfootRbackward 2 0 0 swingfootRbackward 0
+
+taitui
+taitui 0.2 0 0 taitui 0
+
+taitui1
+taitui1 0.2 0 0 taitui1 1
+
+testLF
+LF 0.05 0 0 testLF 0
+
+test_taitui
+test_taitui 1 0 0 test_taitui 0
+
+test_taitui1
+test_taitui1 0.3 0 0 test_taitui1 0
+
+testfall_1
+testfall_1 0.05 0 0 testfall_2 0
+
+testfall_2
+testfall_2 0.05 0 0 testfall_3 0
+
+testfall_2_1
+testfall_2_1 0.05 0 0 testfall_2_2 0
+
+testfall_2_2
+testfall_2_1 0.05 0 0 testfall_2_3 0
+
+testfall_2_3
+testfall_2_1 0.05 0 0 testfall_2_4 0
+
+testfall_2_4
+testfall_2_1 0.05 0 0 testfall_2_5 0
+
+testfall_2_5
+testfall_2_1 0.05 0 0 testfall_2_6 0
+
+testfall_2_6
+testfall_2_1 0.05 0 0 testfall_2_7 0
+
+testfall_2_7
+testfall_2_1 0.05 0 0 testfall_2_8 0
+
+testfall_2_8
+testfall_2_1 0.05 0 0 null 0
+
+testfall_3
+testfall_3 0.05 0 0 testfall_4 0
+
+testfall_4
+testfall_4 0.05 0 0 testfall_5 0
+
+testfall_5
+testfall_4 0.05 0 0 testfall_2_1 0
+
+testfall_6
+testfall_4 0.05 0 0 testfall_2_1 0
+

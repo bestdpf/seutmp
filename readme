@@ -1,0 +1,86 @@
+-------------------------------------------------------------------------------
+                             SEU-3D README
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+General Information:
+
+This is Southeast University RoboCup simulation team,SEU-3D project for RoboCup 3D Simulation league.
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Build Guide:
+1. Install required library:
+* DevIL:
+It should have been installed for rcssserver3d.
+* wxWidget:
+configure with " --enable-unicode --disable-debug --disable-shared --enable-monolithic  --with-opengl "
+
+2. Build from the Subversion repository:
+use the svn-server machine(172.19.10.78) to create an user:
+> cd C:Programs\apache group\apache2
+> bin\htpasswd passwd <username>
+the username is suggested to the same as your username in your machine
+
+check out from the svn:
+> svn co http://172.19.10.78:78/svn/Projects/seu-spark
+
+enter the seu-spark directory and build the project:
+> build.sh
+
+******************************************************************
+*NOTE* Text below are old
+******************************************************************
+
+-------------------------------------------------------------------------------
+Package Overview:
+
+The different parts and files of this package are organized in different directories as follows:
+
+./src                     source code
+./src/share               the share source code
+./src/player              the source code of seu-3d-player
+./src/trainer             the source code of seu-3d-trainer
+./utitity                 some useful libraries or tools
+./utility/sexpr           Small Fast S-Expression Library, more information see ./utility/sexpr/README
+./utility/salt            useful templates form rcssserver3d
+./utility/log2html        used to convert SEU-3D logs to htmls, more information see ./utility/log2html/README
+./matlab                  matlab script used to train the agent,contain localization,NN,ect.
+./NN                      the topology files of NN, they are used to create neural network. 
+
+./build                   a bash script to help build the project
+./backup                  a bash script to backup the project to '~/SEU3D-BAK/$YEAR-$MONTH/[$TIME]seu-3d-xxx.tar.gz'
+./mkpackage               a bash script to collect the needed files while running the player and trainer
+-------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+About SEU-3D:
+SEU-3D is the RoboCup Simulation 3D Team of Southeast University, China.
+
+Research Consulant: Yingzi TAN <tanyz@seu.edu.cn>
+Team Consulant:     Yingqiu XU
+
+Current Team Members:
+Leader: Yuan XU <xuyuan.cn@gmail.com>
+Member: Chunlu JIANG
+
+Former Team Members:
+        Qiang WANG <wangqiangqw@yahoo.com.cn>
+
+-------------------------------------------------------------------------------
+Contact:
+If you have any suggestions or questions, please contact us. It will be great pleasure for us to answer your questions.
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+Literature:
+
+[1] Oliver Obst.rcssserver3D-0.3 README.Wed May 12 19:04:09 CEST 2004.
+[2] Panayiotis Thomakos.nn-utility MANUAL.
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+
+Xu Yuan
+Last modified: 2006/07/18

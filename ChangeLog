@@ -1,0 +1,799 @@
+
+
+	
+2007-06-12 Xu Yuan  <xuyuan.cn@gmail.com>
+    ** release version 0.2.2
+    * agent:
+    - use the data file, it can walk with different length steps now
+    - add FootAdjuster, so the lofted foot keeps horizontal
+    * toolkit:
+    - synchrony the agent log and server log
+    - display prints by glut bitmap fonts, so the glut library should be linked
+    - load the *.obj model files of 3D object (from the rcssserver3D)
+    - load images as OpenGL textures by ILUT (a sub lib of DevIL), so the DevIL should be linked
+    - accumlate the camera speed while keep pressing
+    * matlab/HR_M:
+    - the *.m files realtive to kinematic simulation of humanoid robot are added
+
+2007-05-28 Xu Yuan  <xuyuan.cn@gmail.com>
+    * svn:
+	- import to local Subversion
+
+2007-05-27 Xu Yuan  <xuyuan.cn@gmail.com>
+    * toolkit:
+    - fix a bug when do not load ang logfile
+    - disable some functions of RsgEdit, for they are not good enough, need more work here.
+    * lib/math:
+    - rewrite the Vector and Matrix, and do relative changes to agent and toolkit
+
+2007-05-05 Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- support the 'offical' logfile formate, remove the old logfile formate supporting
+
+2007-04-18 Xu Yuan  <xuyuan.cn@gmail.com>
+	* integrate:
+	- integrate the agent source and toolkit source
+	
+2007-02-28 Xu Yuan  <xuyuan.cn@gmail.com>
+	* lib:
+	- fix a rellocate bug in SocketStream
+
+2007-02-27 Xu Yuan  <xuyuan.cn@gmail.com>
+	* Spark agent:
+	- implement the demo action: squat
+	- implement the Proportion controller
+	- import the Joystick controller
+
+2007-02-26 Xu Yuan  <xuyuan.cn@gmail.com>
+	* Spark agent:
+	- recreat the whole project, and change project name to `seu-spark'
+	- write the base code:
+	-- the net library, can use as stream
+	-- replant the parser library, rename to SexpParser
+	-- write the Perception class to represent the perception from server every cycle
+
+    ***************************************************
+
+2007-01-31 Xu Yuan  <xuyuan.cn@gmail.com>
+	* Keepaway:
+	- 3 keepers and 2 takers
+	* toolkit:
+	- ball possession
+
+2006-09-15 Xu Yuan  <xuyuan.cn@gmail.com>
+	* share:
+	- basic implement the Voronoi, but need more tests
+
+2006-09-14 Xu Yuan  <xuyuan.cn@gmail.com>
+	* player:
+	- remove NN codes, for that it is not useful now
+	* utility/glui:
+	- change all ' #include "GL/glui.h" ' to ' #include "glui.h" '
+
+2006-09-10 Xu Yuan  <xuyuan.cn@gmail.com>
+	* player:
+	- great improve kickTo and directPass, can 3v1 pass in 10m*10m
+	* toolkit:
+	- generate the trainer command in python script, this is good than before
+	- use python can draw graphic while trainning
+	- rewrite the sample.py, it draw "SEU-3D" and make all players one line
+
+2006-09-07 Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- emmbed python into toolkit
+	- using Python C API and Python.boost
+
+2006-09-01 Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- use boost_thread.a instead boost_thread.so
+
+2006-08-31  Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- complete the 'TODO' list, ie. fix some bugs
+
+2006-08-26  Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- fix bugs of draw velocity:
+	+- don't draw line if the object is not available
+	 - add sphere's radius to the velocity, so that when the speed is small, it can be seen
+
+2006-08-24  Xu Yuan  <xuyuan.cn@gmail.com>
+	* player:
+	- advance the kickTo skill, but still not as good as FCP
+
+2006-08-20  Xu Yuan  <xuyuan.cn@gmail.com>
+	* player:
+	- advance the intercpt point prediction
+
+2006-08-18  Xu Yuan  <xuyuan.cn@gmail.com>
+	* player:
+	- advance ball position and ball velocity, consider the average velocity and instantaneous velocity
+
+2006-08-16  Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- log the object's position to file
+	* player:
+	- advance localization
+
+2006-08-15  Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- set the palyer's color to black while he is not on the ground
+	* player:
+	- preUpdate
+
+2006-08-14  Xu Yuan  <xuyuan.cn@gmail.com>
+	* player:
+	- fix a bug while goaile catched the ball : set the ball's veolcity to goalie self veolicty
+
+2006-08-13  Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- fix a bug when draw pan_tilt of two teams
+
+2006-08-12  Xu Yuan  <xuyuan.cn@gmail.com>
+	* player:
+	- improve the Matrix class in Matrix.h
+	* toolkit:
+	- auto check the GTK library, and modify the Makefile.am
+
+2006-08-11  Xu Yuan  <xuyuan.cn@gmail.com>
+	* player:
+	- BasicWorldModel:
+	+- extract the Kalman filter to ConstantKalmanFilter and extend kalman filter
+	+- Matrix class 1*2 and 2*2 matrix
+
+2006-08-09  Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- add mulitiple thread by boost.thread
+	- but it is not safe now
+
+2006-08-07  Xu Yuan  <xuyuan.cn@gmail.com>
+	* toolkit:
+	- sysnc the monitor.log to agentX-stdout.log
+
+2006-08-05  Xu Yuan  <xuyuan.cn@gmail.com>
+	* make the toolkit in windows:
+	- build by Dev-cpp and Gtk+Runtime Dev and glui, glut
+	- change some type cover in sexper
+	- chenge the TCP/IP connect code for both windows and Linux
+	- more information see src/toolkit/README
+
+2006-08-04  Xu Yuan  <xuyuan.cn@gmail.com>
+	* write toolkit manual:
+	- use word and the cover to pdf formate
+	- the pdf be putted in doc/
+	- change mkpackage for the manual
+
+2006-08-03  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance toolkit:
+	- draw track of players and ball
+
+2006-08-02  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance toolkit:
+	- save one match result while disable the GUI, use it with --resutl [file name]
+	-- it is useful in run3dleague
+	- draw pan_tilt by lines
+
+2006-08-01  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance toolkit:
+	- add a GTK progress bar while loading log files, but it not performance well
+	- implement the trainer: can set the trainning scene in given time
+	- change trainer --> toolkit
+
+2006-07-31  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- clear the data when quit, to solve the memory leaking problem
+	- print the text-log in the screen
+	- fix a bug of statistic bug: no 'Match'
+	- print the log time in the screen
+	- implement the basic trainer -- send command to rcssserver3d
+	* import GTK+:
+	- use gtk_file_select to open logfile
+
+2006-07-30  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- the agent log can draw Sphere, Rectangle, Circle, Line
+	- draw one level or all levels log
+	- auto draw the closest2Ball player's (all) logs
+	- in auto draw agent log mode, can select one level log now
+	- update camera focus list according to real players' number
+	- not draw ghost player
+	- the camera focus can synchron(lock) with agent log focus
+	- the statistic object can only be selected when he is in the field,ie. not statistic ang ghost
+	- draw an runway outside the field
+	- draw text in 3D world
+	- remove 'D' from logs
+
+2006-07-29  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- draw shpere accodring to agent log
+	- different agents, differents levels, different time logs
+	* implement GraphicLogger:
+	- work together with new Monitor-toolkit
+	- remove the useing of NN to make the binary work ;(
+
+2006-07-26  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- import the Singleton to GLServer
+	* make the rule of agent rule:
+	- draw and text
+
+2006-07-25  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- advance drawHelp
+	- jump to given playmode
+	- drawStatstic
+	- add billboard
+	- basic show statstic of player
+	- advance texture by GL list
+
+2006-07-24  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- singleStep
+	- Pause / forward /backstep
+	- hide/show sub-window
+	- draw 2D overview
+	- 2D grass
+	- add drawHelp to show help information, scroll the help text
+
+2006-07-23  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- connect to server
+	- draw velcovty
+	- draw status text
+
+2006-07-22  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- camera
+
+2006-07-21  Xu Yuan  <xuyuan.cn@gmail.com>
+	* advance Monitor:
+	- draw the palyers and light-effection
+
+2006-07-20  Xu Yuan  <xuyuan.cn@gmail.com>
+	* add Monitor:
+	- the monitor is like glui's example5 and rcsmnoitor3d-lite
+	- it can only draw the sky, field, ball
+	* modify trainer :
+	- add WorldModel to parse the messages
+	- add Statistic to statistic the game
+	* add GLUI library:
+	- the version is 2.35
+	- more info see ./utility/glui/readme.txt
+
+2006-07-19  Xu Yuan  <xuyuan.cn@gmail.com>
+	* modify trainer :
+	-  add GameState and CommUnit
+
+2006-07-18  Xu Yuan  <xuyuan.cn@gmail.com>
+	* rebuild the struct of files :
+	-  the source code of player in ./src/player
+	-- the source code of trainer in ./src/trainer
+	-- the share source code in ./src/share
+	- change some file names: converge --> mkpackage ; tools --> utility
+	- the project can build with gcc4, I have build it with gcc 4.0.0 successfully
+
+2006-03-29  Xu Yuan  <xuyuan.cn@gmail.com>
+	* the new vision :
+	- basic pantilt skills
+	- new localization and filter
+	-- the average position error is about 0.1m, and the max position error is less than 0.2m,
+
+2006-02-28  Xu Yuan  <xychn15@yahoo.com.cn>
+	* the parser (beta version):
+	- import/use the SFEXP library
+	- use the new parser in WorldModle and Formation
+	- the computation is about half of the old parser
+	* add some comments in the main.cpp and Parser.h and Parser.cpp
+	- "make doc" to generate the doxygen of the project
+	* released seu-3d-0.3.c
+
+2006-02-22  Xu Yuan  <xychn15@yahoo.com.cn>
+	* the new log system (beta version):
+	- if not need log system, remove all the log code using marco, this is more handiness
+	- the more effective log stream
+	- auto print the layer, but add LOGBEGIN in the begin of every function
+
+2006-02-12  Xu Yuan  <xychn15@yahoo.com.cn>
+	* the last version before RC2006 qualification
+	* the main change are follows:
+	- pass, Not only clear ball. But some time not so good.
+	- dribble, It is good when dribbling without deceleration, but the beginning is not good.
+	- formation, Not change much, still 3-5-2, but more suitable.
+
+2006-01-08  Xu Yuan  <xychn15@yahoo.com.cn>
+	* fixed BUG of calculateOffsideLine
+	* add TRAINING_MODE
+	- if define this macro, agent and trainer will be compiled into training binary
+	- either, the normally run binary
+	- it can be easily changed in these two modes by changing one line in Settings.
+	- and added PlayerTraining.cpp which contains some agent training functions
+
+2006-01-05  Xu Yuan  <xychn15@yahoo.com.cn>
+	* basic implemented check offside:
+	- can check all 22 player is offside
+	- but need test with trainer!
+	* add some "const" to make code more strong
+
+2006-01-03  Xu Yuan  <xychn15@yahoo.com.cn>
+	* basic implemented jointAction test matlab codes:
+	- added
+	-- matlab/jointAction/testFsngDribble.m
+	-- matlab/jointAction/testDUTturn.m
+	-- matlab/jointAction/testFsngCrossPass.m
+	-- matlab/share/getVel.m
+	-- matlab/share/loadBallData.m
+
+2006-01-02  Xu Yuan  <xychn15@yahoo.com.cn>
+	* import into CVS
+
+2005-12-30  Xu Yuan  <xychn15@yahoo.com.cn>
+	* advance Parser:
+	- change in parserNextInt and parserNextFloat
+	- using boost/lexical_cast
+
+2005-12-29  Xu Yuan  <xychn15@yahoo.com.cn>
+	* basic implement say action:
+	- add SayHear.h and SayHear.cpp
+	- but the hear messages from server seems strange,it may be a bug,I have report it.
+
+2005-12-28  Xu Yuan  <xychn15@yahoo.com.cn>
+	* change some compile files:
+	- src/Makefile.am converge
+	* modify commserver:
+	- fix a warnning,add output logs
+	
+
+2005-12-13  Xu Yuan  <xychn15@yahoo.com.cn>
+	* implemented commserver:
+	- remove the old commserver and lib of spades
+	- add ReadBuffFD.h and ReadBuffFD.cpp from spades/shared
+	-- this two files and the new commserver of agenttest can run smoothly
+	- now the network is also ok :)
+	* src/Makefile.am
+	- make some changes to suit the codes changing
+	- now the trainer is still using oxygen's parser
+	* set the version to seu-3d-0.2.a:
+	- update ChangeLog, NEWS, INSTALL, TODO
+
+2005-12-12  Xu Yuan  <xychn15@yahoo.com.cn>
+	* implemented parser:
+	- the parser can run correctly, 
+	- but when parsing some unexpected string, we skip just now
+	- it needs more testing!
+	
+2005-12-11  Xu Yuan  <xychn15@yahoo.com.cn>
+	* remove all codes which bind with lib of rcssserver3d:
+	- and just now for the server change, i decided to give up some codes which bind with lib of rcssserver3d
+	- after remove all the codes, i need a new parser
+	- and use Singleton instead of zeitgeist structure
+	- so, we no need the seu-3d-play.rb, and give up using ruby in our agent
+
+2005-12-04  Xu Yuan  <xychn15@yahoo.com.cn>
+	* add Joystick function:
+	- now, we can use a joystick to control an agent
+	- this function are copyed from RoboLog3D, thanks them!
+
+2005-12-01  Xu Yuan  <xychn15@yahoo.com.cn>
+	* 这些天一直在为AIGame2005作准�
+	- 代码已经提交�比赛结果还不知道
+	- 这些天的调整已经将能够调整的调整�上层策略采用简单的手工代码
+	- 基本能够参加比赛.与以前的代码相比,实力已经大大增强�基本能够战胜清华05全国赛代�
+	- 将AIGame2005作为一个milestone,将版本提高到0.2�
+
+2005-11-21  Xu Yuan  <xychn15@yahoo.com.cn>
+	* fix a bug in commserver!
+	- it has been changed in agenttest in rcssserver3d.0.3.go
+
+2005-11-21  Xu Yuan  <xychn15@yahoo.com.cn>
+	* basic implemented freedom
+	* modify BasicWorldModel's small bug: update myself in team
+	* advance defence:
+	- now, we use 5 Vs 11, results are follows:
+	- BrainStrom05 lost 0~2 goals
+	- Aria3d05JP lost 2 goals
+	- ZJUBase05CZ lost 1 goal
+	- WrightEagle2005CZ lost 1 goal
+	- it need more work, special in goalkeeper, and def-position
+
+2005-11-20  Xu Yuan  <xychn15@yahoo.com.cn>
+	* some changes in these days, preparing for AIGame2005:
+	- use GA to improve intercept and kickTo
+	- implemented clearBall and defendGoal
+	- but need more test.
+
+2005-11-10  Xu Yuan  <xychn15@yahoo.com.cn>
+	* modify intercept:
+	- but the effect is nothing!
+	- it may reach the geometry algorithm's best
+	- so, I will not spend more time on it.
+	- I will try other algorithm.
+	* implemented calculate ground kick force
+	- it use a physic formulation instead of loop in SEU-legend
+	- it works well.
+
+2005-11-08  Xu Yuan  <xychn15@yahoo.com.cn>
+	* modify class Action and ActionDeque
+	- add some new functions
+	- they are more easlier to ues
+	* implemented whenToKick
+	- the base version
+	- it return Actions,drive or kick or drive&kick
+
+2005-11-07  Xu Yuan  <xychn15@yahoo.com.cn>
+	* after GA:
+	- using GA to adapt var in projectDribbleTo
+	- it seems better, but not satistfy me!
+	* and do a S function in runTo:
+	- makes runTo better
+	: today we won the BrainStrom05!(1:0) haha
+	: but lose to ZJUBase05 and WrightEagle2005:(
+	: some thing need more advance
+
+2005-11-03  Xu Yuan  <xychn15@yahoo.com.cn>
+	* advance the test enviroment in Trainer:
+	- random set the ball and the PL
+	- reocrd the how much time the PL use when trying intercept ball
+
+2005-11-02  Xu Yuan  <xychn15@yahoo.com.cn>
+	* basic implement the test enviroment:
+	- it auto run and log
+	- but it is only the beginning, it needs more work.
+
+2005-10-30  Xu Yuan  <xychn15@yahoo.com.cn>
+	* basic implement projectDribbleTo
+	- use geometry algorithm:"ZhongChuiXian&QieRuYuan"
+	- it begins working, but need more adapt and test.
+
+2005-10-27  Xu Yuan  <xychn15@yahoo.com.cn>
+	* advanced intercept skill:
+	- fixed a bug in changeSpeed
+	- new a predictInterceptPos
+	+- the palyer's drive is considered
+	 - so the results will be more accurater
+	 - but, it needs more CPU time
+
+2005-10-25  Xu Yuan  <xychn15@yahoo.com.cn>
+	* advanced drive skill:
+	- these days, I try many ways to control the agent's drive
+	- it is lucky that we make improvmance of drive skill
+	- and two functions of drive skills are better than the PID algorithm
+	- ( perhaps it is not the wrong of PID, it need cut the whole run to dash and brake time,etc )
+	- they are runTo and driveTo
+	- howerver, runTo is simpler than driveTo
+	- and driveTo can get the time of drive
+	- so I will continue to test the time, and use it to improve the intercept.
+	+ today, we can win Caspain04 :) most 3 goals!
+	- so, set version to seu-3d-0.1.11.c7
+
+2005-10-18  Xu Yuan  <xychn15@yahoo.com.cn>
+	* continue adapt the drive configure:
+	- i think the PID paramters can not be changed, it is its best
+	- the run position is more accurater
+	- but when distacnce is small, and velocity is small
+	- this algorithm's drive can not run fast, it takes too long time to accelerate!
+	- so, perhaps we need a new algorithm to adapt it.
+	* make the predict intercept ball fitter:
+	- fix a bug in isFastestOur in WorldModle
+	- change the some codes
+
+2005-10-17  Xu Yuan  <xychn15@yahoo.com.cn>
+	* adapt the drive configure:
+	- beaucse PID algorithm is uesed in drive;
+	- but the paramters is not satistfied!
+	- so, i modify these, and it took me more than 5 hours!
+	- it is better now, but i am not sure it is the best.
+
+2005-10-13  Xu Yuan  <xychn15@yahoo.com.cn>
+	* use NN in predict ball state:
+	- isGroundBall isFallOnGround
+	- this two use 6 inputs and i outputs, only 1 layer's neural network
+	- this two's results is better than the hand codes.
+	- but when trying to use NN in isBallStop, and 18 inputs, 2 layers
+	- the results is little better than before, so discard this one.
+
+2005-10-09  Xu Yuan  <xychn15@yahoo.com.cn>
+	* use NN in predict ball state:
+	- isGroundBall
+
+2005-10-08  Xu Yuan  <xychn15@yahoo.com.cn>
+	* import nn-utility tool:
+	- this is a neural network tool
+	- it can create and use NN easily
+	- and just now only a test NN was been created, but not well tested.
+
+2005-10-05  Xu Yuan  <xychn15@yahoo.com.cn>
+	* these days test many kinds of method -- to make accurater of ball'position and velocity
+	- it is better than before,it is just so.:(
+	- the results are: ( data in() when dist<5m)
+	- the average position error is about 0.1m(0.05m), and average velocity error is about 5m/s(3m/s)
+	- and the max position error is less than 0.5m(0.2m), and max velocity error is about 15m/s
+	- set version to seu-3d-0.1.10.c6
+
+2005-10-02  Xu Yuan  <xychn15@yahoo.com.cn>
+	* rewrite the kalmanFilter:
+	- move the code kalmanFilter into AgentObject from BasicWorldModel.
+	* add some "const"
+	
+	
+2005-10-01  Xu Yuan  <xychn15@yahoo.com.cn>
+	* complete the localization study:
+	- the last method is better than the earyer one
+	- the average position error is about 0.05m, and average velocity error is about 0.2m/s
+	- and the max position error is less than 0.2m, and max velocity error is about 1m/s
+	- so, update the version to seu-3d-0.1.9.c6
+
+2005-09-27  Xu Yuan  <xychn15@yahoo.com.cn>
+	* fixed a bug in test m-code:
+	- beaucse of getVel's bug when time is the same
+	* write a newnewlocaliztion:
+	- this newnewlocaliztion is different form the newlocaliztion in order
+	- the "newnew" first use the vision message to get a weigthed position
+	- and then use the drive power to improve the weigthed position.
+	- it seems beeter than the "new", the average position error is about 0.05m.
+	- but the velocity is still too error:more than 0.5m/s
+
+2005-09-24  Xu Yuan  <xychn15@yahoo.com.cn>
+	* complete the matlab code for testing localization:
+	- make the m-files become one part of this project
+	- all uesed m-files contains in ./matlab directory.
+	- update the version to seu-3d-0.1.8.c6
+
+2005-09-23  Xu Yuan  <xychn15@yahoo.com.cn>
+	* complete the first version of new localization:
+	- it just can work now
+	- but it can be advanced more.
+
+2005-09-22  Xu Yuan  <xychn15@yahoo.com.cn>
+	* update the version to seu-3d-0.1.8.b6:
+	- fixed bugs of send 'R' and recerive 'T'
+	+- add set<Time> in Agent, that can record the 'R'-'T' pair.
+	 - when 'Rt' is sent, add the 't' to the set<Time>
+	 - and when another action want to send 'Rt1', if 't1'='t', the 'Rt1' will not be sent.
+	 - thus, make sure not send the same 'R'
+	 - when recerive 'Tt', erase the data which '<t',to keep the set<Time> thin.
+	- remove some no need codes
+
+2005-09-20  Xu Yuan  <xychn15@yahoo.com.cn>
+	* modify some files(not code file):
+	- modify src/Makefile.am for compiler multiple thread
+	- create a bash named converge to collect all the files which needed when run,and tar them.
+	- so, set the version to seu-3d-0.1.5.b5
+	+ modify converge, make it more smart now.
+	- create a bash named compiler to do all compiler work, that it will make a newer work easily.
+	- so, set the version to seu-3d-0.1.5.b6
+	* add Singleton.h:
+	- this is a new template class, it can make sure the object of class is only one
+	- for use it, the class public it as a base class
+	- and then, you can use MyClass::GetSingleton() freely
+	- for advance, you may #define	MYCLASS MyClass::GetSingleton()
+	- and now, the Formation and Logger are use this technique.
+	+ so, update the version to seu-3d-0.1.6.b6
+	* complete the mulitply threads:
+	- the two thread can works correctly, but this make the agent need >18MB memory!
+	- when not use two thread, the agent only need 8~9MB memory.
+	- this makes me trouble: perhaps this area doesn't need mulitply threads.
+	- because the action-thread's work is so little. I think if add this work to the main thinking-thread
+	- the result will be better.
+	+ and now we can compile both mulitply-threads and one-thread agent,just set the Maco.
+	- the newest version is seu-3d-0.1.7.b6
+
+2005-09-19  Xu Yuan  <xychn15@yahoo.com.cn>
+	* create a Class ActionDeque:
+	- this class used to set the action which will be send
+	- and an action thread will send these actions in correct time
+	- what need to do is make sure all parts work correctly and smoothly.
+
+2005-09-18  Xu Yuan  <xychn15@yahoo.com.cn>
+	* find the way how to compile a multi-thread program:
+	- in this project: SEU-3D, we must set the CPPFLAGS=-I...boost
+	- to set the boost install directory
+
+2005-09-17  Xu Yuan  <xychn15@yahoo.com.cn>
+	* import pthread:
+	- because of compile problem, it costed me too many hours!
+	- and this thread is only print some characters now.
+	- but this is the base that we can use mulit-thread technique.
+
+2005-09-05  Xu Yuan  <xychn15@yahoo.com.cn>
+	* test localization:
+	- after emerge,the localization is not good enough now
+	- i think the new localization need redesign, not just only sum together.
+	* about *const*
+	- in C++, const is very usefull, it makes the code stronger.
+	- so, in this project must use "const" as more as possible.
+	* about *bakup*
+	- for damage of harddisk, must upload the newest code to the server
+
+2005-09-03  Xu Yuan  <xychn15@yahoo.com.cn>
+	* fixed parseC bug:
+	- in class commserver: because of *not* GetInPut,
+	- so before use GetMsg, GetInPut is needed.
+	* begin test new localization code:
+	- the new code is OK, so the next step is test with the old code together.
+
+2005-09-02  Xu Yuan  <xychn15@yahoo.com.cn>
+	* study in localization:
+	- try to improve localization
+	- start write some new code, but not finished and tested.
+
+2005-09-01  Xu Yuan  <xychn15@yahoo.com.cn>
+	* modify trainer:
+	- the trainer can log all the objects' pos, and the PL open a FileLog: localizationLog, to log myPos
+	- these are prepared for debuging localization
+	- add some comments in trainer.cpp
+
+2005-08-31  Xu Yuan  <xychn15@yahoo.com.cn>
+	* modify Makefile.am:
+	- can compile in FC2 now.
+
+2005-08-30  Xu Yuan  <xychn15@yahoo.com.cn>
+	* import UvA's formation:
+	- we can use UvA's 433 formation now,and we can import another formation easily.
+	* released seu-3d-0.1.5.b3:
+	- Aria3d04 1:0		ATH-3D04 0:0
+	- Aeolus04 3:0		Aeolus05CZ 0:0		ZJUBase05 0:1
+	- yunlu    0:0		DUT_Fantasia 0:1	WrightEagle2005 0:3
+
+2005-08-26  Xu Yuan  <xychn15@yahoo.com.cn>
+	* modify Player:
+	- add the different loops for different PL types
+	- just now, every loops are the same: defaultPlayOn
+	- modify defaultPlayOn, wander to get a better result.
+
+2005-08-24  Xu Yuan  <xychn15@yahoo.com.cn>
+	* rewrite class Formation:
+	- 3DFormation.h 3DFormation.cpp => Formation.h Formation.cpp
+	- can read the formation from the conf file
+	- the conf file data formate is the similar to the server message
+	- the new class will be easily used and easily add new function
+
+2005-08-22  Xu Yuan  <xychn15@yahoo.com.cn>
+	* released seu-3d-0.1.4.b3:
+	* complete a basic trainer:
+	- the trainer can recerive the data from server, and parse it ,record it
+	- the trainer can send command to the server, it will make test agent easy
+	-- contain set ball's and PL's state, play mode etc.
+	- the trainer can load a logfile
+	- a base statistic function, can statistic ball position state
+	- statistic the some data of the match, and print them after the match or loaded the log file
+
+2005-08-21  Xu Yuan  <xychn15@yahoo.com.cn>
+	* try to create a Joystick or Keyboard PL:
+	- beaucse of not implement the input from the joystick and keybaord, it is not implemented
+	- need mroe leaning in linux I/O
+	* begin to create Trainer:
+	- the trainer can connect to the server now
+	- but need more work
+
+2005-08-20  Xu Yuan  <xychn15@yahoo.com.cn>
+	* improve intercept ball:
+	- isFastestOur, projectInterceptPos, gotoWithMinSpeed
+
+2005-08-19  Xu Yuan  <xychn15@yahoo.com.cn>
+	* study in think time:
+	- parse "K" time, send and parse "C" time
+	- but both are reply the think time after send done thinking message "D"
+	- so the thinking time is the last one, can NOT be used in current thinking.
+	
+2005-08-18  Xu Yuan  <xychn15@yahoo.com.cn>
+	* released seu-3d-0.1.3.b3:
+	- solve the problem of big binary. the binary become 388K from 3.7M. It was cause by the CXXFLAGS,the -g and -O can not be used at the same time. and the agent needs memory become 6.5M from 7.8M.
+	- add seu-3d.rb and agentdb.xml to the distrubtion.
+	* released seu-3d-0.1.3.b2:
+	- modify configure.ac and Makefile.am
+	- modify main.cpp : change the agenttest.rb to seu-3d.rb
+
+2005-08-17  Xu Yuan  <xychn15@yahoo.com.cn>
+	* continue BasicPlayer:
+	- creat its subclass Player
+	- new a class named Skill, this class include PL skills
+	- the agent can run strategic position and intercept ball now.
+	- remove all the no need .h and .cpp files from the project
+
+2005-08-16  Xu Yuan  <xychn15@yahoo.com.cn>
+	* released seu-3d-0.1.3.b1:
+	* complete BasicWorldModel:
+	- updateBall is OK now, and the results are as the same as before.
+	- updatePlayer is OK now, the results are as the same as before.
+	- so the BasicWorldModel is complete:)
+	* add new files:
+	- Action.h <== SEUSoccerCommand.h
+	- Agent.h Agent.cpp Agent_c.h <== behavior.h behavior.cpp behavior_c.cpp soccer.h soccer.cpp soccer_c.cpp
+	- BasicPlayer.h BasicPlayer.cpp BasicPlayer_c.cpp <== kicknrun.h kicknrun.cpp kicknrun_c.cpp
+	-- class Action and Agent is complete,but not test on line
+	-- BasicPlayer need more work.
+
+2005-08-15  Xu Yuan  <xychn15@yahoo.com.cn>
+	* modify Object:
+	- imply function template,so the code lines becomes less
+	- add a new subclass of Object: FixedObject, it include flags and goals that can't move.
+	* contine BasicWorldModel:
+	- update objects' vision, and the deque can works well 
+	- localization: complete lowFreqSignalFilter and kalmanFilter, and they can work now,
+	- *BUT, i am not sure about which is more better ( the old and the new one )*
+	- so, it need more test and modify.
+	-- after debug, after set the inital global position after beam, the kalmanFilter calculate the same results as the old SEUWorldModel's kalmanFilter.
+	
+2005-08-14  Xu Yuan  <xychn15@yahoo.com.cn>
+	* released SEU-3D-0.1.2.b1:
+	- complete all the parsers:
+	-- parseOppTeamName(); parseVision(); parseMsgS(); parseMsgT(); parseAgentState();
+	-- and now it can parse all the messages( except "C" ) from the server, and it works well.
+
+2005-08-13  Xu Yuan  <xychn15@yahoo.com.cn>
+	* continue BasicWorldModel:
+	- parse current time and the vision time correctly
+	- write vision parser, but it can only parse ball correctly just now
+	- modify the play mode parser,it can correctly work
+
+2005-08-12  Xu Yuan  <xychn15@yahoo.com.cn>
+	* added new files: Geometry.h Geometry.cpp Object.h Object.cpp BasicWorldModel.h BasicWorldModel.cpp BasicWorldModel_c.cpp
+	- added some geometry functions( sinDeg() i.e.),these functions will make the geometry calulation more easily.
+	- added new class: Object -> DynamicObject --> PlayerObject --> AgentObject
+						   +-> BallObject
+	- these object class can include all objects' information in RoboCup3D simulation
+	- *these object class need modify in advance*
+	- started writing a new world model,the new world model will contain all the functions of class worldmodel in agenttest and class SEUWorldModel in SEU-legend.
+	- for the beginning, write a class named BasicWorldModel first.and the full world model can sub form it.
+	- the class BasicWorldModel should do: parse, update, filter...
+	- and just now, this is only the beginning, it can parse GameState now.
+	
+
+2005-08-10  Xu Yuan  <xychn15@yahoo.com.cn>
+	* remove the old log system:
+	- use the new logger instead the old logger
+	- remove SEU3DLog.h SEU3DLog.cpp
+	- creat a FileLogger named msgLog, which log the message from server
+	* modify main.cpp:
+
+2005-08-09  Xu Yuan  <xychn15@yahoo.com.cn>
+	* released SEU-3D.0.1.1.b1:
+	* write a new log system:
+	- the new log system contains two class: Logger and FileLogger
+	- Logger is used to trace the agent,it contains two outPuts: stdout and errout
+	-- stdout => agent%A-stdout.log  errout => agent%A-errout.log, which are in logfiles/ where server run
+	-- stdout can put out in different log-level, this is learned form SEU-2D
+	-- I import a new level tree, that can show the log-level easily
+	-- Attention! log-level 0 dosen't print level tree, put the log message directly, so log-level 0 can only be used in some suitation.
+	- FileLogger is used to record some data,which is needed to adcancedly parse
+	-- use FileLogger, we can record data freely, so it can be easily used with other programs(for example Matlab & LogParser)
+	-- you can specify the logfile's name, the complete name is logs/logtype-teanmane-num.log
+	-- as we know we can't change teamname and num, so we can only specify different logtypes
+	-- BUT just now,when agent start,the teamname = '' and num = 0 ,and after serval cycles these are changed, so the FileLogger generate some no need logfiles.I'll find some way to fix it.
+
+2005-08-08  Xu Yuan  <xychn15@yahoo.com.cn>
+	* modify ./share/lib/zeitgeist/Makefile.am:
+	- add more include path
+	- AM_CPPFLAGS = ...
+	* update Makefile.in by using automake
+	- but the distrubtion can't include agentdb.xml:(
+	- so, add code into Makefile.in manually
+	* remove ./share:
+	- remove codes from rcssserver3d
+	- but,should specify path of rcssserver3d manually(chang a line in ./src/Makefile.am)
+	- Sorry for this inconvenience.
+	- for soccer/soccertypes.h add -I/usr/include(also in ./src/Makefile.am)
+
+2005-08-07  Xu Yuan  <xychn15@yahoo.com.cn>
+	* released SEU-3D.0.1:
+	* creat a new project for SEU-3D
+	- agent codes are in ./src
+	- some needed codes from rcssserver3d are in ./share
+	- modify configure.ac MEWS,README,THANKS,TODO,AUTHORS,etc
+
+2005-04-18  Xu Yuan  <xychn15@yahoo.com.cn>
+	* class SEUWorldModel add some new function:
+	- add SetAction
+	- add UpdateAction
+	- add CalVelByDrive
+	- add GetMyVel
+	- add etc...
+	* modify SEUParse...
+
+before	
+2005-04-18  Xu Yuan  <xychn15@yahoo.com.cn>
+	* add our files into agenttest
+	- add 3DFormation.h 3DFormation.cpp
+	- add SEUParse.h SEUParse.cpp
+	- add SEUWorldModel.h SEUWorldModel.cpp
+	- add SEUBasicPlayer.h SEUBasicPlayer.cpp

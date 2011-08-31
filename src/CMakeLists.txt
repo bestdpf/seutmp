@@ -1,0 +1,4 @@
+ADD_SUBDIRECTORY( lib )
+ADD_SUBDIRECTORY( agent )
+#ADD_SUBDIRECTORY( toolkit )
+

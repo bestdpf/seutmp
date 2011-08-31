@@ -1,0 +1,104 @@
+
+[0.2.2]2007-06-12
+( About one year later, again I write the NEWS ;-)
+* agent:
+    - use the data file, it can walk with different length steps now
+    - add FootAdjuster, so the lofted foot keeps horizontal
+* toolkit:
+    - synchrony the agent log and server log
+    - display prints by glut bitmap fonts, so the glut library should be linked
+    - load the *.obj model files of 3D object (from the rcssserver3D)
+    - load images as OpenGL textures by ILUT (a sub lib of DevIL), so the DevIL should be linked
+    - accumlate the camera speed while keep pressing
+* matlab/HR_M:
+    - the *.m files realtive to kinematic simulation of humanoid robot are added
+
+
+==================================================
+ seu-3d (sphere agent) NEWS
+==================================================
+[0.5] 2006-06-10
+- the version be released for RoboCup2006(http://www.robocup2006.org) in Bremen, Germany.
+- use the marco OFFSIDE_RULE to swtich obey the offside rule or not, and also change different formations in different rules.
+- there are also many improving in some aspect, hope get better result in Bremen. :D 
+- At last we win 6th in RoboCup2006.
+
+[0.4] 2006-04
+- the version be released for both DutchOpen06(http://www.roboludens.org) and IranOpen06(http://www.iranopen.org)
+- we win 2nd in DutchOpen06, and top8 in IranOpen06.
+- use the marco RCSSSERVER_VERSION to switch use restrict-vision or no-restrict-version
+- new implement:
+ o implement pantilt and say actions
+ o implement hear prasing and updating
+ o use RuleBasedSystem in high level
+- improvment:
+ o improve some skills
+ o the effective is great improved
+ o use the sexp lib to help prasing
+- SayHear.h/cpp --> message.h/cpp
+
+[0.3] 2006-02-12
+- the version remain based rcssserver3d.0.3 for RoboCup 2006 still use the sphere agent.
+- added some skills:
+ o pass: fastPass, safePass, oneTouch
+ o fastDribble
+ o modified the formation
+- this version can win Aria05 some times, but the CPU usage is too much
+
+[0.2.b] 2005-12-30
+- the last version based rcssserver3d.0.3
+- advanced parser
+- added SayHear.h and SayHear.cpp
+
+[0.2.a]
+- remove all codes which bind with the lib of rcssserver3d in agents(no the trainer)
+- implemented new parser
+- advanced CommServer
+
+[0.2]
+- the version for AIGames2005, and won the 4th of the game
+
+[0.1.11]
+- advanced drive skill
+- today, we can win Caspain04 :) most 3 goals!
+
+[0.1.10]
+- make accurater of ball'position and velocity
+ o the average position error is about 0.1m(0.05m), and average velocity error is about 5m/s(3m/s)
+ o and the max position error is less than 0.5m(0.2m), and max velocity error is about 15m/s
+
+[0.1.9] 2005-10-01
+- a new localization
+ o the average position error is about 0.05m, and average velocity error is about 0.2m/s
+ o and the max position error is less than 0.2m, and max velocity error is about 1m/s
+
+[0.1.8] 2005-09-22
+- fixed bugs of send 'R' and recerive 'T'
+- remove some no need codes
+
+[0.1.7] 2005-09-20
+- complete the mulitply threads
+
+[0.1.6] 2005-09-20
+- add Singleton.h
+- add bash: converge and compile
+
+[0.1.5] 2005-08-30
+- the last version of 2005 summer hoilday.
+- read the formation from formations.conf
+
+[0.1.4] 2005-08-22
+- create a basic team, the team can runStrategicPos, and when fastest to the ball,interceptBall and then kick the ball.  
+- create a trainer. The trainer can recive the data from the server, and get the precise data of the match.And the trainer can send command to server, just like set player and ball's state ( pos,vel ),set the play mode, etc.it will be used to set scene when training. At last, the trainer can load a log file, and compute the statistic of this match,and print them. then statistic function is also used when connecting the server. ./seu-3d-trainer --help will print the trainer usage.
+
+[0.1.3] 2005-08-16
+- complete the BasicWorldModel. It contain two parts: parser, update. It records all the information of the simulation world,include Players, ball, flags, goals, time, play mode, etc. Class object and its sub class help BasicWorldModel update.
+
+[0.1.2] 2005-08-14
+- a new parser. the new parser use the BaseParser of oxygen. It makes the parseing so easy.
+
+[0.1.1] 2005-08-09
+- a new log system. the new log system contains two class: Logger and FileLogger. Logger is used to trace the agent,it contains two outPuts: stdout and errout. stdout => agent%A-stdout.log  errout => agent%A-errout.log, which are in logfiles/ where server run. stdout can put out in different log-level, this is learned form SEU-2D. Import a new level tree, that can show the log-level easily. Attention! log-level 0 dosen't print level tree, put the log message directly, so log-level 0 can only be used in some suitation. FileLogger is used to record some data,which is needed to adcancedly parse. use FileLogger, we can record data freely, so it can be easily used with other programs(for example Matlab & LogParser). you can specify the logfile's name, the complete name is logs/logtype-teanmane-num.log. as we know we can't change teamname and num, so we can only specify different logtypes
+
+[0.1] 2005-7
+- a basic team[version 0.1] take part in Chian RoboCup2005 in ChangZhou.and win 7th.this team can run staragtic pos,clear ball,pass,etc.But it takes too long time before kick.
