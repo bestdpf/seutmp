@@ -1,3 +1,6 @@
+2011-9-1_22:17 Zhao Bolu<zhaobl880704@gmail.com>
+for test
+just delete some comments in src/action/
 2011-9-1 Duan Pengfei <bestdpf@gmail.com>
 	*add support for some other BSD OSs
 	-rewrite the struct's construction function operator {}, because BSD's compliers don't support this method.

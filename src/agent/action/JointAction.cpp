@@ -68,8 +68,6 @@ std::string JointAction::command() const
 			ss<<'('<<iter->second<<" 0 "<<jv2->second<<')';
 		}
     }
-
-	//printf("=====%s\n",ss.str().c_str());
 	return ss.str();
 }
 
