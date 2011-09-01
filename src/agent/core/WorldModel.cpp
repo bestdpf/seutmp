@@ -43,6 +43,8 @@ namespace core {
 
         //===========================================TT Rel
         mFlagRelInfoMap.clear();
+	//rewrited by dpf to avoid errors on some OSs like FreeBSD
+	/*
         mFlagRelInfoMap[Vision::F1L] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
         mFlagRelInfoMap[Vision::F2L] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
         mFlagRelInfoMap[Vision::F1R] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
@@ -51,7 +53,17 @@ namespace core {
         mFlagRelInfoMap[Vision::G2L] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
         mFlagRelInfoMap[Vision::G1R] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
         mFlagRelInfoMap[Vision::G2R] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-        //cout<<"mFlagRelInfoMap.size()="<<mFlagRelInfoMap.size()<<endl;
+       */
+	ObjectRelInfo tmpObjectRelInfo=newObjectRelInfo(false,Vector2f(0,0),Vector2f(0,0));
+	mFlagRelInfoMap[Vision::F1L] = tmpObjectRelInfo;
+        mFlagRelInfoMap[Vision::F2L] = tmpObjectRelInfo;
+        mFlagRelInfoMap[Vision::F1R] = tmpObjectRelInfo;
+        mFlagRelInfoMap[Vision::F2R] = tmpObjectRelInfo;
+        mFlagRelInfoMap[Vision::G1L] = tmpObjectRelInfo;
+        mFlagRelInfoMap[Vision::G2L] = tmpObjectRelInfo;
+        mFlagRelInfoMap[Vision::G1R] = tmpObjectRelInfo;
+        mFlagRelInfoMap[Vision::G2R] = tmpObjectRelInfo;
+	 //cout<<"mFlagRelInfoMap.size()="<<mFlagRelInfoMap.size()<<endl;
         //===================================================
 
         /////////////allen add//////////////

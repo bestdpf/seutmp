@@ -56,8 +56,13 @@ namespace perception {
                     t = t->next;
                     if (mFieldLines[lineNum].update(t)) {
                         //===================TT
-                        mLineVector.push_back(Line{mFieldLines[lineNum].p0(), mFieldLines[lineNum].p1()});
-                        //=================
+                       // mLineVector.push_back(Line{mFieldLines[lineNum].p0(), mFieldLines[lineNum].p1()});
+                        //above is not a good code, dpf change it to the below
+			Line tmpLine;
+			tmpLine.PointAPol=mFieldLines[lineNum].p0();
+			tmpLine.PointBPol=mFieldLines[lineNum].p1();
+			mLineVector.push_back(tmpLine);
+			//=================
                         lineNum++;
                     } else {
                         mFieldLines.erase(lineNum);

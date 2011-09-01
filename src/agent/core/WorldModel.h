@@ -715,7 +715,17 @@ namespace core {
             Vector2f relPos2D; //+x: right, +y: forward
             Vector2f pol2D; //(dist,ang); ang:left+, right-
         };
-
+	/**	this function is used to set data to a new ObjectRelInfo
+	*	it is to overwrite the {} method of struct's build function
+	*	because this method is not supported on some OSs like FreeBSD
+	*/
+	ObjectRelInfo	newObjectRelInfo(bool a,Vector2f b,Vector2f c){
+		ObjectRelInfo ret;
+		ret.canSee=a;
+		ret.relPos2D=b;
+		ret.pol2D=c;
+		return ret;
+	}
         struct BlockInfo {
             float dist;
             float angC;

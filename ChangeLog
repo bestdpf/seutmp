@@ -1,5 +1,10 @@
+2011-9-1 Duan Pengfei <bestdpf@gmail.com>
+	*add support for some other BSD OSs
+	-rewrite the struct's construction function operator {}, because BSD's compliers don't support this method.
+		I use direct construction instead, the affected files are core/WorldModel.h, core/WorldModel.cpp,
+		perception/Vision.cpp
 
-
+///////////////Below is changelogs years ago, but these years little changelog is added.////
 	
 2007-06-12 Xu Yuan  <xuyuan.cn@gmail.com>
     ** release version 0.2.2
