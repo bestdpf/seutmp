@@ -137,16 +137,6 @@ namespace core {
 			count++;
 		}
 		return count;
-		//for(int i=1;i<10;i++)
-		//{
-		//	Vector2f OppPos=getOppGlobalPos2D(i);
-		//	bool condition=(OppPos.x()<center.x()+length)&&(OppPos.x()>center.x()-length)&&(OppPos.y()>OppPos.y()-length/2)&&(OppPos.y()<center.y()+length);
-
-		//	if(condition)
-		//		count++;
-
-		//}
-		//return count;
     }
 
 bool WorldModel::update(shared_ptr<Perception> p)
@@ -163,8 +153,6 @@ bool WorldModel::update(shared_ptr<Perception> p)
 			SHM.update();
 	PM.update();
 	updatePlayers();
-
-
 
 	LOG_FLUSH;
 
@@ -226,129 +214,6 @@ bool WorldModel::update(shared_ptr<Perception> p)
 
         return false;
     }
-
-//    void WorldModel::updateSelf() {
-//        //1. calculate the global position and rotation of torso
-//        localization();
-//        const TransMatrixf& vt = getVisionTrans();
-//        mMyFaceDirection = atan2Deg(vt.o().y(), vt.o().x());
-//
-//
-//        //2. forward Kinematics, then we got position and rotation of every body
-//        mBoneTrans.clear();
-//        map<unsigned int, AngDeg> angles = lastPerception().joints().jointAngles();
-//        HUMANOID.forwardKinematics(robot::humanoid::Humanoid::TORSO, getVisionTrans(), angles, mBoneTrans);
-//
-//
-//        //3. calculate the center of mass
-//        mMyGlobalVel = mMyCenterOfMass; //temp
-//        mMyCenterOfMass = HUMANOID.calcCenterOfMass(mBoneTrans);
-//        mMyGlobalVel = (mMyCenterOfMass - mMyGlobalVel) / sim_step; //(new-old)/time
-//
-//        LOG_RED_SPHERE("CoM", mMyCenterOfMass, 0.01);
-//        LOG_RED_SPHERE("CoM", Vector3f(mMyCenterOfMass.x(), mMyCenterOfMass.y(), 0), 0.01);
-//        LOG_RED_LINE("CoM", mMyCenterOfMass, Vector3f(mMyCenterOfMass.x(), mMyCenterOfMass.y(), 0));
-//
-//
-//        //4. calculate my body rotation angle
-//        mMyBodyAng.x() = vt.rotatedAngX();
-//        mMyBodyAng.y() = vt.rotatedAngY();
-//        mMyBodyAng.z() = vt.rotatedAngZ();
-//        LOG_PRINT_VECTOR3("body", mMyBodyAng);
-//
-//
-//        //5. calculate my center, this position is relative to the support foot
-//        mMySupportBone = Humanoid::ILLEGAL;
-//        mFeetForce.zero();
-//        mFeetForcePoint.zero();
-//        const ForceResistance& forceResistance = lastPerception().forceResistance();
-//        unsigned int lfid = HUMANOID.getBoneId(Humanoid::L_FOOT);
-//        unsigned int rfid = HUMANOID.getBoneId(Humanoid::R_FOOT);
-//        if (forceResistance.isTouch(lfid)) {
-//            mMySupportBone = Humanoid::L_FOOT;
-//            const perception::ForceResistance::FeedBack& lfrp = forceResistance.feedBack(lfid);
-//            const TransMatrixf& lfm = getBoneTrans(Humanoid::L_FOOT);
-//            mLeftFootForceCenter = lfm.transform(lfrp.pos);
-//            LOG_RED_SPHERE("FRP", mLeftFootForceCenter, 0.01);
-//            LOG_RED_LINE("FRP", mLeftFootForceCenter, mLeftFootForceCenter + lfrp.force * 0.01);
-//            mFeetForce = lfrp.force;
-//            mFeetForcePoint = mLeftFootForceCenter;
-//        }
-//
-//        if (forceResistance.isTouch(rfid)) {
-//            const perception::ForceResistance::FeedBack& rfrp = forceResistance.feedBack(rfid);
-//            const TransMatrixf& rfm = getBoneTrans(Humanoid::R_FOOT);
-//            mRightFootForceCenter = rfm.transform(rfrp.pos);
-//            LOG_RED_SPHERE("FRP", mRightFootForceCenter, 0.01);
-//            LOG_RED_LINE("FRP", mRightFootForceCenter, mRightFootForceCenter + rfrp.force * 0.01);
-//            if (Humanoid::ILLEGAL == mMySupportBone) {
-//                mMySupportBone = Humanoid::R_FOOT;
-//                mFeetForce = rfrp.force;
-//                mFeetForcePoint = mRightFootForceCenter;
-//            } else {
-//                // double support, chose the bigger force foot as support foot
-//                float lf = forceResistance.feedBack(lfid).force.length();
-//                float rf = forceResistance.feedBack(rfid).force.length();
-//                if (lf < rf) {
-//                    mMySupportBone = Humanoid::R_FOOT;
-//                }
-//                mFeetForce += rfrp.force;
-//                mFeetForcePoint = (mLeftFootForceCenter * lf + mRightFootForceCenter * rf)
-//                        / (lf + rf);
-//            }
-//
-//        }
-//
-//        if (Humanoid::ILLEGAL != mMySupportBone) {
-//            mMyOriginMatrix = getBoneTrans(mMySupportBone);
-//            if (Humanoid::L_FOOT == mMySupportBone) {
-//                mMyOriginMatrix.transfer(HUMANOID.getFootSupportBias(true));
-//            } else if (Humanoid::R_FOOT == mMySupportBone) {
-//                mMyOriginMatrix.transfer(HUMANOID.getFootSupportBias(false));
-//            }
-//
-//            LOG_AXES("FRP", mMyOriginMatrix, 0.2);
-//        }
-//
-//
-//        //6. set in x-y plane
-//        mMyBodyDirection = mMyOriginMatrix.rotatedAngZ();
-//        Vector3f posOig = mMyOriginMatrix.pos();
-//        if (posOig.z() < 0) // assume the z minimum value is 0
-//        {
-//            float z = -posOig.z();
-//
-//            FOR_EACH(iter, mBoneTrans) {
-//                iter->second.p().z() += z;
-//            }
-//            posOig.z() = 0;
-//        }
-//        mMyOriginMatrix.rotationZ(mMyBodyDirection);
-//        mMyOriginMatrix.pos() = posOig;
-//        mMyBodyDirection = normalizeAngle(mMyBodyDirection + 90);
-//
-//
-//        //7. log
-//
-//        FOR_EACH(iter, mBoneTrans) {
-//            shared_ptr<const Bone> b = HUMANOID.getBone(iter->first);
-//            if (NULL == b.get())
-//                continue;
-//
-//            const robot::device::collider::Collider* c = b->collider();
-//            if (NULL == c)
-//                continue;
-//
-//            LOG_BLUE_BOX("body", iter->second, c->size());
-//        }
-//        LOG_BLUE_LINE("body", getMyGlobalPos(), getMyGlobalPos() + Vector3f(cosDeg(mMyFaceDirection), sinDeg(mMyFaceDirection), 0));
-//
-//
-//        //8. Acc
-//        //April, MMXI
-//        const Vector3f& newAcc = lastPerception().accelerometer().rate(0);
-//        mMyAcc = mMyAcc * 0.9f + newAcc * 0.1f;
-//    }
 
 void WorldModel::updateSelf()
 {
@@ -504,10 +369,8 @@ void WorldModel::updateBall()
 	Vector3f velSim = mBallGlobalVel;
 	Vector3f posSim = mBallGlobalPos;
 	predictBall(posSim, velSim);
-        //cout << "velSee" <<velSee<<"VelSim" <<  velSim<< endl;
         Vector3f visionError(1, 1, 10);
 	Vector3f diffVel = velSee - velSim;
-        //  cout << "diff" << diffVel<<endl;
         if (pow2(diffVel.x()) + pow2(diffVel.y()) > 16 / 9.0f)
 	{
             //    cout << "Ball"<<"the ball is kicked or moved"<<endl;
@@ -575,7 +438,6 @@ void WorldModel::updateBall()
             Vector3f p = Vision::calLocalRelPos(iter->second.begin()->second);
             mTeammateGlobalPos[iter->first] = eyeMat.transform(p);
             LOG_BLUE_SPHERE("Players", (mTeammateGlobalPos[iter->first]), 0.25f);
-          //  mOurPlayerNum++;
         }
 
         // update myself information in team, for correcting illegal value
@@ -633,9 +495,6 @@ void WorldModel::updateBall()
                 mBallRelInfo.relPos2D = calObjRelPos2D(iter->second);
                 mBallRelInfo.pol2D = calObjPol2D(mBallRelInfo.relPos2D);
                 mBallRelVel2D = (mBallRelInfo.relPos2D - oldpos) / (3 * sim_step);
-                /*printf("relPos(%.2f, %.2f)\t\t pol(%.2f, %.0f)\n",
-                           mBallRelInfo.relPos2D.x(),mBallRelInfo.relPos2D.y(),
-                           mBallRelInfo.pol2D.x(),mBallRelInfo.pol2D.y());*/
                 continue;
             }                //flags
             else if (fid == Vision::F1L ||
@@ -970,6 +829,7 @@ void WorldModel::calBallGlobalPos2DWithRelInfo()
         int cycle = mPerceptions.size() - 1;
         return floor(time / cycle / serversetting::sim_step + 0.8f) * serversetting::sim_step;
     }
+
  void WorldModel::localization() {
         //if there is no vision message, do nothing
         const Vision* v = lastPerception().vision().get();
@@ -999,48 +859,6 @@ void WorldModel::calBallGlobalPos2DWithRelInfo()
             mMyVisionMatrix.R() = calcVisionSensorRotation(mMyGlobalPos, *v, f1, f2, f3);
         }
     }
-
-//    void WorldModel::localization() {
-//        // if there is no vision message, do nothing
-//        const Vision* v = lastPerception().vision().get();
-//        if (NULL == v) return;
-//
-//        // calculate the golbal position
-//        const int flagNumbers = getFlagNumbersISee();
-//        if (flagNumbers >= 2) //see enough flags
-//        {
-//            if (flagNumbers >= 3) {
-//                mMyGlobalPos = calcVisionSensorPosition(*v); //vision-me
-//            } else {
-//                //mMyGlobalPos = calcVisionSensorPositionWith2Flags(*v); //gxx
-//                Vector2f tempV2f = calMyGlobalPos2DWithTwoFlags(); //TT
-//                mMyGlobalPos = Vector3f(tempV2f.x(), tempV2f.y(), 0.5f); //I don't know...
-//            }
-//
-//            mLastTimeSeeEnoughFlags = WM.getSimTime();
-//
-//            /*if( timeAfterLastSeeEnoughFlags() > 0.03f ) //TT
-//            {
-//                    Vector3f deltaPos = mMyGlobalPos - mMyVisionMatrix.p();
-//                    mMyGlobalVel = deltaPos / timeAfterLastSeeEnoughFlags();
-//            }*/
-//        }
-//
-//        /*if( flagNumbers <= 1 ){
-//                mMyGlobalPos = calMyGlobalPosByInte(); //TT: may be wrong
-//        }*/
-//
-//        mMyVisionMatrix.p() = mMyGlobalPos;
-//
-//        // calculate the body matrix //vision-me
-//        if (flagNumbers > 2) {
-//            set<Vision::FID>::const_iterator flags = v->getStaticFlagSet().begin();
-//            Vision::FID f1 = *flags;
-//            Vision::FID f2 = *(++flags);
-//            Vision::FID f3 = *(++flags);
-//            mMyVisionMatrix.R() = calcVisionSensorRotation(mMyGlobalPos, *v, f1, f2, f3);
-//        }
-//    }
 
     Matrix3x3f WorldModel::calcVisionSensorRotation(const Vector3f& myPos, const Vision& v,
             Vision::FID flagA, Vision::FID flagB, Vision::FID flagC) const {
@@ -1087,13 +905,6 @@ void WorldModel::calBallGlobalPos2DWithRelInfo()
             ++fa;
         }
 
-        /*fa = flags.begin();
-        while (fend != fa) //vision-me
-        {
-                float temp = *fa;
-                LOG_PRINTF("vision-me", "saw flag ID:%.3f", temp);
-                ++fa;
-        }*/
 
         if (!pv.empty()) {
 
@@ -1103,13 +914,6 @@ void WorldModel::calBallGlobalPos2DWithRelInfo()
             myPos /= pv.size();
         }
 
-        /*if ((myPos.x() == 0) && (myPos.y() == 0)) {
-                myPos = calcVisionSensorPositionWith2Flags(v);
-        }*/
-
-        /*if (myPos.z() > 0.6f || myPos.z() < 0.4f) {
-                myPos.z() = 0.50f; //set it as a const value
-        }*/
         return myPos;
     }
 
@@ -1141,36 +945,6 @@ void WorldModel::calBallGlobalPos2DWithRelInfo()
 
         return myPos;
     }
-
-    /*
-    void WorldModel::updateG1L()//YuRobo 更新我方右球门柱信息
-    {
-            shared_ptr<const Vision> vp = lastPerception().vision();
-            if (NULL == vp.get() || !canISee(perception::Vision::G1L)) return;
-            flagG1LLaPol = vp->pol(perception::Vision::G1L);//YuRobo
-    }
-
-    void WorldModel::updateG2L()//YuRobo 更新我方左球门柱信息
-    {
-            shared_ptr<const Vision> vp = lastPerception().vision();
-            if (NULL == vp.get() || !canISee(perception::Vision::G2L)) return;
-            flagG2LLaPol = vp->pol(perception::Vision::G2L);//YuRobo
-    }
-
-    void WorldModel::updateG1R()//YuRobo 更新对方左球门柱信息
-    {
-            shared_ptr<const Vision> vp = lastPerception().vision();
-            if (NULL == vp.get() || !canISee(perception::Vision::G1R)) return;
-            flagG1RLaPol = vp->pol(perception::Vision::G1R);//YuRobo
-    }
-
-    void WorldModel::updateG2R()//YuRobo 更新对方右球门柱信息
-    {
-            shared_ptr<const Vision> vp = lastPerception().vision();
-            if (NULL == vp.get() || !canISee(perception::Vision::G2R)) return;
-            flagG2RLaPol = vp->pol(perception::Vision::G2R);//YuRobo
-    }
-     */
 
     void WorldModel::predictBall(Vector3f& p, Vector3f& v) const {
         static const float k = exp(-0.03f / ball_mass * sim_step);
@@ -1385,7 +1159,6 @@ void WorldModel::calBallGlobalPos2DWithRelInfo()
     }
 
     //return true if opp player is in the ball field
-
     bool WorldModel::isPlayerInField(const Vector2f& pos, float margin) {
         return (fabs(pos[0]) < (field_length / 2.0f + margin)
                 && fabs(pos[1]) < (field_width / 2.0f + margin));
@@ -1591,7 +1364,6 @@ void WorldModel::calBallGlobalPos2DWithRelInfo()
             //   |P`| = |0     cosR         -sinR  |  *  |wy|
             //   |R`|   |1   tanP*sinR    tanP*cosR|     |wz|
             //
-
             mMyAngRate[2] = myRot[1] * sinR / cosP + myRot[2] * cosR / cosP;
             mMyAngRate[1] = myRot[1] * cosR - myRot[3] * sinR;
             mMyAngRate[0] = myRot[0] + myRot[1] * tanP * sinR + myRot[2] * tanP*cosR;
@@ -1622,10 +1394,6 @@ void WorldModel::calBallGlobalPos2DWithRelInfo()
         str[i++] = WM.canSeeFlag(Vision::G1R) ? '1' : '0';
         str[i++] = WM.canSeeFlag(Vision::G2R) ? '1' : '0';
         str[i++] = WM.canSeeFlag(Vision::F2R) ? '1' : '0';
-
         LOG_PRINTF("flags", "%s", str);
     }
-
-
-
 } // namespace core

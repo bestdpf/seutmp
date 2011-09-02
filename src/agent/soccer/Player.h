@@ -33,31 +33,24 @@ namespace soccer {
 
     using namespace math;
     using namespace boost;
-    //enum GoalKeeperState
-    ///{
-    //RIGHT_FALL=0,
-    ///LEFT_FALL,
-    //LIED,
-    //DIVED,
-    //STAND
-    //};
 
     enum GoalKeeperState {
         LIED_STATE = 0, //lied state
         LYING_STATE, //lying state
         DIVED_STATE, //dived state
         DIVING_STATE, //diving state
-        //LRROLLED_STATE,				//左右倾倒的状态
+        //LR_ROLLED_STATE,				//rocking state
         LEFTFALL_STATE,
         RIGHTFALL_STATE,
-        BALANCE_STATE //平衡状态
+        BALANCE_STATE //balance state
     };
-struct KickMotion{
-	std::string firstTaskName;
-	math::Vector2f kickTargetRel;
-	math::Vector2f myDesiredRelPosToBall; //used in calculation of myDesiredPos, related to WM.getBallGlobalPos2D()
-	math::Vector2f relPosToBallToStopWalk; //used in judgement of stopping walk, related to WM.getBallRelPos2D()
-};
+
+    struct KickMotion {
+        std::string firstTaskName;
+        math::Vector2f kickTargetRel;
+        math::Vector2f myDesiredRelPosToBall; //used in calculation of myDesiredPos, related to WM.getBallGlobalPos2D()
+        math::Vector2f relPosToBallToStopWalk; //used in judgement of stopping walk, related to WM.getBallRelPos2D()
+    };
 
     class Player : public core::Agent {
     public:
@@ -150,17 +143,17 @@ struct KickMotion{
         task::Direction calFallDirPenalty();
         bool isBallWillCrossMeAfterNStps(int n);
 
-        bool isGoal();//
+        bool isGoal(); //
 
         GoalKeeperState updateGoalKeeperState(); //
 
-     	boost::shared_ptr<action::Action> goTo(const math::Vector2f& destPos, math::AngDeg bodyDir, bool avoidBall=true);
+        boost::shared_ptr<action::Action> goTo(const math::Vector2f& destPos, math::AngDeg bodyDir, bool avoidBall = true);
 
-	boost::shared_ptr<action::Action> goToRel(const math::Vector2f& target, math::AngDeg dir);
+        boost::shared_ptr<action::Action> goToRel(const math::Vector2f& target, math::AngDeg dir);
 
-	//bodyDir: body direction
-	//one body direction may match any walk direction
-	boost::shared_ptr<action::Action> goToAvoidBlocks(math::Vector2f dest, math::AngDeg bodyDir, bool avoidBall=true);
+        //bodyDir: body direction
+        //one body direction may match any walk direction
+        boost::shared_ptr<action::Action> goToAvoidBlocks(math::Vector2f dest, math::AngDeg bodyDir, bool avoidBall = true);
 
         boost::shared_ptr<action::Action> goToSlow(const math::Vector2f& stopPos,
                 math::AngDeg dir, bool avoidBall = true, bool is4Kick = false);
@@ -172,27 +165,20 @@ struct KickMotion{
          *
          * @return current action
          */
-//        boost::shared_ptr<action::Action> goTo(const math::Vector2f& stopPos,
-//                const math::Vector2f& lookAt, bool avoidBall = true, bool is4Kick = false);
-//
-//        boost::shared_ptr<action::Action> goToSlow(const math::Vector2f& stopPos,
-//                const math::Vector2f& lookAt, bool avoidBall = true, bool is4Kick = false);
-//
-//        boost::shared_ptr<action::Action> kickTo(const math::Vector2f& goal, bool maxForce = true, bool walkSlow = false);
-	boost::shared_ptr<action::Action> goTo(const math::Vector2f& stopPos,
-			const math::Vector2f& lookAt, bool avoidBall=true);
+        boost::shared_ptr<action::Action> goTo(const math::Vector2f& stopPos,
+                const math::Vector2f& lookAt, bool avoidBall = true);
 
-	boost::shared_ptr<action::Action> goToSlow(const math::Vector2f& stopPos,
-			const math::Vector2f& lookAt, bool avoidBall = true, bool is4Kick = false);
+        boost::shared_ptr<action::Action> goToSlow(const math::Vector2f& stopPos,
+                const math::Vector2f& lookAt, bool avoidBall = true, bool is4Kick = false);
 
-	boost::shared_ptr<action::Action> kickTo(const math::Vector2f& goal, bool useMaxForceMotion=true);
+        boost::shared_ptr<action::Action> kickTo(const math::Vector2f& goal, bool useMaxForceMotion = true);
 
         //TT, MMXI
         boost::shared_ptr<action::Action> kickRel();
         boost::shared_ptr<action::Action> shootRel();
         boost::shared_ptr<action::Action> testActionTT();
         boost::shared_ptr<action::Action> dribbleRel();
-        boost::shared_ptr<action::Action> penaltyKiller();//Gravity penalty killer;
+        boost::shared_ptr<action::Action> penaltyKiller(); //Gravity penalty killer;
         boost::shared_ptr<action::Action> dribbleToOppGoal();
         boost::shared_ptr<action::Action> goToBallBack();
         boost::shared_ptr<action::Action> kickToRel(const math::Vector2f targetRel);
@@ -208,9 +194,9 @@ struct KickMotion{
                 const math::Vector2f& goalRight);
 
 
-		//TT
-		// +-1, +-2
-		boost::shared_ptr<action::Action> fallToGetBall(int dir);
+        //TT
+        // +-1, +-2
+        boost::shared_ptr<action::Action> fallToGetBall(int dir);
 
 
         boost::shared_ptr<action::Action>
@@ -220,8 +206,8 @@ struct KickMotion{
         boost::shared_ptr<action::Action> dribble();
 
         //TT
-		//dribble to [angC] direction, between [angL] and [angR]
-		//all of them are global parameters
+        //dribble to [angC] direction, between [angL] and [angR]
+        //all of them are global parameters
         boost::shared_ptr<action::Action> dribbleToDir(AngDeg angC, AngDeg angL, AngDeg angR);
 
         /**
@@ -244,9 +230,9 @@ struct KickMotion{
          */
         boost::shared_ptr<action::Action> walkToBall();
 
-   /*     float calKickHeight(const math::Vector2f& target,
-                const math::Vector2f& ballPos,
-                task::Kick::KickMode mode);*/
+        /*     float calKickHeight(const math::Vector2f& target,
+                     const math::Vector2f& ballPos,
+                     task::Kick::KickMode mode);*/
 
         math::Vector2f chooseLargestAttackAngle(float x, float miny, float maxy,
                 const math::Vector2f& pos, math::AngDeg& maxAng);
@@ -287,8 +273,6 @@ struct KickMotion{
          */
         boost::shared_ptr<task::BasicKick> chooseKickType(const math::Vector2f& goal, bool useMaxForceMotion, Vector2f* pPos, AngDeg* pDir, Vector2f* pRelPosToStopWalk);
 
-//        boost::shared_ptr<task::BasicKick> chooseKickType(const math::Vector2f& goal, Vector2f* pPos, AngDeg* pDir);
-//boost::shared_ptr<task::BasicKick> chooseKickType(const math::Vector2f& goal, bool maxForce);
         /*!	is there any opponent in the front of me?
           ie. Is there any opponent in the rectangle which in my heading direction?
           \return the number of block opponent, 0 means no opponent blocks me
@@ -343,8 +327,8 @@ struct KickMotion{
         //-2: for test
         int mCameraMotionMode;
 
-	//true: kicking, don't want to change my mind
-	bool mKickLock;
+        //true: kicking, don't want to change my mind
+        bool mKickLock;
 
         //TT, April, MMXI
         //0: as LR wish
