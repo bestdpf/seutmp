@@ -20,7 +20,6 @@
 #include "perception/ExtenedKalmanFilter.hpp"
 #include "PassModel.h"
 #include <set>
-#include"Localization.h"
 
 namespace core {
 

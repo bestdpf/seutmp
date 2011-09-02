@@ -10,7 +10,6 @@
 
 #include "configuration/Configuration.h"
 #include "core/WorldModel.h"
-#include "core/Localization.h"
 #include "action/BeamAction.h"
 #include "action/Actions.h"
 #include "controller/FixedAngleTrace.h"

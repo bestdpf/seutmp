@@ -13,7 +13,7 @@
  * \brief agent基类/the basic agent class.
  *
  *
- * 实现基本的agent: 初始化,感知-思考-动作的主循环
+ * 实现基本的agent: 初始化,感知-思考-动作的主循环 /implement basic agent:initialization, perception - think about - the main loop action
  *
  */
 
