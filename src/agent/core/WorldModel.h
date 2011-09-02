@@ -11,8 +11,6 @@
 #ifndef CORE_WORLD_MODEL
 #define CORE_WORLD_MODEL
 
-//#define ENABLE_WORLD_MODEL_LOG
-
 #include "configuration/Configuration.h"
 #include "Singleton.hpp"
 #include "perception/Perception.h"
@@ -23,11 +21,6 @@
 #include "PassModel.h"
 #include <set>
 #include"Localization.h"
-#ifdef ENABLE_WORLD_MODEL_LOG
-#include "logger/Logger.h"
-#else
-#include "logger/NoLogger.h"
-#endif
 
 namespace core {
 
@@ -1022,7 +1015,7 @@ namespace core {
         int bestZoneY;
         bool isAttacking;
         /////////////////////////
-        DECLARE_GRAPHIC_LOGGER;
+
 
     }; //end of class WorldModel
 

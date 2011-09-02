@@ -1,4 +1,4 @@
-/***************************************************************************
+ /***************************************************************************
  *                              SEU RoboCup Simulation Team
  *                     -------------------------------------------------
  * Copyright (c) Southeast University , Nanjing, China.
@@ -51,18 +51,6 @@ using namespace task;
 Player::Player()
     :mTask(-1,NULL)
 {
-	BEGIN_ADD_LOG_LAYER(Player)
-		//ADD_LOG_LAYER("TT");
-		//ADD_LOG_LAYER("data");
-		//ADD_LOG_LAYER("info");
-		//ADD_LOG_LAYER("kickRel");
-		//ADD_LOG_LAYER("joint");
-		//ADD_LOG_LAYER("goToBallBack");
-		//ADD_LOG_LAYER("goToAvoidBlocks");
-		//ADD_LOG_LAYER("kickTo");
-		ADD_LOG_LAYER("goTo");
-	END_ADD_LOG_LAYER(Player)
-
 	//load data of KickMotion
 	mKickMotionVector.clear();
 	ifstream inFile("data/kick_motion.txt",ios::in);
@@ -267,9 +255,6 @@ boost::shared_ptr<Action> Player::think()
 		shared_ptr<CameraMotion> cm( new CameraMotion(mCameraMotionMode) );
 		actions->add(cm->perform());
 	}
-
-
-	LOG_FLUSH;
 	return actions;
 }
 
@@ -387,7 +372,6 @@ Direction Player::calFallDirPenalty(){
     Vector2f ballVel2D(ballVel.x(), ballVel.y());
     float ballVelx=ballVel2D[0];
     float ballVely=ballVel2D[1];
-    LOG_PRINTF("gg","%.2f",ballVely);
     Vector2f ballRelVel=WM.getBallRelVel2D();
     float ballRelVelx=ballRelVel[0];
     float ballRelVely=ballRelVel[1];
@@ -516,13 +500,11 @@ boost::shared_ptr<action::Action> Player::penaltyKiller()
 					mTask.append(shared_ptr<Task> (new KeepFall(&mTask,RIGHT)));
 					act= mTask.perform();
 				}
-				//LOG_PRINTF("bodyAng", "i need keep falling");
 			}
 			else
 			{
 				mTask.clear();
 				act=mBalance.perform();
-				//LOG_PRINTF("bodyAng", "keep balance");
 			}
 			break;
 		//--------------------------------------------up: dived or falled
@@ -631,13 +613,12 @@ boost::shared_ptr<action::Action> Player::keepGoal()
 					mTask.append(shared_ptr<Task> (new KeepFall(&mTask,RIGHT)));
 					act= mTask.perform();
 				}
-				LOG_PRINTF("bodyAng", "i need keep falling");
 			}
 			else
 			{
 				mTask.clear();
 				act=mBalance.perform();
-				LOG_PRINTF("bodyAng", "keep balance");
+
 			}
 			break;
 		//--------------------------------------------up: dived or falled
@@ -739,13 +720,13 @@ boost::shared_ptr<action::Action> Player::keepGoal_TT(int d)
 					mTask.append(shared_ptr<Task> (new KeepFall(&mTask,RIGHT)));
 					act= mTask.perform();
 				}
-				LOG_PRINTF("bodyAng", "i need keep falling");
+
 			}
 			else
 			{
 				mTask.clear();
 				act=mBalance.perform();
-				LOG_PRINTF("bodyAng", "keep balance");
+
 			}
 			break;
 		//--------------------------------------------up: dived or falled
@@ -837,7 +818,7 @@ bool Player::isBallWillInAfterNSteps(int n)
 		if(true == isBallWillIn[i])
 			temp += 1;
 	}
-	LOG_GREEN_SPHERE("bodyAng", ballPPos, ball_radius);
+
 	if(temp >= 3)
 		return true;
 	else
@@ -852,12 +833,10 @@ Direction Player::calFallDirection(int n)
 {
 	if (!isBallWillCrossMeAfterNStps(n))
 	{
-		LOG_PRINT("bodyAng","ball will not cross me");
 		return UNKNOWN;
 	}
 	if (!WM.isBallToOurGoal())
 	{
-		LOG_PRINT("bodyAng", "ball is not to our goal");
 		return UNKNOWN;
 	}
 	Vector3f ballPPos = WM.getBallGlobalPos();
@@ -880,21 +859,14 @@ Direction Player::calFallDirection(int n)
 	Line2f meLine(posMe, faceDirection);
 	Vector2f boundaryPos(posMe.x()+boundary*cosDeg(faceDirection), posMe.y()+boundary*sinDeg(faceDirection));
 	Line2f tangentLine(boundaryPos, normalizeAngle(meLine.getAngle()-90.0f));
-	LOG_BLUE_LINE_2D("bodyAng",Vector2f(boundaryPos.x()+5.0f*cosDeg(tangentLine.getAngle()),boundaryPos.y()+5.0f*sinDeg(tangentLine.getAngle())),
-								Vector2f(boundaryPos.x()-5.0f*cosDeg(tangentLine.getAngle()),boundaryPos.y()-5.0f*sinDeg(tangentLine.getAngle()))		);
-
-	LOG_RED_LINE_2D("bodyAng",Vector2f(ballCPos.x()+5.0f*cosDeg(ballLine.getAngle()),ballCPos.y()+5.0f*sinDeg(ballLine.getAngle())),
-								Vector2f(ballCPos.x()-5.0f*cosDeg(ballLine.getAngle()),ballCPos.y()-5.0f*sinDeg(ballLine.getAngle()))		);
 
 	Vector2f intersection = tangentLine.calIntersection(ballLine);
 
 	Vector3f posTemp(intersection.x(), intersection.y(), ball_radius);
 
-	LOG_RED_SPHERE("bodyAng", posTemp, ball_radius);
 	Vector3f intersectionToBone = WM.getPosToBone(posTemp);
 
 	float x= intersectionToBone.x();
-	LOG_PRINTF("bodyAng","intersectionToBone x is:%f", x);
 	const float fall_bias = 0.135f;
 	if(x<-fall_bias)
 		return LEFT;
@@ -984,7 +956,6 @@ bool Player::isBallWillCrossMeAfterNStps(int n)
 	static bool isBallWillCrossMe[5] = {0};
 	if (abs(simTime - WM.getSimTime()) > 0.001f)
 	{
-		LOG_PRINT("bodyAng", "predict if the ball will cross me");
 		for (int i = 4; i > 0; i--)
 			isBallWillCrossMe[i] = isBallWillCrossMe[i - 1]; //record judements before
 
@@ -1008,9 +979,7 @@ bool Player::isBallWillCrossMeAfterNStps(int n)
 			isBallWillCrossMe[0] = false;
 		simTime = WM.getSimTime();
 	}//if we have not predict this sim_step,predict
-	LOG_PRINTF("bodyAng", "arry isBallWillCrossMe is [%d, %d, %d, %d,%d]",
-			isBallWillCrossMe[0], isBallWillCrossMe[1], isBallWillCrossMe[2],
-			isBallWillCrossMe[3], isBallWillCrossMe[4]);
+
 	int temp = 0;
 	for (int i = 0; i < 5; i++)
 	{
@@ -1119,13 +1088,10 @@ GoalKeeperState Player::updateGoalKeeperState()
 shared_ptr<Action> Player::goTo(const Vector2f& destPos, AngDeg bodyDir, bool avoidBall)
 {
 	//WM.logPrintSeenFlags();
-	LOG_PRINTF("goTo","myBodyAng: (%.1f, %.1f, %.1f)",WM.getMyBodyAng().x(),WM.getMyBodyAng().y(),WM.getMyBodyAng().z());
-
+	
 	Vector2f relTarget;
 	float turnAng;
 	Vector2f destRelPos=WM.transGlobalPosToRelPos( WM.getMyGlobalPos2D() , destPos );
-	//printf("destRelPos: (%.1f, %.1f), bodyDir: %.1f\n",destRelPos.x(),destRelPos.y(),WM.getMyBodyDirection());
-	LOG_PRINTF("goTo","destRelPos: (%.1f, %.1f), bodyDir: %.1f",destRelPos.x(),destRelPos.y(),WM.getMyBodyDirection());
 
 	if( destRelPos.length()>0.2f ) //far enough, so don't care about body direction, just turn to destination
 	{
@@ -1141,9 +1107,7 @@ shared_ptr<Action> Player::goTo(const Vector2f& destPos, AngDeg bodyDir, bool av
 		turnAng=normalizeAngle( bodyDir-WM.getMyBodyDirection() ); ///////////////////////////////
 	}
 
-	//printf("relTarget: (%.1f, %.1f), turnAng: %.1f\n",relTarget.x(),relTarget.y(),turnAng);
-	LOG_PRINTF("goTo","relTarget: (%.1f, %.1f), turnAng: %.1f",relTarget.x(),relTarget.y(),turnAng);
-	//return goToRel(relTarget,turnAng);
+		//return goToRel(relTarget,turnAng);
 	return goToAvoidBlocks(relTarget, turnAng, avoidBall);
 }
 
@@ -1205,7 +1169,6 @@ shared_ptr<Action> Player::goToSlow(const Vector2f& stopPos, AngDeg dir, bool av
 	// first should keep balance
 	shared_ptr<Action> act = mBalance.perform();
 	if (0 != act.get()) {
-		LOG_PRINT("goToSlow", "I am fall!");
 		mTask.clear();
 		return act;
 	}
@@ -1217,15 +1180,11 @@ shared_ptr<Action> Player::goToSlow(const Vector2f& stopPos, AngDeg dir, bool av
 		bull = true;
 	}
 
-
-	LOG_RED_LINE("goToSlow", Vector3f(stopPos.x(), stopPos.y(), 0), WM.getMyOrigin());
-
 	shared_ptr<Task> walkTask(new WalkSlow(stopPos, dir, avoidBall));
 
 	shared_ptr<Task> cTask = mTask.getFirstSubTask();
 	if (NULL == cTask.get()) {
 		// empty task, append the walk directly
-		LOG_PRINT("goToSlow", "empty task, append the walk directly");
 		mTask.append(walkTask);
 	}
 	else {
@@ -1233,12 +1192,10 @@ shared_ptr<Action> Player::goToSlow(const Vector2f& stopPos, AngDeg dir, bool av
 				shared_dynamic_cast<WalkSlow > (cTask);
 		if (NULL == cWalk.get()) {
 			// I am not walking currently, append the walk
-			LOG_PRINT("goToSlow", "I am not walking currently, append the walk");
 			mTask.append(walkTask);
 		}
 		else {
 			// I am walking now, revise the current walking
-			LOG_PRINT("goToSlow", "I am walking now, revise the current walking");
 			cWalk->revise(walkTask);
 		}
 	}
@@ -1307,139 +1264,7 @@ shared_ptr<Action> Player::beamAndInit(const Vector3f& beamPos)
 
 	return acts;
 }
-//shared_ptr<Action> Player::kickTo(const Vector2f& goal)
-//{
-//	/*WM.logPrintSeenFlags();
-//
-//	const Vector2f& myPos=WM.getMyGlobalPos2D();
-//	const Vector2f& ballPos=WM.getBallGlobalPos2D(); //////////////////////////////// mypos+relpos ?
-//	float distToBall=WM.getBallPol2D().x();
-//	AngDeg myBodyDir=WM.getMyBodyDirection();
-//	LOG_PRINTF("kickTo","myPos(%.1f, %.1f), ballPos(%.1f, %.1f)",myPos.x(),myPos.y(),ballPos.x(),ballPos.y());
-//	LOG_PRINTF("kickTo","distToBall: %.1f, myBodyDir: %.1f",distToBall,myBodyDir);
-//
-//	AngDeg ang1=(ballPos-myPos).angle();
-//	AngDeg ang2=(goal-ballPos).angle();
-//	AngDeg dAng1=fabs( normalizeAngle(myBodyDir-ang2) );
-//	AngDeg dAng2=fabs( normalizeAngle(ang1-ang2) );
-//
-//	//printf("dA1=%.1f, dA2=%.1f, dTB=%.1f\n",dAng1,dAng2,distToBall);
-//
-//	//printf("%d\t %d\n",WM.seenFlagsNum(),WM.seenRightFlagsNum());
-//
-//
-//	//set false
-//	if( dAng1>15.0f || ( dAng2>20.0f && distToBall>0.5f ) || distToBall>0.8f )
-//	{
-//		LOG_PRINTF("kickTo","SET mKickLock=false");
-//		mKickLock=false;
-//	}
-//
-//	//judge if true
-//	if( true==mKickLock )
-//	{
-//		LOG_PRINTF("kickTo","true==mKickLock,RETURN kickRel()");
-//		return kickRel();
-//	}
-//
-//	//========kick or walk
-//	//kick
-//	if( dAng1<10.0f && dAng2<15.0f )
-//	{
-//		LOG_PRINTF("kickTo","RETURN kickRel()");
-//		mKickLock=true;
-//		return kickRel();
-//	}
-//
-//	//goTo
-//	else
-//	{
-//		LOG_PRINTF("kickTo","RETURN goTo()");
-//		float desiredDistToBall=min(0.7f,distToBall);
-//		float ballDistToGoal=(goal-ballPos).length();
-//		float xb=ballPos.x(),yb=ballPos.y();
-//		float xg=goal.x(),yg=goal.y();
-//		float factor=desiredDistToBall/ballDistToGoal;
-//
-//		float x=xb-(xg-xb)*factor;
-//		float y=yb-(yg-yb)*factor;
-//
-//		return goTo(Vector2f(x,y), (ballPos-myPos).angle(), myPos.x()-ballPos.x()>-0.5f );
-//	}*/
-//
-//	shared_ptr<Action> act;
-//
-//	//is kicking
-//	shared_ptr<Task> curTask=mTask.getFirstSubTask();
-//	shared_ptr<BasicKick> curKick=shared_dynamic_cast<BasicKick>(curTask);
-//	if( NULL!=curKick.get() )
-//	{
-//		//printf("%s\n","NULL!=curKick.get()");
-//		LOG_PRINTF("kickTo", "is kicking ,just kick");
-//		act=mTask.perform();
-//
-//		if( NULL!=act.get() )
-//		{
-//			mCameraMotionMode=0;
-//			//cout<<"kicking"<<endl;
-//		    LOG_PRINT("kickTo", "kick is available, so return act");
-//			//printf("%s\n","kickTo return current task");
-//			return act;
-//		}
-//		else
-//		{
-//			mKickLock=false;
-//			//cout<<"NULL------------------"<<endl;
-//			LOG_PRINT("kickTo", "kick return NULL!!");
-//		}
-//	}
-//
-//	//keep balance
-//	act=mBalance.perform();
-//	if( NULL!=act.get() )
-//	{
-//		mKickLock=false;
-//		mCameraMotionMode=0;
-//		mTask.clear();
-//		return act;
-//	}
-//
-//	//choose kick type and calculate the target of walking
-//	Vector2f myDesiredPos;
-//	AngDeg myDesiredBodyDir;
-//	//shared_ptr<BasicKick> kick= chooseKickType(goal, &myDesiredPos, &myDesiredBodyDir);
-//shared_ptr<BasicKick> kick= chooseKickType(goal, true);
-//	//decide to walk or kick
-//	if( (myDesiredPos-WM.getMyGlobalPos2D()).length()>0.01f ||
-//		fabs(normalizeAngle(myDesiredBodyDir-WM.getMyBodyDirection()))>8.0f )
-//	{
-//		//act=goTo(myDesiredPos, myDesiredBodyDir, true); //should avoid ball???????? walk around?????????
-//		act=goTo(myDesiredPos, myDesiredBodyDir, false);
-//		return act;
-//	}
-//	else
-//	{
-//		shared_ptr<WalkRel> curWalkRel= shared_dynamic_cast<WalkRel>(curTask);
-//		if( NULL!=curWalkRel.get() )
-//		{
-//			curWalkRel->stopWalk();
-//			act=mTask.perform();
-//			if( NULL!=act.get() )
-//			{
-//				//printf("...\n");
-//				LOG_PRINT("kickTo", "......");
-//				return act;
-//			}
-//		}
-//
-//		printf("===========%s============\n","new KickTask in kickTo");
-//		LOG_PRINT("kickTo", "===========new KickTask============");
-//		mTask.clear();
-//		mTask.append(kick);
-//		act=mTask.perform();
-//		return act;
-//	}
-//}
+
 /******************************************Gravity test*************************************************************************/
 
 
@@ -1452,23 +1277,15 @@ shared_ptr<Action> Player::kickTo(const Vector2f& goal, bool useMaxForceMotion)
 	shared_ptr<BasicKick> curKick=shared_dynamic_cast<BasicKick>(curTask);
 	if( NULL!=curKick.get() )
 	{
-		//printf("%s\n","NULL!=curKick.get()");
-		LOG_PRINTF("kickTo", "is kicking ,just kick");
 		act=mTask.perform();
-
 		if( NULL!=act.get() )
 		{
 			mCameraMotionMode=0;
-			//cout<<"kicking"<<endl;
-		    LOG_PRINT("kickTo", "kick is available, so return act");
-			//printf("%s\n","kickTo return current task");
 			return act;
 		}
 		else
 		{
 			mKickLock=false;
-			//cout<<"NULL------------------"<<endl;
-			LOG_PRINT("kickTo", "kick return NULL!!");
 		}
 	}
 
@@ -1476,7 +1293,6 @@ shared_ptr<Action> Player::kickTo(const Vector2f& goal, bool useMaxForceMotion)
 	act=mBalance.perform();
 	if( NULL!=act.get() )
 	{
-		LOG_PRINT("kickTo","keep balance");
 		mKickLock=false;
 		mCameraMotionMode=0;
 		mTask.clear();
@@ -1489,10 +1305,6 @@ shared_ptr<Action> Player::kickTo(const Vector2f& goal, bool useMaxForceMotion)
 	Vector2f relPosToStopWalk;
 	shared_ptr<BasicKick> kick= chooseKickType(goal,useMaxForceMotion,&myDesiredPos,&myDesiredBodyDir,&relPosToStopWalk);
 
-	//decide to walk or kick
-	LOG_PRINTF("kickTo","A(%.2f, %.2f)",(WM.getBallRelPos2D()+relPosToStopWalk).x(),(WM.getBallRelPos2D()+relPosToStopWalk).y());
-	LOG_PRINTF("kickTo","B1(%.2f, %.2f)",(myDesiredPos-WM.getMyGlobalPos2D()).x(),(myDesiredPos-WM.getMyGlobalPos2D()).y());
-	LOG_PRINTF("kickTo","B2: %.1f",fabs(normalizeAngle(myDesiredBodyDir-WM.getMyBodyDirection())));
 	if( (WM.getBallRelPos2D()+relPosToStopWalk).length()<0.013f ) //kick //0.01f 0.02f
 	{
 		shared_ptr<WalkRel> curWalkRel= shared_dynamic_cast<WalkRel>(curTask);
@@ -1502,14 +1314,10 @@ shared_ptr<Action> Player::kickTo(const Vector2f& goal, bool useMaxForceMotion)
 			act=mTask.perform();
 			if( NULL!=act.get() )
 			{
-				//printf("...\n");
-				LOG_PRINT("kickTo", "......");
 				return act;
 			}
 		}
-
-		printf("===========%s============\n","new KickTask in kickTo");
-		LOG_PRINT("kickTo","===========new KickTask============");
+	//	printf("===========%s============\n","new KickTask in kickTo");
 		mTask.clear();
 		mTask.append(kick);
 		return mTask.perform();
@@ -1517,13 +1325,10 @@ shared_ptr<Action> Player::kickTo(const Vector2f& goal, bool useMaxForceMotion)
 	else if( (myDesiredPos-WM.getMyGlobalPos2D()).length()<0.07f //0.03f
 			 && fabs(normalizeAngle(myDesiredBodyDir-WM.getMyBodyDirection()))<8.0f ) //return goToRel
 	{
-		//cout<<'B'<<endl;
-		//return goToRel( WM.getBallRelPos2D()+relPosToStopWalk , 0 );
 		return goToAvoidBlocks( WM.getBallRelPos2D()+relPosToStopWalk, 0, true );
 	}
 	else //return goTo
 	{
-		//cout<<'C'<<endl;
 		return goTo(myDesiredPos, myDesiredBodyDir, true);/////////////////////////////////
 	}
 }
@@ -1550,8 +1355,6 @@ boost::shared_ptr<task::BasicKick> Player::chooseKickType(const math::Vector2f& 
 				targetDistToGoal=tempFloat;
 				motionNum=i;
 			}
-
-			//printf("i=%d, dist=%.2f\n",i,tempFloat);
 			i++;
 		}
 	}
@@ -1570,63 +1373,6 @@ boost::shared_ptr<task::BasicKick> Player::chooseKickType(const math::Vector2f& 
 
 	return shared_ptr<KickTask>( new KickTask(mKickMotionVector[motionNum].firstTaskName) );
 }
-//boost::shared_ptr<task::BasicKick> Player::chooseKickType(const math::Vector2f& goal, Vector2f* pPos, AngDeg* pDir)
-//{
-//	Vector2f kickTargetRel(0,4);
-//	Vector2f kickTarget=WM.transRelPosToGlobalPos( WM.getMyGlobalPos2D() , kickTargetRel );
-//	float targetDistToGoal=(kickTarget-goal).length();
-//	//then compare dist and choose a motion
-//	//...
-//
-//	//calculate pos and dir to go
-//	const Vector2f& ballPos=WM.getBallGlobalPos2D();
-//
-//	Vector2f myDesiredRelPosToBall(+0.070f,-0.10f);
-//	Vector2f myDesiredPos=WM.transRelPosToGlobalPos( ballPos , myDesiredRelPosToBall );
-//
-//	AngDeg myDesiredBodyDir= (goal-ballPos).angle() + atan2Deg(kickTargetRel.x(),kickTargetRel.y()) ;
-//
-//	*pPos=myDesiredPos;
-//	*pDir=myDesiredBodyDir;
-//
-//	return shared_ptr<KickTask>( new KickTask("BTT_t1") );
-//
-//
-//
-///////////////////////////////////////////
-//	const AngDeg facingDir = WM.getMyFaceDirection();
-//	const Vector2f& posBall2D = WM.getBallGlobalPos2D();
-//	const AngDeg goalDir = (goal - posBall2D).angle();
-//	const AngDeg clipAng = calClipAng(facingDir, goalDir);
-//	//const bool isLeftLeg = WM.getIsLeftFootKick();				//chooseKickFoot(goal);
-//	//return shared_ptr<Shoot>(new Shoot(goal, isLeftLeg, maxForce, NULL));
-//	return shared_ptr<Shoot>(new Shoot(goal,false,true,NULL));//////////////////////////////////////////
-//}
-
-
-
-/*float Player::calKickHeight(const Vector2f& target,const Vector2f& ballPos, Kick::KickMode mode)
-{
-	Vector2f ball2target = target - ballPos;
-	float x, y = 0;
-	x = ball2target.length();
-	switch (mode)
-	{
-		case Kick::KICK_MODE_NORAML :
-
-			break;
-		case Kick::KICK_MODE_FAST :
-					y = -0.005299 * x * x + 0.349 * x + 0.01035;
-			break;
-		case Kick::KICK_MODE_HIGH :
-					y = -0.06596 * x * x + 1.493 * x + 0.8518;
-			break;
-		default:
-			break;
-
-	}
-	return y;
-}*/
 
 Vector2f Player::chooseLargestAttackAngle(float x, float miny, float maxy, const Vector2f& pos, AngDeg& maxAng)
 {
@@ -1717,7 +1463,6 @@ bool Player::chooseKickFoot(const Vector2f& goal)
 	AngDeg angMe2Ball = (ballPos - WM.getMyOrigin2D()).angle();
 	AngDeg clipAng = calClipAng(angMe2Ball, kickAng);
 
-	LOG_PRINTF("chooseKickFoot", "clipAng %.3f", clipAng);
 	return clipAng>0;
 }
 
@@ -1725,12 +1470,11 @@ bool Player::chooseKickFoot2(const math::Vector2f& goal)
 {
 	const Vector2f ballPos2D = WM.getBallGlobalPos2D();
 	const Vector2f ball2Goal = goal - ballPos2D;
-	// AngDeg ang = calClipAng (WM.getMyBodyDirection(), ball2Goal.angle());
 	Vector3f temp = WM.getBoneTrans(HUMANOID.L_FOOT).pos();
 	Vector2f leftFootPos(temp.x(), temp.y());
 	temp = WM.getBoneTrans(HUMANOID.R_FOOT).pos();
 	Vector2f rightFootPos(temp.x(), temp.y());
-	//if( abs(ang) >= 90.0f )
+
 	return (ballPos2D - leftFootPos).length() < (ballPos2D - rightFootPos).length();
 }
 
@@ -1742,11 +1486,9 @@ shared_ptr<action::Action> Player::defense()
 	float distOpp = sqrt(pow2(oppPos.x() - posBall.x()) + pow2(oppPos.y() - posBall.y()));
 	float distMe = (posBall - posMe).length();
 	if ((distOpp < distMe && WM.getMyInterceptBallTime() > 2 && WM.howIFasterToBallThanOpps() < -2) && WM.getBallGlobalPos()[0] <= 1.0f) {
-		LOG_PRINTF("defense", "keep position, because opponent is faster than me %.3f", WM.howIFasterToBallThanOpps());
 		return runDefensePos();
 	}
 	else {
-		LOG_PRINT("defense", "clear");
 		return clearBall();
 	}
 }
@@ -1914,9 +1656,6 @@ boost::shared_ptr<action::Action> Player::clearBall()
             AngDeg angOpp = vec.angle();
 
             if (distOpp < dist && isAngInInterval(angOpp, angR, angL)) {
-                LOG_PRINTF("isSpaceAhead",
-                        "opponent %d blocks me: angOpp=%.3f, angR=%.3f, angL=%.3f",
-                        iter->first, angOpp, angR, angL);
                 return iter->first;
             }
         }
@@ -1945,7 +1684,6 @@ boost::shared_ptr<action::Action> Player::clearBall()
         voronoi.create(plb, prb, prt, plt);
 
         if (!voronoi.setInnerPoint(posTeammate)) {
-            LOG_PRINTF("pass", "teammate %d is out side", num);
             return posTeammate;
         }
 
@@ -1968,33 +1706,12 @@ boost::shared_ptr<action::Action> Player::clearBall()
             Line2f line = Line2f::makeMidperpendicularFromTwoPoints(p, posTeammate);
             voronoi.cutByLine(line);
         }
-
-#ifdef ENABLE_LOG
-        for (TConvexPolygon<float>::TEdges::const_iterator iter = voronoi.begin();
-                iter != voronoi.end();
-                ++iter) {
-            LOG_YELLOW_LINE_2D("pass", iter->p0(), iter->p1());
-        }
-#endif // ENABLE_LOG
-
         return voronoi.calCentroid();
     }
-
-//    boost::shared_ptr<task::BasicKick> Player::chooseKickType(const math::Vector2f& goal, bool maxForce) {
-//        const AngDeg facingDir = WM.getMyFaceDirection();
-//        const Vector2f& posBall2D = WM.getBallGlobalPos2D();
-//        const AngDeg goalDir = (goal - posBall2D).angle();
-//        const AngDeg clipAng = calClipAng(facingDir, goalDir);
-//        //const bool isLeftLeg = WM.getIsLeftFootKick();				//chooseKickFoot(goal);
-//        //return shared_ptr<Shoot>(new Shoot(goal, isLeftLeg, maxForce, NULL));
-//        return shared_ptr<Shoot > (new Shoot(goal, false, true, NULL)); //////////////////////////////////////////
-//        //return shared_ptr<BackKick>(new BackKick(goal,false,NULL));
-//    }
 
     bool Player::isPassingToMe() {
         static float lastTime = 0;
         const vector<shared_ptr<perception::Hear> >& hear = WM.lastPerception().hear();
-        LOG_PRINTF("pass", "hear %d message from teammate", hear.size());
 
         FOR_EACH(iter, hear) {
             if ((*iter)->isSelfMsg())
@@ -2006,9 +1723,7 @@ boost::shared_ptr<action::Action> Player::clearBall()
                 ss << msg.substr(msg.find("->") + 2);
                 unsigned int num = 0;
                 ss >> num;
-                LOG_PRINTF("pass", "pass to %d", num);
                 if (num == WM.getMyUnum()) {
-                    LOG_PRINT("pass", "pass to me");
                     lastTime = WM.getSimTime();
                     return true;
                 }
@@ -2066,45 +1781,11 @@ boost::shared_ptr<action::Action> Player::clearBall()
 shared_ptr<Action> Player::goToAvoidBlocks(math::Vector2f dest, math::AngDeg bodyDir, bool avoidBall)
 {
 	float walkDir=-atan2Deg(dest.x(),dest.y());
-	LOG_PRINTF("goToAvoidBlocks","dest(%.1f, %.1f), walkDir=%.1f",dest.x(),dest.y(),walkDir);
 
 	const std::list<core::WorldModel::BlockInfo>& blockList=WM.getBlockList();
 	const core::WorldModel::BlockInfo& ballBlock=WM.getBallBlock();
 
 	float nearestPlayerBlockDist=100.0f; //used in judgement for ball
-
-
-	/*
-	//players' body
-	if( false==blockList.empty() )
-	{
-		//printf("1\n");
-		//LOG_PRINTF("goToAvoidBlocks","blockList is not empty!!!");
-		FOR_EACH(iter,blockList)
-		{
-			if( (iter->dist) > dest.length() )
-				break;
-
-			// ||walkDir iter->angC
-
-			if( false==isAngInInterval(walkDir,iter->angR,iter->angL) )
-				continue;
-
-			//OK, I've found the block, so calculate something and break
-			nearestPlayerBlockDist=iter->dist;
-			walkDir= isAngInInterval(walkDir,iter->angR,iter->angC) ? iter->angR : iter->angL ;
-			dest.x()= -iter->dist * sinDeg(walkDir) ;
-			dest.y()= iter->dist * cosDeg(walkDir) ;
-
-			break;
-		}
-	}
-	else //blockList is empty
-	{
-		//printf("2\n");
-		//LOG_PRINTF("goToAvoidBlocks","blockList is empty");
-	}
-	*/
 
 	//ball
 	if( avoidBall && WM.canSeeBall() && ballBlock.dist<nearestPlayerBlockDist ) //can see?????????????????
@@ -2137,8 +1818,7 @@ shared_ptr<Action> Player::kickRel()
 	//is kicking
 	shared_ptr<Task> curTask=mTask.getFirstSubTask();
 	shared_ptr<BasicKick> curKick=shared_dynamic_cast<BasicKick>(curTask);
-	//printf("%s\n","kickToRel...........................");
-	//printf("size=%d\n",mTask.getSubTaskListSize());
+
 	if( NULL!=curKick.get() )
 	{
 		//TT test
@@ -2148,23 +1828,16 @@ shared_ptr<Action> Player::kickRel()
 		printf("\n");*/
 		///////////////////////////////////////////////////
 
-		//printf("%s\n","NULL!=cKick.get()");
-		LOG_PRINTF("kickRel", "is kicking ,just kick");
 		act=mTask.perform();
 
 		if( NULL!=act.get() )
 		{
 			mCameraMotionMode=0;
-			//cout<<"kicking"<<endl;
-		    LOG_PRINT("kickRel", "kick is available, so return act");
-			//printf("%s\n","kickTo return current task");
 			return act;
 		}
 		else
 		{
 			mKickLock=false;
-			//cout<<"NULL------------------"<<endl;
-			LOG_PRINT("kickRel", "kick return NULL!!");
 		}
 	}
 
@@ -2178,7 +1851,6 @@ shared_ptr<Action> Player::kickRel()
 		return act;
 	}
 
-
 	//get closer to the ball
 	Vector2f tempV2f(0,0);
 	float dir=0.0f;
@@ -2187,7 +1859,6 @@ shared_ptr<Action> Player::kickRel()
 
 	if(ballRelPos.y()<0.01f) //turn body
 	{
-		//dir=WM.getBallPol2D().y();
 		if(ballRelPos.x()<0) dir=20;
 		else dir=-20;
 	}
@@ -2215,14 +1886,11 @@ shared_ptr<Action> Player::kickRel()
 			act=mTask.perform();
 			if( NULL!=act.get() )
 			{
-				//printf("...\n");
-				LOG_PRINT("kickRel", "......");
 				return act;
 			}
 		}
 
 		printf("===========%s============\n","new kick in kickRel");
-		LOG_PRINT("kickRel", "===========new Shoot============");
 
 		//shared_ptr<BasicKick> kick=chooseKickType(Vector2f(0,0));
 		shared_ptr<BasicKick> kick= useRightFoot ? shared_ptr<KickTask>(new KickTask("BTTL_t1")) :
@@ -2403,7 +2071,6 @@ shared_ptr<Action> Player::kickRel()
 
             if (NULL != act.get()) {
                 mCameraMotionMode = 0;
-                LOG_PRINT("TT", "return: kicking");
                 return act;
             } else {
                 //cout<<"kick done"<<endl;
@@ -2417,35 +2084,23 @@ shared_ptr<Action> Player::kickRel()
             mKickLock = false;
             mCameraMotionMode = 0;
             mTask.clear();
-            LOG_PRINT("TT", "return: keep balance");
             return actKB;
         }
 
 
         //=================================================info
         const Vector2f& myPos = WM.getMyGlobalPos2D();
-        LOG_PRINTF("info", "myPos(%.2f, %.2f)", myPos.x(), myPos.y());
 
         bool seeBall = WM.canSeeBall();
         const Vector2f& ballRelPos = WM.getBallRelPos2D();
         const Vector2f& ballPos = WM.getBallGlobalPos2D();
-        if (seeBall) {
-            LOG_PRINTF("info", "Ball: ballRelPos(%.2f, %.2f) ballPos(%.2f, %.2f)", ballRelPos.x(), ballRelPos.y(), ballPos.x(), ballPos.y());
-        }
-
         bool seeGoalL = WM.canSeeFlag(Vision::G1R);
         bool seeGoalR = WM.canSeeFlag(Vision::G2R);
         const Vector2f& goalLRel = WM.getFlagRelPos2D(Vision::G1R);
         const Vector2f& goalRRel = WM.getFlagRelPos2D(Vision::G2R);
-        if (seeGoalL) {
-            LOG_PRINTF("info", "goalLRel: goalLRel(%.2f, %.2f)", goalLRel.x(), goalLRel.y());
-        }
-        if (seeGoalR) {
-            LOG_PRINTF("info", "goalRRel: goalRRel(%.2f, %.2f)", goalRRel.x(), goalRRel.y());
-        }
 
         float myDistToBall = WM.getBallPol2D().x();
-        LOG_PRINTF("info", "myDistToBall= %.2f", myDistToBall);
+
         float myDistToGoal;
         if (seeGoalL)
             myDistToGoal = goalLRel.length();
@@ -2453,20 +2108,15 @@ shared_ptr<Action> Player::kickRel()
             myDistToGoal = goalRRel.length();
         else
             myDistToGoal = (Vector2f(half_field_length, 0) - myPos).length();
-        LOG_PRINTF("info", "myDistToGoal= %.2f", myDistToGoal);
-
 
         //=================================================special conditions, give up kicking
         if (myDistToBall > 0.4f) {
-            LOG_PRINT("TT", "[myDistToBall>xxx], mKickLock=0");
             mKickLock = false;
         }
 
 
         //=================================================return kickRel if I decided to kick
         if (true == mKickLock) {
-            //printf("1==mKickLock\n");
-            LOG_PRINT("TT", "return: [1==mKickLock] kickRel");
             return kickRel();
         }
 
@@ -2483,25 +2133,9 @@ shared_ptr<Action> Player::kickRel()
 
             if (isBehindBall) {
                 if (fabs(delta) < range) {
-                    //printf("-----------kick: y=%.2f\n",y);
-                    //printf("range=%.2f\n",range);
-                    //printf("myPos(%.2f,%.2f) ballPos(%.2f,%.2f)\n",myPos.x(),myPos.y(),ballPos.x(),ballPos.y());
-                    LOG_PRINT("TT", "return: [y] kickRel");
-                    LOG_PRINTF("data", "y=%.2f range=%.2f", y, range);
                     mKickLock = true;
                     return kickRel();
-                } else if (delta > 0) {
-                    LOG_PRINT("TT", "[delta>0] movingDir=1");
-                } else {
-                    LOG_PRINT("TT", "[delta<0] movingDir=2");
-                }
-            } else if (myDistToBall < 1.5f) //ball is in my back
-            {
-                if (myPos.y() < ballPos.y()) {
-                    LOG_PRINT("TT", "[near_back_ball] movingDir=1");
-                } else {
-                    LOG_PRINT("TT", "[near_back_ball] movingDir=2");
-                }
+                } 
             }
         }
       //  return goToRel(WM.getBallRelPos2D(),WM.getBallRelPos2D().angle()-90);
@@ -2509,93 +2143,6 @@ shared_ptr<Action> Player::kickRel()
         //=====================================
         return goToBallBack();
         //=====================================
-
-
-
-        /*
-        //==========================================================decide according to RELATIVE info
-        if( myDistToBall<0.8f )
-        {
-                float angL=atan2Deg( goalLRel.x() , goalLRel.y() );
-                float angR=atan2Deg( goalRRel.x() , goalRRel.y() );
-                if(seeGoalL){
-                        LOG_PRINTF("data","angL= %.2f",angL);
-                }
-                if(seeGoalR){
-                        LOG_PRINTF("data","angR= %.2f",angR);
-                }
-                float turnX=0.15,turnAng=20;
-
-
-                if(1==mMovingDir){
-                        LOG_PRINT("TT","return: move L 0");
-                        return goToRel(Vector2f(-turnX,0),-turnAng);
-                }
-                else if(2==mMovingDir){
-                        LOG_PRINT("TT","return: move R 0");
-                        return goToRel(Vector2f(turnX,0),turnAng);
-                }
-
-
-                if( seeGoalL && seeGoalR )
-                {
-                        //if( (angL<-10.0f && angR>10.0f) && (fabs(angL+angR)<15.0f) )/////////////////////////////
-                        //{
-                        //	printf("-----------kick: angL=%.2f \t angR=%.2f \n",angL,angR);
-                        //	mKickLock=1;
-                        //	return kickRel();
-                        //}
-
-                        if(angL>-10.0f)
-                        {
-                                LOG_PRINT("TT","return: move L 1");
-                                return goToRel(Vector2f(-turnX,0),-turnAng);
-                        }
-
-                        else if(angR<10.0f)
-                        {
-                                LOG_PRINT("TT","return: move R 1");
-                                return goToRel(Vector2f(turnX,0),turnAng);
-                        }
-                }
-
-                else if(seeGoalL)
-                {
-                        LOG_PRINT("TT","return: move L 2");
-                        return goToRel(Vector2f(-turnX,0),-turnAng);
-                }
-
-                else if(seeGoalR)
-                {
-                        LOG_PRINT("TT","return: move R 2");
-                        return goToRel(Vector2f(turnX,0),turnAng);
-                }
-
-                else //didn't see opp goal
-                {
-                        if( angL>0 && angR>0 ){
-                                LOG_PRINT("TT","return: move L 3");
-                                return goToRel(Vector2f(-turnX,0),-turnAng);
-                        }
-                        else if( angL<0 && angR<0 ){
-                                LOG_PRINT("TT","return: move R 3");
-                                return goToRel(Vector2f(turnX,0),turnAng);
-                        }
-                        else
-                        {
-                                mCameraMotionMode=3; //search flags
-                                if(myPos.y()>0){
-                                        LOG_PRINT("TT","return: move L 4");
-                                        return goToRel(Vector2f(-turnX,0),-turnAng);
-                                }
-                                else{
-                                        LOG_PRINT("TT","return: move R 4");
-                                        return goToRel(Vector2f(turnX,0),turnAng);
-                                }
-                        }
-                }
-        }
-         */
     }
 
 shared_ptr<Action> Player::dribbleRel()
@@ -2694,9 +2241,7 @@ shared_ptr<Action> Player::goToBallBack()
 	{
 		xg=( WM.getFlagRelPos2D(Vision::G1R).x() + WM.getFlagRelPos2D(Vision::G2R).x() ) / 2 ;
 		yg=( WM.getFlagRelPos2D(Vision::G1R).y() + WM.getFlagRelPos2D(Vision::G2R).y() ) / 2 ;
-		//angG=( WM.getFlagPol2D(Vision::G1R).y() + WM.getFlagPol2D(Vision::G2R).y() ) / 2 ;
 		angG=-atan2Deg(xg,yg); //TT: this is accurate
-		LOG_PRINTF("goToBallBack","1");
 	}
 
 	else if( WM.seenFlagsNum()>=3 && WM.canSeeBall() )
@@ -2707,7 +2252,6 @@ shared_ptr<Action> Player::goToBallBack()
 		float myDistToGoal=deltaV2f.length();
 		xg=-myDistToGoal*sinDeg(angG);
 		yg=myDistToGoal*cosDeg(angG);
-		LOG_PRINTF("goToBallBack","2");
 	}
 
 	else if( WM.canSeeFlag(Vision::G1R) )
@@ -2715,7 +2259,6 @@ shared_ptr<Action> Player::goToBallBack()
 		xg=WM.getFlagRelPos2D(Vision::G1R).x();
 		yg=WM.getFlagRelPos2D(Vision::G1R).y();
 		angG=WM.getFlagPol2D(Vision::G1R).y();
-		LOG_PRINTF("goToBallBack","3");
 	}
 
 	else if( WM.canSeeFlag(Vision::G2R) )
@@ -2723,13 +2266,11 @@ shared_ptr<Action> Player::goToBallBack()
 		xg=WM.getFlagRelPos2D(Vision::G2R).x();
 		yg=WM.getFlagRelPos2D(Vision::G2R).y();
 		angG=WM.getFlagPol2D(Vision::G2R).y();
-		LOG_PRINTF("goToBallBack","4");
 	}
 
 	else
 	{
 		//mCameraMotionMode=3; //search flags
-		LOG_PRINTF("goToBallBack","5");
 		return goToRel( WM.getBallRelPos2D() , -atan2Deg(xb,yb) ); /////////////////////////////////////
 	}
 
@@ -2738,7 +2279,6 @@ shared_ptr<Action> Player::goToBallBack()
 	//get closer to the ball
 	if(myDistToBall>1.5f)
 	{
-		LOG_PRINTF("goToBallBack","ball(%.1f,%.1f), goal(%.1f,%.1f)",xb,yb,xg,yg);
 		float D=min(0.7f,myDistToBall); //desired distance to ball
 		float d=sqrt( (xb-xg)*(xb-xg) + (yb-yg)*(yb-yg) );
 		if(d<EPSILON) d=EPSILON;
@@ -2746,19 +2286,15 @@ shared_ptr<Action> Player::goToBallBack()
 		x=(xb-xg)*D/d+xb;
 		y=(yb-yg)*D/d+yb;
 		ang=-atan2Deg(x,y);
-		LOG_PRINTF("goToBallBack","go(%.1f,%.1f), ang=%.1f",x,y,ang);
 
 		if(ang>90.0f) ang-=180.0f;
 		else if(ang<-90.0f) ang+=180.0f;
 
 		if( fabs(ang)<30.0f )
 			return goToAvoidBlocks(Vector2f(x,y),ang,true);
-			//return goToRel(Vector2f(x,y),ang);
 		else
-			//return goToAvoidBlocks(Vector2f(0,0),ang,true);
 			return goToRel(Vector2f(0,0),ang);
 	}
-
 	else
 	{
 		float D=min(0.3f,myDistToBall); //desired distance to ball
@@ -2770,7 +2306,6 @@ shared_ptr<Action> Player::goToBallBack()
 		ang=angG;
 
 		return goToAvoidBlocks(Vector2f(x,y),ang,true);
-		//return goToRel(Vector2f(x,y),ang);
 	}
 }
 
@@ -2817,10 +2352,6 @@ shared_ptr<Action> Player::fallToGetBall(int dir)
 			return act;
 		}
 	}
-
-	printf("===========%s============\n","new fall");
-	//shared_ptr<BasicKick> kick= toRight ? shared_ptr<KickTask>(new KickTask("RFToLie1_wcy")) :
-	//									  shared_ptr<KickTask>(new KickTask("LFToLie1_wcy")) ;
 	if(-1==dir)
 	{
 		shared_ptr<BasicKick> kick= shared_ptr<KickTask>(new KickTask("leftfall_pt_init_squat"));
@@ -2853,53 +2384,17 @@ shared_ptr<Action> Player::fallToGetBall(int dir)
 		act=mTask.perform();
 		return act;
 	}
-
-	/*mTask.clear();
-	mTask.append(kick);
-	act=mTask.perform();
-	return act;*/
 }
 
 
      shared_ptr<Action> Player::testActionTT() {
-        //static clock_t lastClock=0;
-        //clock_t nowClock=clock();
-        //long int duration= (nowClock-lastClock) / CLK_TCK /*/ CLOCKS_PER_SEC*/ /** 1000*/ ;
-        //printf("duration= %d clk\n",duration);
-        //lastClock=nowClock;
-
-        /*static timeval lastTime={0,0};
-        timeval nowTime;
-        gettimeofday(&nowTime,NULL);
-        printf("%d\n",nowTime.tv_usec-lastTime.tv_usec);
-        lastTime=nowTime;*/
-
-        /*timeval tv1, tv2;
-        gettimeofday(&tv1, 0);
-        //blah blah
-        gettimeofday(&tv2, 0);
-        cout<<(tv2.tv_sec - tv1.tv_sec + (double)(tv2.tv_usec - tv1.tv_usec) / CLOCKS_PER_SEC)<<endl;*/
-
-
-        /*Vector2f deltaV2f=Vector2f(half_field_length,0)-WM.getMyGlobalPos2D();
-        float angG=deltaV2f.angle() - WM.getMyWalkDirection();
-        float myDistToGoal=deltaV2f.length();
-        float xg=myDistToGoal*sinDeg(angG);
-        float yg=myDistToGoal*cosDeg(angG);
-        printf("xg=%.2f\t yg=%.2f\n",xg,yg);*/
-
-        /*	perception::JointPerception jp=WM.lastPerception().joints();
-                for(int i=0;i<22;i++)
-                        printf("%.2f\t",jp[i].angle());*/
  return kickTo(WM.getBallGlobalPos2D() + Vector2f(0, 1));
         return kickTo(Vector2f(half_field_length, 0));
         return kickRel();
         return goTo(Vector2f(-5, 1), -30, false);
         return shootRel();
-        //return goToRel(Vector2f(0,0),0);
         return goToAvoidBlocks(WM.getFlagRelPos2D(Vision::G2R), WM.getFlagPol2D(Vision::G2R).y(), true);
-        //return shootRel();
-        //return dribbleToOppGoal();
+
         return goToBallBack();
         mCameraMotionMode = 4; //============================================
         return kickRel();
@@ -2910,7 +2405,6 @@ shared_ptr<Action> Player::fallToGetBall(int dir)
         //=======================test
         const perception::JointPerception& jp = WM.lastPerception().joints();
         for (int i = 14; i >= 12; i--) {
-            LOG_PRINTF("joint", "[%d]: %.2f", i, jp[i].angle());
             //printf("jid[%d]: %.2f",i,jp[i].angle());
         }
 
@@ -2942,7 +2436,7 @@ shared_ptr<Action> Player::fallToGetBall(int dir)
                                 printf("first: kick");
                 }
                 printf("\n");
-                LOG_FLUSH;///////////////////////////////////////////////// ???
+
          */
         //---------------------------------------------------------------------------------
 
@@ -3129,9 +2623,5 @@ shared_ptr<Action> Player::fallToGetBall(int dir)
         }*/
         //===========================================
     }
-
-
-
-
 } // namespace soccer
 

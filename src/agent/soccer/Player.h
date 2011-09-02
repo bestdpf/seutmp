@@ -11,8 +11,6 @@
 #ifndef SOCCER_PLAYER_H
 #define SOCCER_PLAYER_H
 
-#define ENABLE_PLAYER_LOG
-
 #include "configuration/Configuration.h"
 #include "task/Task.h"
 #include "core/Agent.h"
@@ -22,12 +20,6 @@
 #include "SoccerDefines.h"
 #include "task/BasicKick.h"
 #include "perception/Message.h"
-
-#ifdef ENABLE_PLAYER_LOG
-#include "logger/Logger.h"
-#else
-#include "logger/NoLogger.h"
-#endif
 
 namespace soccer {
 
@@ -337,7 +329,7 @@ namespace soccer {
         //int mMovingDir;
 
     private:
-        DECLARE_GRAPHIC_LOGGER;
+
         math::Vector3f mBallPredictedPos;
         std::vector<KickMotion> mKickMotionVector;
 
