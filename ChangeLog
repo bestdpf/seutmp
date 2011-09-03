@@ -1,3 +1,9 @@
+2011-9-3 3:55	Pengfei Duan<bestdpf@gmail.com>
+clean some class ever used in Player.cpp:
+delete BackKick in task/BackKick.*
+delete PassSidelong in task/PassSidelong.*
+delete PassAng45 in task PassAng45.*
+delete SideKick in task/SideKick.*
 2011-9-2_23:05 Zhao Bolu<zhaobl880704@gmail.com>
 delete Localization
 2011-9-2_22:01 Zhao Bolu<zhaobl880704@gmail.com>
