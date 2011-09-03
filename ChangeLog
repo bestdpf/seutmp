@@ -1,3 +1,10 @@
+2011-9-3 11:00  Pengfei Duan<bestdpf@gmail.com>
+delete WalkSlow class,and delete goToSlow(*) in Player.cpp
+delete task/WalkSlow.*
+delete StepSlow class in task/StepSlow.* by deleting task/StepSlow.*
+the same with SwingFootSlow class
+the same with ShiftFoot
+the same with Shoot,but the shoot now use is very dirty, I will clean it in the next version
 2011-9-3 3:55	Pengfei Duan<bestdpf@gmail.com>
 clean some class ever used in Player.cpp:
 delete BackKick in task/BackKick.*

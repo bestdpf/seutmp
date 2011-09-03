@@ -23,9 +23,7 @@
 #include "math/Math.hpp"
 #include "math/TConvexPolygon.hpp"
 #include "task/MoveCoM.h"
-#include "task/Shoot.h"
 #include "task/KickTask.h"
-#include "task/WalkSlow.h"
 #include "task/CameraMotion.h"
 
 #include "core/SayAndHearModel.h"
@@ -1160,43 +1158,6 @@ shared_ptr<Action> Player::goToRel(const Vector2f& target,AngDeg dir)
 }
 
 
-shared_ptr<Action> Player::goToSlow(const Vector2f& stopPos, AngDeg dir, bool avoidBall, bool is4Kick)
-{
-	// first should keep balance
-	shared_ptr<Action> act = mBalance.perform();
-	if (0 != act.get()) {
-		mTask.clear();
-		return act;
-	}
-	////terrymimi
-	bool bull = false;
-	//AngDeg face = WM.getMyFaceDirection();
-	if (0 != isSpaceAhead(Vector2f(9, 0), 0.2))
-	{
-		bull = true;
-	}
-
-	shared_ptr<Task> walkTask(new WalkSlow(stopPos, dir, avoidBall));
-
-	shared_ptr<Task> cTask = mTask.getFirstSubTask();
-	if (NULL == cTask.get()) {
-		// empty task, append the walk directly
-		mTask.append(walkTask);
-	}
-	else {
-		shared_ptr<WalkSlow> cWalk =
-				shared_dynamic_cast<WalkSlow > (cTask);
-		if (NULL == cWalk.get()) {
-			// I am not walking currently, append the walk
-			mTask.append(walkTask);
-		}
-		else {
-			// I am walking now, revise the current walking
-			cWalk->revise(walkTask);
-		}
-	}
-	return mTask.perform();
-}
 
 shared_ptr<Action> Player::goTo(const Vector2f& stopPos, const Vector2f& lookAt, bool avoidBall)
 {
@@ -1204,12 +1165,6 @@ shared_ptr<Action> Player::goTo(const Vector2f& stopPos, const Vector2f& lookAt,
 	return goTo(stopPos, v.angle(), avoidBall);
 }
 
-shared_ptr<Action> Player::goToSlow(const Vector2f& stopPos,
-		const Vector2f& lookAt, bool avoidBall, bool is4Kick)
-{
-	Vector2f v = lookAt - stopPos;
-	return goToSlow(stopPos, v.angle(), avoidBall);
-}
 
 shared_ptr<Action> Player::kickBetween(const Vector2f& goalLeft,const Vector2f& goalRight)
 {

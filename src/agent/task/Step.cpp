@@ -11,9 +11,7 @@
 #include "core/WorldModel.h"
 #include "configuration/Configuration.h"
 #include "Step.h"
-#include "ShiftFoot.h"
 #include "SwingFoot.h"
-#include "LoadFoot.h"
 
 namespace task{
 

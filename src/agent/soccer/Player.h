@@ -147,8 +147,6 @@ namespace soccer {
         //one body direction may match any walk direction
         boost::shared_ptr<action::Action> goToAvoidBlocks(math::Vector2f dest, math::AngDeg bodyDir, bool avoidBall = true);
 
-        boost::shared_ptr<action::Action> goToSlow(const math::Vector2f& stopPos,
-                math::AngDeg dir, bool avoidBall = true, bool is4Kick = false);
         /**
          * walk to the desired position and look at a given position
          *
@@ -160,8 +158,6 @@ namespace soccer {
         boost::shared_ptr<action::Action> goTo(const math::Vector2f& stopPos,
                 const math::Vector2f& lookAt, bool avoidBall = true);
 
-        boost::shared_ptr<action::Action> goToSlow(const math::Vector2f& stopPos,
-                const math::Vector2f& lookAt, bool avoidBall = true, bool is4Kick = false);
 
         boost::shared_ptr<action::Action> kickTo(const math::Vector2f& goal, bool useMaxForceMotion = true);
 
