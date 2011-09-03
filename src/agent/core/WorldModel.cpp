@@ -383,6 +383,7 @@ namespace core {
 
         //TT
         calBallGlobalPos2DWithRelInfo();
+        mBallGlobalPos3DWithRelInfo.set(mBallGlobalPos2DWithRelInfo.x(), mBallGlobalPos2DWithRelInfo.y(), ball_radius);
     }
 
     void WorldModel::updatePlayers() {

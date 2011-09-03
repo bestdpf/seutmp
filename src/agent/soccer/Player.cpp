@@ -101,50 +101,6 @@ bool Player::init()
 }
 
 /**
- * @author allen
- */
-boost::shared_ptr<Action> Player::mysay(int p_recvNum,bool p_isFall,
-										float p_bx,float p_by,
-										float p_rx,float p_ry)
-{
-	Message msg;
-    char * test;
-    mVector3f ballPos;
-    mVector3f roboPos;
-    ballPos.x = p_bx;
-    ballPos.y = p_by;
-    roboPos.x = p_rx;
-    roboPos.y = p_ry;
-
-	test = msg.makeSen1(test,9,true,ballPos,roboPos);
-    string test1 = test;
-
-	shared_ptr<Say> say(new Say(test1));
-	return say;
-}
-
-void Player::myhear()
-{
-	const vector<shared_ptr<perception::Hear> >& hear = WM.lastPerception().hear();
-	FOR_EACH( iter, hear )
-	{
-		const string& msg = (*iter)->message();
-
-		Message msg1;
-		if(msg1.DestructDirectMsg(msg.c_str()))
-		{
-		}
-		else
-		{
-		}
-
-		WM.setNowFormation(msg1.getFormation());
-		WM.setBestZone(msg1.getZoneX(),msg1.getZoneY());
-		WM.setHearOurFastestToBallNum(msg1.getFastestNum());
-	}
-}
-
-/**
  * the entry of "Think" thread
  * 1-GK shout
  * 2-different play mode
