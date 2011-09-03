@@ -114,9 +114,9 @@ namespace core {
             return lastPerception().gyroRate().rate(0);
         }
 
-        math::Vector3f calMyBodyAngRate(math::Vector3f  myRot); //计算mMyBodyAng的变化率， mMyBodyAng即姿态的角度，全局旋转矩阵的欧拉角（YPR顺序，又ZYX）
+        math::Vector3f calMyBodyAngRate(math::Vector3f myRot); //计算mMyBodyAng的变化率， mMyBodyAng即姿态的角度，全局旋转矩阵的欧拉角（YPR顺序，又ZYX）
 
-        math::Vector3f calMyBodyRotatedAng(math::Vector3f  MyBodyAngRate); //计算mMyBodyAng的改变量
+        math::Vector3f calMyBodyRotatedAng(math::Vector3f MyBodyAngRate); //计算mMyBodyAng的改变量
 
         /***********************************end******************************************/
         /////////////////////////add by allen 2010.3.15
@@ -126,13 +126,12 @@ namespace core {
         }
         ////////////////////////////////////////////////
 
-        math::AngDeg getMyBodyDirection() const
-		{
-			if(seenFlagsNum()>=3)
-				return mMyBodyDirection;
-			else
-				return mMyBodyDirWithFlags;
-		}
+        math::AngDeg getMyBodyDirection() const {
+            if (seenFlagsNum() >= 3)
+                return mMyBodyDirection;
+            else
+                return mMyBodyDirWithFlags;
+        }
 
         robot::humanoid::Humanoid::ESkeleton getMySupportFoot() const {
             return mMySupportBone;
@@ -198,13 +197,13 @@ namespace core {
         }
         ////////////////////////////////////////////////////
 
-        const math::Vector3f& getBallGlobalPos() const
-		{
-			if(seenFlagsNum()>=3)
-				return mBallGlobalPos;
-			else
-				return Vector3f(mBallGlobalPos2DWithRelInfo.x(), mBallGlobalPos2DWithRelInfo.y(), ball_radius);
-		}
+        const math::Vector3f& getBallGlobalPos() const {
+            if (seenFlagsNum() >= 3)
+                return mBallGlobalPos;
+            else {
+                return mBallGlobalPos3DWithRelInfo;
+            }
+        }
 
         const math::Vector3f& getG2RGlobalPos() const {
             return mG2RGlobalPos;
@@ -218,13 +217,12 @@ namespace core {
             return mBallAveragePos;
         }
 
-        const math::Vector2f& getBallGlobalPos2D() const
-		{
-			if(seenFlagsNum()>=3)
-				return *(const math::Vector2f*)(mBallGlobalPos.get());
-			else
-				return mBallGlobalPos2DWithRelInfo;
-		}
+        const math::Vector2f& getBallGlobalPos2D() const {
+            if (seenFlagsNum() >= 3)
+                return *(const math::Vector2f*)(mBallGlobalPos.get());
+            else
+                return mBallGlobalPos2DWithRelInfo;
+        }
 
         const math::Vector3f& getBallGlobalVel() const {
             return mBallGlobalVel;
@@ -532,15 +530,15 @@ namespace core {
 
         int getFlagNumbersISee()const //vision-me
         {
-                const Vision* v = lastPerception().vision().get();
-                if (v != NULL) {
-                        set<Vision::FID> flags = (*v).getStaticFlagSet();
-                        int num = flags.size();
+            const Vision* v = lastPerception().vision().get();
+            if (v != NULL) {
+                set<Vision::FID> flags = (*v).getStaticFlagSet();
+                int num = flags.size();
 
-                        return num;
-                }
+                return num;
+            }
 
-                return 0;
+            return 0;
         }
 
         /*bool canISeeTheBall()const //vision-me
@@ -628,18 +626,15 @@ namespace core {
             return getSimTime() - mLastTimeSeeEnoughFlags;
         }
 
-        	int FindOneInFrontMe()
-        {
-           Vector2f myPos=getMyGlobalPos2D();
+        int FindOneInFrontMe() {
+            Vector2f myPos = getMyGlobalPos2D();
             //int max=-1;
             Vector2f temp;
-            for(int i=1;i<10;i++)
-            {
-                temp=getOurGlobalPos2D(i);
-                if(temp.x()>half_field_length||temp.x()<-half_field_length||temp.y()>half_field_width||temp.y()<half_field_width)
+            for (int i = 1; i < 10; i++) {
+                temp = getOurGlobalPos2D(i);
+                if (temp.x() > half_field_length || temp.x()<-half_field_length || temp.y() > half_field_width || temp.y() < half_field_width)
                     continue;
-                if(temp.x()>myPos.x())
-                {
+                if (temp.x() > myPos.x()) {
                     return i;
                 }
             }
@@ -707,17 +702,19 @@ namespace core {
             Vector2f relPos2D; //+x: right, +y: forward
             Vector2f pol2D; //(dist,ang); ang:left+, right-
         };
-	/**	this function is used to set data to a new ObjectRelInfo
-	*	it is to overwrite the {} method of struct's build function
-	*	because this method is not supported on some OSs like FreeBSD
-	*/
-	ObjectRelInfo	newObjectRelInfo(bool a,Vector2f b,Vector2f c){
-		ObjectRelInfo ret;
-		ret.canSee=a;
-		ret.relPos2D=b;
-		ret.pol2D=c;
-		return ret;
-	}
+
+        /**	this function is used to set data to a new ObjectRelInfo
+         *	it is to overwrite the {} method of struct's build function
+         *	because this method is not supported on some OSs like FreeBSD
+         */
+        ObjectRelInfo newObjectRelInfo(bool a, Vector2f b, Vector2f c) {
+            ObjectRelInfo ret;
+            ret.canSee = a;
+            ret.relPos2D = b;
+            ret.pol2D = c;
+            return ret;
+        }
+
         struct BlockInfo {
             float dist;
             float angC;
@@ -774,11 +771,11 @@ namespace core {
         //TT, March, MMXI
         Vector2f calMyGlobalPos2DWithTwoFlags();
 
-		//TT, July, MMXI
-		void calMyBodyDirWithFlags();
+        //TT, July, MMXI
+        void calMyBodyDirWithFlags();
 
-		//TT, July, MMXI
-		void calBallGlobalPos2DWithRelInfo();
+        //TT, July, MMXI
+        void calBallGlobalPos2DWithRelInfo();
 
         //TT, April, MMXI
         //different from old function, this will return an old num if there was no vision
@@ -919,7 +916,8 @@ namespace core {
 
         /////////// Ball ///////////////
         math::Vector3f mBallGlobalPos;
-		math::Vector2f mBallGlobalPos2DWithRelInfo; //TT
+        math::Vector2f mBallGlobalPos2DWithRelInfo; //TT
+        math::Vector3f mBallGlobalPos3DWithRelInfo; //TT
         math::Vector3f mG2RGlobalPos; //terry
         math::Vector3f mG1RGlobalPos; //terry
         math::Vector3f mBallGlobalVel;
@@ -952,7 +950,7 @@ namespace core {
         /// the coordination for self motion
         math::TransMatrixf mMyOriginMatrix;
         math::AngDeg mMyBodyDirection;
-		math::AngDeg mMyBodyDirWithFlags; //TT
+        math::AngDeg mMyBodyDirWithFlags; //TT
 
         /// the global position of the force center in feet
         math::Vector3f mLeftFootForceCenter;

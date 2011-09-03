@@ -19,7 +19,6 @@
 #include "task/Fall.h"
 #include "SoccerDefines.h"
 #include "task/BasicKick.h"
-#include "perception/Message.h"
 
 namespace soccer {
 
@@ -53,7 +52,6 @@ namespace soccer {
         /** initalization the player */
         virtual bool init();
 
-        virtual boost::shared_ptr<action::Action> mysay(int p_recvNum, bool p_isFall, float p_bx, float p_by, float p_rx, float p_ry); //allen add it
         /** think what need to do, i.e make the decision */
         virtual boost::shared_ptr<action::Action> think();
     protected:
@@ -296,7 +294,7 @@ namespace soccer {
         bool amIFreeToShoot(int num); //terrymimi
 
         bool isBallWillInAfterNSteps(int n);
-        void myhear();
+
         configuration::Formation::FormationType chooseFormation();
     protected:
 

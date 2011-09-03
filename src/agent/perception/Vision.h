@@ -245,7 +245,7 @@ namespace perception {
          */
         float calcPossibilityVisionSensor(const math::Vector3f& p) const;
 
-        static bool comparePoints(const math::Vector3f& p1, const math::Vector3f& p2);
+  //      static bool comparePoints(const math::Vector3f& p1, const math::Vector3f& p2);
 
         static const std::string& ourTeamName() {
             return mOurTeamName;
@@ -262,17 +262,8 @@ namespace perception {
         TSegmentPolMap getFieldLines()const{
          return mFieldLines;
         }
-        bool calcLines();
+       
         //int getThingNumIsee()const;                                               //graz
-        unsigned int calcFarthestPolPoint();
-        unsigned int calcLongestLine(unsigned int pid);
-        math::AngDeg calcClipAngWithX(unsigned int lid);
-        math::AngDeg calcClipAngWithY(unsigned int lid);
-        bool rotationFieldPoints(math::Vector3f corr);
-        bool matchPoints(unsigned int origPId, FPID fpId);
-        void printAnswer(unsigned int pid);
-        unsigned int calcMatchPoint();
-        math::Vector3f rotationPoints(const math::Vector3f& p, math::Vector3f deg);
     private:
 
         bool updateObject(const std::string& name, const sexp_t* sexp);
@@ -285,13 +276,8 @@ namespace perception {
         TTeamPolMap mOurPol;
         TTeamPolMap mOppPol;
 
-        TSegmentPointPolMap mPointsPol;
-        TSegmentPointPolMap mPointsPolDealed;
-        TSegmentPointMap mPointsXY;
         TSegmentPolMap mFieldLines;
-        TLIDMap mFieldLineIDMap;
-        TTFPIDMap mPointsAnswers;
-        float mZerr;
+
         math::TransMatrixf mMyDebugMat;
 
 //        bool mIsEnoughFlags;
