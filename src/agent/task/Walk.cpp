@@ -13,7 +13,6 @@
 #include "AStar.hpp"
 #include "core/WorldModel.h"
 #include "configuration/Configuration.h"
-#include "MoveCoM.h"
 #include "MoveFoot.h"
 #include "Step.h"
 #include "Walk.h"

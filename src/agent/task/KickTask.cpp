@@ -12,7 +12,6 @@
 #include "KickTask.h"
 #include "controller/FixedAngleTrace.h"
 #include "configuration/Configuration.h"
-#include "MoveCoM.h"
 #include "core/WorldModel.h"
 #include "SwingFoot.h"
 #include <fstream>

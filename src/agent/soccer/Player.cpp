@@ -22,7 +22,6 @@
 #include "math/TLine2.hpp"
 #include "math/Math.hpp"
 #include "math/TConvexPolygon.hpp"
-#include "task/MoveCoM.h"
 #include "task/KickTask.h"
 #include "task/CameraMotion.h"
 

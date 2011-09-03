@@ -12,7 +12,6 @@
 #include "controller/FixedAngleTrace.h"
 #include "configuration/Configuration.h"
 #include "Walk.h"
-#include "MoveCoM.h"
 #include "perception/JointPerception.h"
 #include "core/WorldModel.h"
 
