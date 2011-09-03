@@ -1,3 +1,10 @@
+2011-9-3 3:46pm Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.0.9
+remove Kick.cpp,BackLeg.*,TurnLeg.*, AccelerateFoot.*,
+and clean BasicKick, but it is still very dirty, I will clean it more in the next version
+and in the next version I will clean MoveCom
+Please test the kick motion carefully and feeback
+
 2011-9-3 11:00  Pengfei Duan<bestdpf@gmail.com>
 version seu3d-1.0.8
 delete WalkSlow class,and delete goToSlow(*) in Player.cpp

@@ -33,7 +33,7 @@ public:
 
 	virtual boost::shared_ptr<action::Action> perform();
 
-	virtual KickParameter calKickParameter();
+//	virtual KickParameter calKickParameter();
 
 	virtual bool isAchieveable () const;
 
@@ -46,11 +46,11 @@ public:
 
 protected:
 
-	virtual boost::shared_ptr<action::Action> amendAccJointPose(const float t);
+	//virtual boost::shared_ptr<action::Action> amendAccJointPose(const float t);
 
-	virtual boost::shared_ptr<action::Action> amendBaituiJointPose(const float t);
+	//virtual boost::shared_ptr<action::Action> amendBaituiJointPose(const float t);
 
-	virtual boost::shared_ptr<action::Action> amendBaituiJointPose2(const float t);
+	//virtual boost::shared_ptr<action::Action> amendBaituiJointPose2(const float t);
 
 	/*
 	* 生成踢球脚ankle角度到球运动距离的map
@@ -63,7 +63,7 @@ protected:
 
 	virtual float getDesiredDuration() = 0;
 
-	virtual bool shouldContinueKick();
+	//virtual bool shouldContinueKick();
 
 protected:
 
