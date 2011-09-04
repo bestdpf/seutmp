@@ -170,7 +170,6 @@ namespace soccer {
         boost::shared_ptr<action::Action> kickToRel(const math::Vector2f targetRel);
         boost::shared_ptr<action::Action> passToPlayer(unsigned int num);
         unsigned int choosePassPlayer();
-        boost::shared_ptr<action::Action> interceptionBall();
         boost::shared_ptr<action::Action> sideWalk(bool isLeft);
         math::Vector2f GlobalToRel(const math::Vector2f& global);
         boost::shared_ptr<action::Action> kickToBetweenRel(const math::Vector2f& leftBoundary, const math::Vector2f& rightBoundary);
@@ -203,13 +202,6 @@ namespace soccer {
          * @return the action
          */
         boost::shared_ptr<action::Action> clearBall();
-
-        /**
-         * return an action that passing the ball to teammate
-         *
-         * @return the passing action
-         */
-        boost::shared_ptr<action::Action> pass(const bool waklSlow = false);
 
         /**
          * the function for challenge of walking

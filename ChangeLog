@@ -1,3 +1,6 @@
+2011-9-4_12:05 Zhao Bolu<zhaobl880704@gmail.com>
+seu3d-1.0.13
+clear TeamPlayer
 2011-9-4 11:37am Duan Pengfei<bestdpf@gmail.com>
 seu3d-1.0.12
 delete Pass_Test.* direct
@@ -5,7 +8,11 @@ delete Pass_Test.* direct
 2011-9-3 7:23pm Duan Pengfei<bestdpf@gmail.com>
 seu3d-1.0.11
 delete MoveCoM.* and change some files include it
-
+2011-9-3_15:56 Zhao Bolu<zhaobl880704@gmail.com>
+seu3d-1.10
+delete Message in perception/Message.*
+delete some funtions in Vision
+fixed a warning in WorldModel
 2011-9-3 3:46pm Duan Pengfei<bestdpf@gmail.com>
 seu3d-1.0.9
 remove Kick.cpp,BackLeg.*,TurnLeg.*, AccelerateFoot.*,

@@ -11,14 +11,7 @@
 #ifndef SOCCER_TEAM_PLAYER_H
 #define SOCCER_TEAM_PLAYER_H
 
-#define ENABLE_TEAM_PLAYER_LOG
-
 #include "Player.h"
-#ifdef ENABLE_TEAM_PLAYER_LOG
-#include "logger/Logger.h"
-#else
-#include "logger/NoLogger.h"
-#endif
 
 namespace soccer {
     using namespace std;
@@ -82,8 +75,6 @@ namespace soccer {
     protected:
         boost::shared_ptr<action::Action> runStrategicPos();
 
-        boost::shared_ptr<action::Action> runOpenPos();
-
         boost::shared_ptr<action::Action> defaultBehaviour();
 
         boost::shared_ptr<action::Action> attackerCentralBehaviour();
@@ -104,19 +95,9 @@ namespace soccer {
 
         boost::shared_ptr<action::Action> goalKeeperBehaviour();
 
-        boost::shared_ptr<action::Action> changeRole(int onum);
-
         boost::shared_ptr<action::Action> playOurDeadBall();
 
         boost::shared_ptr<action::Action> playOppDeadBall();
-
-        boost::shared_ptr<action::Action> defenseShoot();
-
-        boost::shared_ptr<action::Action> playoffenderpenalty();
-
-        boost::shared_ptr<action::Action> playdefenderpenalty();
-        
-        boost::shared_ptr<action::Action>playGK();
 
         bool isDefenseStable();
 
@@ -124,41 +105,11 @@ namespace soccer {
 
         Vector2f calGoalKeeperDefensePos();
 
-        Vector2f calDefensePos(Vector2f& leftBlock,Vector2f& rightBlock);
-        
-        bool isMeFastestToBall(); //both hear and see
-
-        int getFastestPlayer(); //both hear and see
+        Vector2f calDefensePos(Vector2f& leftBlock, Vector2f& rightBlock);
 
 
-        ////////////////////////////////////
-        unsigned int numNearBall();
-        bool isBallInMyZone(Vector2f ballPos);
-        bool isBallInMyZoneT(Vector2f ballPos);
-        bool isBallInMyZoneTT(Vector2f ballPos);
-        ////////////////////////////////////////
-
-
-        ////////////////////////////////////////
-        shared_ptr<action::Action> attack();
-
-        shared_ptr<action::Action> runStrategicPosnew(Vector2f & target);
-
-        bool suitableForShoot();
-        bool suitableForPass();
-        bool suitableForDribble();
-        //unsigned int numNearBall();
-        //bool isBallInMyZone(Vector2f ballPos);
-
-        //////////////////////////////////////////
 
     private:
-        /** whether i am passing in a single dead ball situation */
-        bool mIsPassing;
-
-        bool mAllAttack;
-
-        DECLARE_GRAPHIC_LOGGER;
     };
 
 #define AGENT soccer::TeamPlayer::GetSingleton()

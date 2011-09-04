@@ -468,7 +468,6 @@ namespace core {
                 mFlagRelInfoMap[fid].canSee = true;
                 mFlagRelInfoMap[fid].relPos2D = calObjRelPos2D(iter->second);
                 mFlagRelInfoMap[fid].pol2D = calObjPol2D(mFlagRelInfoMap[fid].relPos2D);
-                //cout<<"fid= "<<fid<<"\t"<<mFlagRelInfoMap[fid].relPos2D.x()<<'\t'<<mFlagRelInfoMap[fid].relPos2D.y()<<endl;
             }
         }
     }
@@ -633,15 +632,8 @@ namespace core {
             mBlockList.push_back(playerBlock);
         } //loop for opp players
 
-
         //============================sort by dist
-        /*FOR_EACH(iter,mBlockList){
-                printf("%.2f\n",iter->dist);
-        }*/
         mBlockList.sort(sortByDist);
-        /*FOR_EACH(iter,mBlockList){
-                printf("\t%.2f\n",iter->dist);
-        }*/
 
     }
 
@@ -671,7 +663,6 @@ namespace core {
 
         //don't do this, please...
         if (i < 2) {
-            //printf("%s\n","========= i<2 ============");
             return getMyGlobalPos2D();
         }
 
@@ -687,11 +678,6 @@ namespace core {
         float x, y;
         float B, C, Delta;
 
-        ///////////////////////////////////////
-        //printf("\n\n=======================\n");
-        //printf("%.1f\n%.1f\n%.1f\n%.1f\n%.1f\n%.1f\n%.1f\n%.1f\n",a1,b1,a2,b2,x1,y1,x2,y2);
-        //////////////////////////////////////
-
         if ((x1 > 0 && x2 > 0) ||
                 (x1 < 0 && x2 < 0)) //front court or back court
         {
@@ -700,7 +686,6 @@ namespace core {
             C = x1 * x1 + (y - y1)*(y - y1) - a1 * a1 - b1*b1;
             Delta = B * B - 4 * C; //TT: now, A=1
             if (Delta < 0.0f) {
-                //printf("%s\n","========= Delta<0 a ============");
                 return getMyGlobalPos2D();
             }
 
@@ -708,9 +693,6 @@ namespace core {
                 x = (-B - sqrt(Delta)) / 2;
             else //back court
                 x = (-B + sqrt(Delta)) / 2;
-
-            //printf("my cal     : x=%.1f\ty=%.1f\n",x,y);
-            //printf("real pos is: x=%.1f\ty=%.1f\n\n\n",getMyGlobalPos().x(),getMyGlobalPos().y());
             return Vector2f(x, y);
         } else if ((Vision::F1L == fid1 && Vision::F1R == fid2) ||
                 (Vision::F2L == fid1 && Vision::F2R == fid2) ||
@@ -730,8 +712,6 @@ namespace core {
             else
                 y = (-B + sqrt(Delta)) / 2;
 
-            //printf("my cal     : x=%.1f\ty=%.1f\n",x,y);
-            //printf("real pos is: x=%.1f\ty=%.1f\n\n\n",getMyGlobalPos().x(),getMyGlobalPos().y());
             return Vector2f(x, y);
         } else {
             //printf("%s\n","========= on different lines ============");
@@ -1302,7 +1282,7 @@ namespace core {
         math::Vector3f mMyAngRate;
 
         if (cosP == 0) {
-        // to be continued
+            // to be continued
         } else {
             //Vector3f myRot = getMyGyroRate();
 
