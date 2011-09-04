@@ -99,14 +99,19 @@ namespace soccer {
 
         boost::shared_ptr<action::Action> playOppDeadBall();
 
-        bool isDefenseStable();
-
-        bool shouldAllAttack();
-
         Vector2f calGoalKeeperDefensePos();
 
-        Vector2f calDefensePos(Vector2f& leftBlock, Vector2f& rightBlock);
-
+         /**
+         * just shoot
+         */
+        boost::shared_ptr<action::Action> shoot();
+        /**
+         * the player have to kick the ball away as soon as possible, the
+         * player just rush to the ball in this state
+         *
+         * @return the action
+         */
+        boost::shared_ptr<action::Action> clearBall();
 
 
     private:

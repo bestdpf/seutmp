@@ -241,9 +241,8 @@ namespace soccer {
         Vector3f strategicPos = FM.calMyStrategicPos(WM.getBallGlobalPos());
         Vector2f posStop(strategicPos.x(), strategicPos.y());
         math::AngDeg dir = WM.getMyBodyDirection();
-        return goTo(posStop,dir);
+        return goTo(posStop, dir);
     }
-
 
     shared_ptr<Action> TeamPlayer::defaultBehaviour() {
         /**
@@ -253,7 +252,7 @@ namespace soccer {
          */
         Vector2f oppGoal(half_field_length, 0);
         if (WM.amIFastestToBallOfOurTeam()) {
-                return kickTo(oppGoal);
+            return kickTo(oppGoal);
         } else {
             return runStrategicPos();
         }
@@ -377,59 +376,14 @@ namespace soccer {
         return act;
     }
 
-    bool TeamPlayer::isDefenseStable() {
-        const Vector2f& posBall = WM.getBallGlobalPos2D();
-        float minX = -half_field_length;
-        float maxX = posBall.x();
-        float minY = -abs(posBall.y());
-        float maxY = -minY;
-        int defenseNum = 0;
-        const map<unsigned int, Vector3f>& ourPos = WM.getOurGlobalPos();
+    shared_ptr<Action> TeamPlayer::shoot() {
+        const Vector2f& ballPos = WM.getBallGlobalPos2D();
+        Vector2f goal(half_field_length, 0);
+        return kickTo(goal, true);
 
-        FOR_EACH(iter, ourPos) {
-            const Vector3f& p = iter->second;
-            if (p.x() > minX && p.x() < maxX && p.y() > minY && p.y() < maxY) {
-                defenseNum++;
-            }
-        }
-        return defenseNum > 1;
     }
 
-    bool TeamPlayer::shouldAllAttack() {
-        float full_game_time = rule_half_time * 2;
-        if (full_game_time - WM.getGameTime() < rule_half_time * 0.5) {
-            // remain time is only 1/4 game time
-            if (WM.getOurGoal() < WM.getOppGoal()) {
-                return true;
-            }
-            if (WM.getOurGoal() == 0 && WM.getBallAveragePos().x() > 2) {
-                return true;
-            }
-        }
-        return false;
+    boost::shared_ptr<action::Action> TeamPlayer::clearBall() {
+        return kickRel();
     }
-
-    Vector2f TeamPlayer::calDefensePos(Vector2f& leftBlock, Vector2f& rightBlock) {
-
-        const Vector2f& posBall = WM.getBallGlobalPos2D();
-        float left_y = (leftBlock.y() - posBall.y()) / (leftBlock.x() - posBall.x()) * (-half_field_length - posBall.x()) + posBall.y();
-        float right_y = (rightBlock.y() - posBall.y()) / (rightBlock.x() - posBall.x()) * (-half_field_length - posBall.x()) + posBall.y();
-        left_y = left_y > half_goal_width ? half_goal_width : left_y;
-        right_y = right_y>-half_goal_width ? right_y : -half_goal_width;
-        Vector2f goalLeft(-half_field_length, left_y);
-        Vector2f goalRight(-half_field_length, right_y);
-        float distL = (goalLeft - posBall).length();
-        float distR = (goalRight - posBall).length();
-        float dist = distL > distR ? distR : distL;
-        AngDeg angL = (goalLeft - posBall).angle();
-        AngDeg angR = (goalRight - posBall).angle();
-        AngDeg ang = calClipAng(angL, angR)*0.5f;
-        AngDeg dir = calBisectorTwoAngles(angL, angR);
-        dist *= cosDeg(ang);
-        dist -= 0.5f;
-        Vector2f p = posBall + pol2xyz(Vector2f(dist, dir));
-        p.y() = clamp(p.y(), -half_goal_width + 0.055f, half_goal_width - 0.055f);
-        return p;
-    }
-
 } // namespace soccer

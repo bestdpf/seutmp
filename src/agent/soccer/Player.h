@@ -126,12 +126,6 @@ namespace soccer {
          */
         boost::shared_ptr<action::Action> goTo(const math::Vector2f& destPos, math::AngDeg bodyDir, bool avoidBall = true);
 
-        boost::shared_ptr<action::Action> goToRel(const math::Vector2f& target, math::AngDeg dir);
-
-        //bodyDir: body direction
-        //one body direction may match any walk direction
-        boost::shared_ptr<action::Action> goToAvoidBlocks(math::Vector2f dest, math::AngDeg bodyDir, bool avoidBall = true);
-
         /**
          * walk to the desired position and look at a given position
          *
@@ -142,22 +136,37 @@ namespace soccer {
          */
         boost::shared_ptr<action::Action> goTo(const math::Vector2f& stopPos, const math::Vector2f& lookAt, bool avoidBall = true);
 
+        //TT, MMXI
+        boost::shared_ptr<action::Action> goToRel(const math::Vector2f& target, math::AngDeg dir);
+
+        //bodyDir: body direction
+        //one body direction may match any walk direction
+        boost::shared_ptr<action::Action> goToAvoidBlocks(math::Vector2f dest, math::AngDeg bodyDir, bool avoidBall = true);
+
+        boost::shared_ptr<action::Action> goToBallBack();
+        /**
+         * the function for challenge of walking
+         */
+        boost::shared_ptr<action::Action> walkToBall();
+
+        boost::shared_ptr<action::Action> sideWalk(bool isLeft);
+        
+        boost::shared_ptr<action::Action> dribble();
+
+        boost::shared_ptr<action::Action> dribbleRel();
+
+        boost::shared_ptr<action::Action> dribbleToOppGoal();
+
+        //TT
+        //dribble to [angC] direction, between [angL] and [angR]
+        //all of them are global parameters
+        boost::shared_ptr<action::Action> dribbleToDir(AngDeg angC, AngDeg angL, AngDeg angR);
+
         boost::shared_ptr<action::Action> kickTo(const math::Vector2f& goal, bool useMaxForceMotion = true);
 
-        //TT, MMXI
         boost::shared_ptr<action::Action> kickRel();
-        boost::shared_ptr<action::Action> shootRel();
-        boost::shared_ptr<action::Action> dribbleRel();
-        boost::shared_ptr<action::Action> dribbleToOppGoal();
-        boost::shared_ptr<action::Action> goToBallBack();
-        boost::shared_ptr<action::Action> kickToRel(const math::Vector2f targetRel);
-//        boost::shared_ptr<action::Action> passToPlayer(unsigned int num);
-//        unsigned int choosePassPlayer();
-        boost::shared_ptr<action::Action> sideWalk(bool isLeft);
-        math::Vector2f GlobalToRel(const math::Vector2f& global);
-        boost::shared_ptr<action::Action> kickToBetweenRel(const math::Vector2f& leftBoundary, const math::Vector2f& rightBoundary);
 
-        boost::shared_ptr<action::Action> kickBetween(const math::Vector2f& goalLeft,  const math::Vector2f& goalRight);
+        boost::shared_ptr<action::Action> kickBetween(const math::Vector2f& goalLeft, const math::Vector2f& goalRight);
 
         //TT
         // +-1, +-2
@@ -165,30 +174,7 @@ namespace soccer {
 
         boost::shared_ptr<action::Action> beamAndInit(const math::Vector3f& beamPos);
 
-        boost::shared_ptr<action::Action> dribble();
 
-        //TT
-        //dribble to [angC] direction, between [angL] and [angR]
-        //all of them are global parameters
-        boost::shared_ptr<action::Action> dribbleToDir(AngDeg angC, AngDeg angL, AngDeg angR);
-
-        /**
-         * the player have to kick the ball away as soon as possible, the
-         * player just rush to the ball in this state
-         *
-         * @return the action
-         */
-        boost::shared_ptr<action::Action> clearBall();
-
-        /**
-         * the function for challenge of walking
-         */
-        boost::shared_ptr<action::Action> walkToBall();
-
-        /**
-         * just shoot
-         */
-        boost::shared_ptr<action::Action> shoot();
 
         /**
          * choose the kick type according to current state
@@ -227,13 +213,10 @@ namespace soccer {
         //int mMovingDir;
 
     private:
-
         math::Vector3f mBallPredictedPos;
         std::vector<KickMotion> mKickMotionVector;
 
     }; //end of class Player
-
-
 } //end of namespace soccer
 
 #endif //SOCCER_PLAYER_H
