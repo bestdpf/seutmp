@@ -41,7 +41,6 @@ namespace perception {
             std::cerr << "[Hear Perception] can not get the message" << std::endl;
             return false;
         }
-        std::cout << "hera/////////////////////////////////////////////////" << mMsg << std::endl;
         if (mMsg[0] != (WM.getOurTeamIndex() == serversetting::TI_LEFT ? 'L' : 'R')) {
             //             std::cerr<<"[Hear Perception] this is not our message"<<std::endl;
             return false;

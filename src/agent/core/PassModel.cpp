@@ -20,10 +20,8 @@ namespace core {
     void VisionRobot::calcInfo() {
         mHaveSeen = true;
         const TransMatrixf& eyeMat = WM.getVisionTrans();
-        //    math::TransMatrixf oriMat = WM. getMyOriginTrans();
-        //   mGlobalPosLast = mGlobalPos;
+
         math::AngDeg pitch = -WM.lastPerception().joints()[1].angle();
-        //      cout << "deg" << pitch << endl;
         calcRotationMat(0, pitch, 0);
         for (int i = perception::Vision::TORSO; i < perception::Vision::PID_NULL; i++) {
             if (mIsSeen[i]) {
@@ -60,8 +58,6 @@ namespace core {
     }
 
     bool VisionRobot::calcHeight() {
-
-        //      cout << "mBodyPartVisionRel[Vision::HEAD].z()" << mBodyPartVisionRel[Vision::HEAD].z() << endl;
         const float defaultHeight = 0.51f;
         float buttom = 0.0f;
         mHeight = defaultHeight;
@@ -181,7 +177,6 @@ namespace core {
         Vector2f ballRel = WM.getBallRelPos2D();
         if (WM.getMyUnum() == mUnum) {
             float ToBallDir = WM.getBallRelPos2D().angle();
-            cout << "myToBalldir" << ToBallDir << endl;
             if (ToBallDir > 0) {
                 mIsFacedToBall = true;
             } else {
@@ -198,7 +193,6 @@ namespace core {
         Vector2f rhRel(mBodyPartRel[Vision::R_HAND].x(), mBodyPartRel[Vision::R_HAND].y());
         rhRel = rhRel - ballRel;
         if (mIsSeen[Vision::L_FOOT] && mIsSeen[Vision::R_FOOT]) {
-            cout << "otherToBalldir" << calClipAng(lfRel, rfRel) << endl;
             mIsFacedToBall = (calClipAng(lfRel, rfRel) < 0);
         } else if (mIsSeen[Vision::L_FOOT] && mIsSeen[Vision::R_HAND]) {
             mIsFacedToBall = (calClipAng(lfRel, rhRel) < 0);
@@ -214,12 +208,6 @@ namespace core {
         math::Vector2f globalVel2D(mGlobalVel.x(), mGlobalVel.y());
         math::AngDeg toBallDir = (WM.getBallGlobalPos2D() - globalPos2D).angle();
         math::AngDeg velDir = globalVel2D.angle();
-        //        cout << "ballPos" << WM.getBallGlobalPos2D() << endl;
-        //        cout << "globalPos2D" << globalPos2D << endl;
-        //        cout << "globalVel2D" << globalVel2D << endl;
-        //        cout << "toBallDir" << toBallDir << endl;
-        //        cout << "velDir" << velDir << endl;
-        //        cout << "diff " << toBallDir - velDir << endl;
         if (abs(toBallDir - velDir) < 40) {
             mIsWalkedToBall = true;
         } else {
@@ -271,8 +259,7 @@ namespace core {
             dist = ballRelPos - relPos;
             mTimeToBall += dist.length() / speed;
         }
-        cout << "toball " << mTimeToBall << "isfall " << mIsFallen << "isface " << mIsFacedToBall << endl;
-        if (mIsFallen) {
+       if (mIsFallen) {
             mTimeToBall += 2.7f;
         }
         if (mIsOur == true) {
@@ -280,8 +267,7 @@ namespace core {
                 if (mlastHearTime - mLastSeeTime>-1.0f) {
                     float balldir = (WM.getBallGlobalPos2D() - mHearGlobalPos).angle();
                     mTimeToBall += abs(normalizeAngle(balldir - mHearBodyDirection)) / 180.0f * 3.0f;
-                    cout << "mUnum" << mUnum << "dir" << normalizeAngle(balldir - mHearBodyDirection) << "hear" << mHearBodyDirection << endl;
-                }
+               }
             } else {
                 if (!mIsFacedToBall) {
                     mTimeToBall += 1.5f;
@@ -304,12 +290,6 @@ namespace core {
                 mTimeToBall += 2.0f * dist.length();
             }
         }
-
-        //        math::Vector2f globalPos2D(mGlobalPos.x(), mGlobalPos.y());
-        //        math::Vector2f globalVel2D(mGlobalVel.x(), mGlobalVel.y());
-        //        math::AngDeg toBallDir = (WM.getBallGlobalPos2D() - globalPos2D).angle();
-        //        math::AngDeg velDir = globalVel2D.angle();
-        //        cout << "ballPos" << WM.getBallGlobalPos2D() << endl;
     }
 
     bool VisionRobot::calcRotationMat(math::AngDeg roll, math::AngDeg pitch, math::AngDeg yaw) {
@@ -364,15 +344,8 @@ namespace core {
                     mOurMinTimeToBall = iterOur->second.mTimeToBall;
                     mOurFastestID = iterOur->first;
                 }
-                //     cout << "first "<< iterOur->first<<endl;
             }
         }
-        //        if(mOurFastestID == 0){
-        //            cout << "teamsize"<< mOurTeammates.size()<<endl;
-        //           // mOurFastestID =WM.getMyUnum();
-        //        }else{
-        //              cout << "not e teamsize"<< mOurTeammates.size()<<endl;
-        //        }
     }
 
     void PassModel::calcOppFastestToBall() {
@@ -394,19 +367,10 @@ namespace core {
     }
 
     void PassModel::update() {
-        //  math::TransMatrixf oriMat = WM. getMyOriginTrans();
-        //  math::TransMatrixf visionMat = WM.getVisionTrans();
         updateByListen();
         shared_ptr<const Vision> vp = WM.lastPerception().vision();
 
         if (NULL == vp.get()) return;
-
-        //     cout << "he " << WM.lastPerception().joints()[2].angle() << "hee" << WM.lastPerception().joints()[1].angle() << endl;
-        //      cout << "ang x" << oriMat.rotatedAngX() << "y" << oriMat.rotatedAngY() << "z" << oriMat.rotatedAngZ() << endl;
-        //    cout << "eye x" << visionMat.rotatedAngX() << "y" << visionMat.rotatedAngY() << "z" << visionMat.rotatedAngZ() << endl;
-        //       std::cout << oriMat.R() << oriMat.pos() << endl;
-        //    std::cout << oriMat.R() << visionMat.pos() << endl;
-        //    const TransMatrixf& eyeMat = WM.getVisionTrans();
 
         const Vision::TTeamPolMap& ourPol = vp->ourPolMap();
         updateTeammates(ourPol, mOurTeammates, true);
@@ -418,20 +382,8 @@ namespace core {
             mOurTeammates[myUnum].calcInfo();
             mOurTeammates[myUnum].calcGlobalVel();
         }
-
         const Vision::TTeamPolMap& oppPol = vp->oppPolMap();
         updateTeammates(oppPol, mOppTeammates, false);
-        //     Vision::TTeamPolMap::const_iterator iterOur;
-        //        for (iterOur = ourPol.begin();
-        //                iterOur != ourPol.end();
-        //                ++iterOur) {
-        //            cout << "0head" << iterOur->first << mOurTeammates[iterOur->first].mBodyPartPol[Vision::HEAD] << endl;
-        //            cout << "0larm" << iterOur->first << mOurTeammates[iterOur->first].mBodyPartPol[Vision::L_HAND] << endl;
-        //            cout << "0rarm" << iterOur->first << mOurTeammates[iterOur->first].mBodyPartPol[Vision::R_HAND] << endl;
-        //            cout << "0lfoot" << iterOur->first << mOurTeammates[iterOur->first].mBodyPartPol[Vision::L_FOOT] << endl;
-        //            cout << "0rfoot" << iterOur->first << mOurTeammates[iterOur->first].mBodyPartPol[Vision::R_FOOT] << endl;
-        //        }
-
         calcOurFastestToBall();
         calcOppFastestToBall();
     }
@@ -443,14 +395,10 @@ namespace core {
         for (iterTeammatesPol = teamPol.begin();
                 iterTeammatesPol != teamPol.end();
                 ++iterTeammatesPol) {
-            //  Vector3f h = Vision::calLocalRelPos(iterTeammatesPol->second.find(Vision::HEAD)->second);
-            //    teammates[iterTeammatesPol->first].mPolPos = iterTeammatesPol->second.find(Vision::HEAD)->second;
-            //  teammates[iterTeammatesPol->first].mGlobalPos = eyeMat.transform(h);
-            //  teammates[iterTeammatesPol->first].mRelPos = WM.calObjRelPos2D(teammates[iterTeammatesPol->first].mPolPos);
             teammates[iterTeammatesPol->first].mLastSeeTime = timeNow;
             teammates[iterTeammatesPol->first].mUnum = iterTeammatesPol->first;
             teammates[iterTeammatesPol->first].mIsOur = isOur;
-            //过滤没看到的值
+            //filter  objects which could not be seen
             for (int i = perception::Vision::TORSO; i < perception::Vision::PID_NULL; i++) {
                 if (iterTeammatesPol->second.find((perception::Vision::PID)i) != iterTeammatesPol->second.end()) {
                     teammates[iterTeammatesPol->first].mBodyPartPol[i] = (iterTeammatesPol->second.find((perception::Vision::PID)i)->second);
@@ -462,27 +410,8 @@ namespace core {
             }
             teammates[iterTeammatesPol->first].calcInfo();
 
-            //            cout << "height" << teammates[iterTeammatesPol->first].mHeight << "\nhead" << teammates[iterTeammatesPol->first].mBodyPartPol[Vision::HEAD] << " global " <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartGlobal[Vision::HEAD] << " Rel" <<
-            //
-            //                    teammates[iterTeammatesPol->first].mBodyPartVisionRel[Vision::HEAD] <<
-            //                    endl;
-            //            cout << "larm" << teammates[iterTeammatesPol->first].mBodyPartPol[Vision::L_HAND] << " global " <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartGlobal[Vision::L_HAND] << " Rel" <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartVisionRel[Vision::L_HAND] << endl;
-            //            cout << "rarm" << teammates[iterTeammatesPol->first].mBodyPartPol[Vision::R_HAND] << " global " <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartGlobal[Vision::R_HAND] << " Rel" <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartVisionRel[Vision::R_HAND] << endl;
-            //            cout << "lfoot" << teammates[iterTeammatesPol->first].mBodyPartPol[Vision::L_FOOT] << " global " <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartGlobal[Vision::L_FOOT] << " Rel" <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartVisionRel[Vision::L_FOOT] << endl;
-            //            cout << "rfoot" << teammates[iterTeammatesPol->first].mBodyPartPol[Vision::R_FOOT] << " global " <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartGlobal[Vision::R_FOOT] << " Rel" <<
-            //                    teammates[iterTeammatesPol->first].mBodyPartVisionRel[Vision::R_FOOT] << endl;
         }
-        //        for(int){
-        //            calcGlobalVel()
-        //        }
+ 
         TSeenPlayer::iterator iterAllTeammates;
         for (iterAllTeammates = teammates.begin();
                 iterAllTeammates != teammates.end();
@@ -500,8 +429,6 @@ namespace core {
         }
         unsigned int unum = SHM.getHearPlayerID();
         float timeNow = WM.getSimTime();
-
-
 
         mOurTeammates[unum].mHaveHeard = true;
         mOurTeammates[unum].mHearGlobalPos = SHM.getHearPlayerPos();

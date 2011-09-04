@@ -87,8 +87,8 @@ namespace perception {
 
         if (oid == MYPOS) {
             bool b = parser::SexpParser::parseValue(sexp, mPolMap[oid]);
-            cerr << '@' << WM.getGameTime() << "\nserver pos: " << mPolMap[oid] << endl;
-            cout << '@' << WM.getGameTime() << "\nserver pos: \t" << mPolMap[oid].x() << '\t' << mPolMap[oid].y() << '\t' << mPolMap[oid].z() << endl;
+//            cerr << '@' << WM.getGameTime() << "\nserver pos: " << mPolMap[oid] << endl;
+//            cout << '@' << WM.getGameTime() << "\nserver pos: \t" << mPolMap[oid].x() << '\t' << mPolMap[oid].y() << '\t' << mPolMap[oid].z() << endl;
             return b;
         } else if (oid == MYTRANS) {
             bool b = parser::SexpParser::parseValue(sexp, mMyDebugMat);

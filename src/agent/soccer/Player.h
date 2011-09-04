@@ -124,19 +124,6 @@ namespace soccer {
          *
          * @return current action
          */
-        boost::shared_ptr<action::Action> keepGoal(); //Skill of GoalKeeper
-        boost::shared_ptr<action::Action> keepGoal_TT(int d); //TT keepGoal
-
-
-        task::Direction calFallDirection(); //Skill of GoalKeeper
-        task::Direction calFallDirection(int n);
-        task::Direction calFallDirPenalty();
-        bool isBallWillCrossMeAfterNStps(int n);
-
-        bool isGoal(); //
-
-        GoalKeeperState updateGoalKeeperState(); //
-
         boost::shared_ptr<action::Action> goTo(const math::Vector2f& destPos, math::AngDeg bodyDir, bool avoidBall = true);
 
         boost::shared_ptr<action::Action> goToRel(const math::Vector2f& target, math::AngDeg dir);
@@ -153,40 +140,30 @@ namespace soccer {
          *
          * @return current action
          */
-        boost::shared_ptr<action::Action> goTo(const math::Vector2f& stopPos,
-                const math::Vector2f& lookAt, bool avoidBall = true);
-
+        boost::shared_ptr<action::Action> goTo(const math::Vector2f& stopPos, const math::Vector2f& lookAt, bool avoidBall = true);
 
         boost::shared_ptr<action::Action> kickTo(const math::Vector2f& goal, bool useMaxForceMotion = true);
 
         //TT, MMXI
         boost::shared_ptr<action::Action> kickRel();
         boost::shared_ptr<action::Action> shootRel();
-        boost::shared_ptr<action::Action> testActionTT();
         boost::shared_ptr<action::Action> dribbleRel();
-        boost::shared_ptr<action::Action> penaltyKiller(); //Gravity penalty killer;
         boost::shared_ptr<action::Action> dribbleToOppGoal();
         boost::shared_ptr<action::Action> goToBallBack();
         boost::shared_ptr<action::Action> kickToRel(const math::Vector2f targetRel);
-        boost::shared_ptr<action::Action> passToPlayer(unsigned int num);
-        unsigned int choosePassPlayer();
+//        boost::shared_ptr<action::Action> passToPlayer(unsigned int num);
+//        unsigned int choosePassPlayer();
         boost::shared_ptr<action::Action> sideWalk(bool isLeft);
         math::Vector2f GlobalToRel(const math::Vector2f& global);
         boost::shared_ptr<action::Action> kickToBetweenRel(const math::Vector2f& leftBoundary, const math::Vector2f& rightBoundary);
-        boost::shared_ptr<action::Action> breakingBall();
 
-        boost::shared_ptr<action::Action> kickBetween(const math::Vector2f& goalLeft,
-                const math::Vector2f& goalRight);
-
+        boost::shared_ptr<action::Action> kickBetween(const math::Vector2f& goalLeft,  const math::Vector2f& goalRight);
 
         //TT
         // +-1, +-2
         boost::shared_ptr<action::Action> fallToGetBall(int dir);
 
-
-        boost::shared_ptr<action::Action>
-        beamAndInit(const math::Vector3f& beamPos);
-
+        boost::shared_ptr<action::Action> beamAndInit(const math::Vector3f& beamPos);
 
         boost::shared_ptr<action::Action> dribble();
 
@@ -208,39 +185,10 @@ namespace soccer {
          */
         boost::shared_ptr<action::Action> walkToBall();
 
-        /*     float calKickHeight(const math::Vector2f& target,
-                     const math::Vector2f& ballPos,
-                     task::Kick::KickMode mode);*/
-
-        math::Vector2f chooseLargestAttackAngle(float x, float miny, float maxy,
-                const math::Vector2f& pos, math::AngDeg& maxAng);
-
         /**
          * just shoot
          */
         boost::shared_ptr<action::Action> shoot();
-
-        /**
-         * the behavior of defender: do not try to kick the ball directly
-         * while opponent is faster to ball than me, just run to the
-         * defense position to keep a good situation
-         *
-         * @return
-         */
-        boost::shared_ptr<action::Action> defense();
-
-        boost::shared_ptr<action::Action> runDefensePos();
-
-        /**
-         * choose the kick foot according to current state
-         *
-         * @param goal where want to kick to
-         *
-         * @return if chose the left foot kick, otherwise use right foot
-         */
-        bool chooseKickFoot(const math::Vector2f& goal);
-
-        bool chooseKickFoot2(const math::Vector2f& goal);
 
         /**
          * choose the kick type according to current state
@@ -251,43 +199,7 @@ namespace soccer {
          */
         boost::shared_ptr<task::BasicKick> chooseKickType(const math::Vector2f& goal, bool useMaxForceMotion, Vector2f* pPos, AngDeg* pDir, Vector2f* pRelPosToStopWalk);
 
-        /*!	is there any opponent in the front of me?
-          ie. Is there any opponent in the rectangle which in my heading direction?
-          \return the number of block opponent, 0 means no opponent blocks me
-         */
-        int isSpaceAhead(const math::Vector2f& goal, float dist);
 
-        /**
-         * parse the hear message: whether a teammate is passing ball to
-         * me
-         */
-        bool isPassingToMe();
-        bool whetherToFall();
-        /**
-         * calculate the best pass point to a teammate
-         *
-         * @param num the number of teammate
-         *
-         * @return the best pass point
-         */
-        math::Vector2f calPassPoint(unsigned int num);
-
-        //////////////////////////////////
-        /// FOR TEST ONLY
-        //////////////////////////////////
-        /**
-         * beam to a random position in the field, this is used to test
-         * the agent's localization
-         *
-         * @return
-         */
-        boost::shared_ptr<action::Action> randomBeam();
-
-        bool amIFreeToShoot(int num); //terrymimi
-
-        bool isBallWillInAfterNSteps(int n);
-
-        configuration::Formation::FormationType chooseFormation();
     protected:
 
         /// cache the task

@@ -253,12 +253,7 @@ namespace soccer {
          */
         Vector2f oppGoal(half_field_length, 0);
         if (WM.amIFastestToBallOfOurTeam()) {
-            unsigned bestPassId = choosePassPlayer();
-            if (bestPassId != 0) {
-                return passToPlayer(bestPassId);
-            } else {
                 return kickTo(oppGoal);
-            }
         } else {
             return runStrategicPos();
         }
