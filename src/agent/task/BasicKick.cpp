@@ -11,7 +11,6 @@
 #include "BasicKick.h"
 #include "controller/FixedAngleTrace.h"
 #include "configuration/Configuration.h"
-#include "Walk.h"
 #include "perception/JointPerception.h"
 #include "core/WorldModel.h"
 
