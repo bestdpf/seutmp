@@ -212,9 +212,9 @@ enum TGameHalf
 /////////////// Const Parameters /////////////
 
 /** field size */
-const float field_length = 21.0f;
+const float field_length = 18.0f;
     const float half_field_length = field_length*0.5f;
-const float field_width = 14.0f;
+const float field_width = 12.0f;
     const float half_field_width = field_width*0.5f;
 const float field_height = 40.0f;
 const float border_size = 0.0f; //TT: from naosoccersim.rb: #prevent complaining about missing variable
