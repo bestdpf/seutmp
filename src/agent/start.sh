@@ -5,7 +5,7 @@
 AGENT_BINARY="seu-spark-agent"
 BINARY_DIR="./"
 NUM_PLAYERS=5
-killall -9 "$AGENT_BINARY" &> /dev/null
+#killall -9 "$AGENT_BINARY" &> /dev/null
 export LD_LIBRARY_PATH=./libs/:$LD_LIBRARY_PATH;
 for ((i=1;i<=$NUM_PLAYERS;i++)); do
 echo "Running agent No. $i"

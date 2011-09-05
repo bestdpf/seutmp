@@ -47,10 +47,8 @@ namespace soccer {
             KickMotion tempKM;
             while (!inFile.eof()) {
                 getline(inFile, oneLine); //maybe tempKM.firstTaskName
-
                 if (oneLine.empty()) continue; //skip empty line
                 if ('#' == oneLine[0] || ' ' == oneLine[0]) continue; //skip comment line
-
                 tempKM.firstTaskName = oneLine;
                 inFile >> tempKM.kickTargetRel.x() >> tempKM.kickTargetRel.y()
                         >> tempKM.myDesiredRelPosToBall.x() >> tempKM.myDesiredRelPosToBall.y()
@@ -73,7 +71,7 @@ namespace soccer {
             return false;
         }
         if (!WM.update(p)) return false;
-        // scend the init message
+        // scened the init message
         shared_ptr<Action> iAct(new InitAction(OPTS.arg<string > ("teamname"),
                 OPTS.arg<unsigned int>("unum")));
         perform(iAct);

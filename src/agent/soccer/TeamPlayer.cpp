@@ -56,45 +56,40 @@ namespace soccer {
     }
 
     /** the paly-on mode, mainly loop */
-    shared_ptr<Action> TeamPlayer::playPlayOn() { //return  goalKeeperBehaviour();
+    shared_ptr<Action> TeamPlayer::playPlayOn() {
         /*************************************
          * EXPERIMENTS:
          * We do some experiments here
          *************************************/
-
-
         if (WM.isGameStateChanged())
             mTask.clear();
-
-
         shared_ptr<Action> act;
-
         switch (FM.getMy().type) {
             case configuration::Formation::PT_GOALKEEPER: //No.1
                 act = goalKeeperBehaviour();
                 break;
-            case configuration::Formation::PT_ATTACKER_CENTRAL: //No.9
+            case configuration::Formation::PT_ATTACKER_CENTRAL: 
                 act = attackerCentralBehaviour();
                 break;
-            case configuration::Formation::PT_ATTACKER_WING: //No.8
+            case configuration::Formation::PT_ATTACKER_WING: 
                 act = attackerLeftWingBehaviour();
                 break;
-            case configuration::Formation::PT_MIDFIELDER_WING: //No.7
+            case configuration::Formation::PT_MIDFIELDER_WING: 
                 act = attackerRightWingBehaviour();
                 break;
-            case configuration::Formation::PT_MIDFIELDER_CENTER: //No.6
+            case configuration::Formation::PT_MIDFIELDER_CENTER: 
                 act = middleFielderBehaviour();
                 break;
-            case configuration::Formation::PT_MIDFIELDER_SWEEPER://No.5
+            case configuration::Formation::PT_MIDFIELDER_SWEEPER:
                 act = defenderSweeperBehaviour();
                 break;
-            case configuration::Formation::PT_DEFENDER_CENTRAL: //No.2
+            case configuration::Formation::PT_DEFENDER_CENTRAL:
                 act = defenderCenteralBehaviour();
                 break;
-            case configuration::Formation::PT_DEFENDER_SWEEPER://No.4
+            case configuration::Formation::PT_DEFENDER_SWEEPER:
                 act = defenderLeftWingBehaviour();
                 break;
-            case configuration::Formation::PT_DEFENDER_WING: //No.3
+            case configuration::Formation::PT_DEFENDER_WING:
                 act = defenderRightWingBehaviour();
                 break;
             default:
@@ -282,42 +277,42 @@ namespace soccer {
         return defaultBehaviour();
     }
 
-    shared_ptr<Action> TeamPlayer::attackerCentralBehaviour() //No.9
+    shared_ptr<Action> TeamPlayer::attackerCentralBehaviour() 
     {
         return defaultBehaviour();
     }
 
-    shared_ptr<Action> TeamPlayer::attackerLeftWingBehaviour()//No.8
+    shared_ptr<Action> TeamPlayer::attackerLeftWingBehaviour()
     {
         return defaultBehaviour();
     }
 
-    shared_ptr<Action> TeamPlayer::attackerRightWingBehaviour() //No.7
+    shared_ptr<Action> TeamPlayer::attackerRightWingBehaviour() 
     {
         return defaultBehaviour();
     }
 
-    shared_ptr<Action> TeamPlayer::defenderSweeperBehaviour()//No.5
+    shared_ptr<Action> TeamPlayer::defenderSweeperBehaviour()
     {
         return defaultBehaviour();
     }
 
-    shared_ptr<Action> TeamPlayer::middleFielderBehaviour()//No.6
+    shared_ptr<Action> TeamPlayer::middleFielderBehaviour()
     {
         return defaultBehaviour();
     }
 
-    shared_ptr<Action> TeamPlayer::defenderRightWingBehaviour() //No.4
+    shared_ptr<Action> TeamPlayer::defenderRightWingBehaviour() 
     {
         return defaultBehaviour();
     }
 
-    shared_ptr<Action> TeamPlayer::defenderCenteralBehaviour() //No.2
+    shared_ptr<Action> TeamPlayer::defenderCenteralBehaviour() 
     {
         return defaultBehaviour();
     }
 
-    shared_ptr<Action> TeamPlayer::defenderLeftWingBehaviour() //No.3
+    shared_ptr<Action> TeamPlayer::defenderLeftWingBehaviour() 
     {
         return defaultBehaviour();
     }
