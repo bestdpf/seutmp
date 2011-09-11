@@ -1,3 +1,15 @@
+2011-9-9 17:31 Duan Pengfei<bestdpf@gmail.com>
+fix the bug that perception is dropped when the hardware is not very good!
+about the bug:
+err output is :
+[Warning] the perception @ .. is dropped!
+the method is that:
+let the sense thread wait for think thread if the think thread is slower than
+sense thread.
+the code is for tmp use, I will rewrite it later.
+Please downlaod it and test it.
+there are still problems or bugs with output:
+[think thread] the perception @ .. is dropped!
 2011-9-7_11:43 Zhao Bolu<zhaobl880704@gmail.com>
 seu3d-1.0.20
 add build.sh

@@ -81,6 +81,7 @@ bool Agent::init()
 	xtime_get(&mLastSenseTime, TIME_UTC);
 	xtime_get(&mLastActTime, TIME_UTC);
 	mIsAlive = true;
+	dpfThreadCounter=1;
 	return true;
 }
 
@@ -142,13 +143,14 @@ void Agent::perform( shared_ptr<Action> a )
 {
 	if(0!=a.get())
 	{
-		xtime_get(&mLastActTime, TIME_UTC);
+		//xtime_get(&mLastActTime, TIME_UTC);
 		COMM<<a->command();
 		//cout<<a->command()<<endl;//////////////////////////////////////TT test
 		COMM<<"(syn)";
 		COMM.send();
 		mutex::scoped_lock lock(mLastActMutex);
 		mLastAction = a;
+		xtime_get(&mLastActTime, TIME_UTC);
 	}
 	else
 	{
@@ -184,12 +186,13 @@ void Agent::thinkThread()
 		{
 			mutex::scoped_lock lock(mPerMutex);
 
-			if ( 0 == mPer.get() ){
+			while ( 0 == mPer.get()||dpfThreadCounter!=0 ){
 				/// there is no perception currently
 				mPerCond.wait(lock);
 			}
 			p = mPer;
 			mPer.reset();
+			dpfThreadCounter++;
 		}
 
 		if ( 0 != p.get() )		// there are new message
@@ -237,9 +240,11 @@ void Agent::senseThread()
 		if ( 0 == p.get() ){
 			break;
 		}
-
+		
 		/// lock the mutex and then change the perception cache
 		mutex::scoped_lock lock(mPerMutex);
+		while(dpfThreadCounter==0);
+		dpfThreadCounter--;
 		if ( 0 != mPer.get() )
 			cerr<<"[Warning] the perception @ "<<mPer->time().now()<<" is dropped!"<<endl;
 		mPer = p;
