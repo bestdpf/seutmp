@@ -1,4 +1,19 @@
-2011-9-9 17:31 Duan Pengfei<bestdpf@gmail.com>
+2011-9-11 23:54 Duan Pengfei<bestdpf@gmail.com>
+version seu3d-1.0.22
+fix a bug that percetion is dropped because of the wrong code:
+about the bug:
+err output is :
+[think thread] the perception @ .. is dropped!
+in the updatePerception() of WorldModel.cpp, I change the value from
+sim_time/2 to sim_time/1000;
+but I also find some new bugs, please take care:
+the game mode is changing wrongly and some agent goes to game over mode!
+I don't know whether it is because this change, please take care of this
+change!
+If it comes from this change, then:
+the server may send error infomation to us, especially the game mode.
+After this change, our agents can kick farther than before.
+2011-9-11 17:31 Duan Pengfei<bestdpf@gmail.com>
 fix the bug that perception is dropped when the hardware is not very good!
 about the bug:
 err output is :

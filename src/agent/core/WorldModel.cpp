@@ -154,7 +154,7 @@ namespace core {
         float deltaTime = p->time().now() - lp.time().now();
         mLostSimTime = deltaTime - sim_step;
 
-        if (deltaTime > sim_step / 2) //TT: don't use "deltaTime>0", because it's a floating number
+        if (deltaTime > sim_step / 1000) //TT: don't use "deltaTime>0", because it's a floating number
         {
             //1. update goal(score)
             if (lp.getPlayMode() != serversetting::PM_GOAL_LEFT &&
