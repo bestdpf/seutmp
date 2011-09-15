@@ -1,8 +1,9 @@
 2011-9-15_12:32 Zhao Bolu<zhaobl880704@gmail.com>
-seu3d-1.0.23
+seu3d-1.0.23-24
 change build.sh to build-agent.sh
 remove "RedSun" in some scripts
 change TeamPlayer.cpp, if gameover it still playPlayOn
+delete CNChangeLog
 2011-9-11 23:54 Duan Pengfei<bestdpf@gmail.com>
 version seu3d-1.0.22
 fix a bug that percetion is dropped because of the wrong code:
