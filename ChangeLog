@@ -1,3 +1,6 @@
+2011-9-15 22:25 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.0.24
+correct the wrong name mGameSate to mGameState in Perception.*
 2011-9-15_12:32 Zhao Bolu<zhaobl880704@gmail.com>
 seu3d-1.0.23-25
 change build.sh to build-agent.sh

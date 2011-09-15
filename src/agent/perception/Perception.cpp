@@ -60,7 +60,7 @@ Perception::Perception(const std::string& msg)
             else if ( "time" == name ) ok = mTime.update(t->next); // time
 			else if ( "GYR" == name ) ok = mGyroRate.update(t->next); // gyro rate
 			else if ( "ACC" == name ) ok = mAccelerometer.update(t->next); //  Accelerometer add by allen 2010-03-15
-			else if ( "GS" == name ) ok = mGameSate.update(t->next); // game state
+			else if ( "GS" == name ) ok = mGameState.update(t->next); // game state
             else if ( "hear" == name ){ // hear
                 boost::shared_ptr<Hear> hear(new Hear);
                 if ( hear->update(t->next) )

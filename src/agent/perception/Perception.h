@@ -42,7 +42,7 @@ public:
 
 	const JointPerception& joints() const { return mJoints; }
 
-	const GameState& gameState() const { return mGameSate; }
+	const GameState& gameState() const { return mGameState; }
 
     boost::shared_ptr<const Touch> touch() const { return mTouch; }
 
@@ -62,12 +62,12 @@ public:
 
 	void setPlayMode(serversetting::TPlayMode pm)
 	{
-		mGameSate.setPlayMode(pm);
+		mGameState.setPlayMode(pm);
 	}
 
 	serversetting::TPlayMode getPlayMode() const
 	{
-		return mGameSate.getPlayMode();
+		return mGameState.getPlayMode();
 	}
 
     /**
@@ -127,7 +127,7 @@ private:
     boost::shared_ptr<Touch> mTouch;
 
 	/** game state */
-	GameState mGameSate;
+	GameState mGameState;
 
 	/** perception of force resistance */
 	ForceResistance mForceResistance;
