@@ -211,7 +211,7 @@ namespace soccer {
     /** game over */
     shared_ptr<Action> TeamPlayer::playGameOver() {
         cerr << "[ERROR] Player can not hanle playGameOver\n";
-        return shared_ptr<Action > ();
+        return playPlayOn();
     }
 
     /** Gooooooooooooooooal */
