@@ -21,26 +21,14 @@ using namespace math;
 using namespace robot::humanoid;
 using namespace action;
 
-// (1)
 Vector2f Step::mMaxSizeAcc(0.02f, 0.07f);
 Vector2f Step::mMinSize(-0.03, -0.16);
 Vector2f Step::mMaxSize(0.1, 0.16);
-// (2)
-// Vector2f Step::mMinSize(-0.03, -0.12);
-// Vector2f Step::mMaxSize(0.07, 0.12);
-// (3)
-//     Vector2f Step::mMaxSizeAcc(0.02f, 0.07f);
-//     Vector2f Step::mMinSize(-0.03, -0.14);
-//     Vector2f Step::mMaxSize(0.07, 0.14);
 
 AngDeg Step::mMaxDirAcc = 50.0f;
 AngDeg Step::mMinDir = 0.0f;
 AngDeg Step::mMaxDir = 50.0f;
 float Step::mStepTime = 0.4;
-
-// #define ENABLE_SPEED_UP
-
-DEFINE_STATIC_GRAPHIC_LOGGER(Step)
 
 Step::Step( bool isLeft,
 			const Vector2f& size, AngDeg dir,
@@ -50,11 +38,6 @@ Step::Step( bool isLeft,
 	:Task(-1, primary),
 	 mIsLeft(isLeft)
 {
-	/*BEGIN_ADD_STATIC_LOG_LAYER(Step)
-	ADD_LOG_LAYER("new");
-	ADD_LOG_LAYER("speedUp");
-	END_ADD_STATIC_LOG_LAYER(Step)*/
-
 	Vector2f preSize(0,0);
 	Vector2f preSizeAcc(0,0);
 	AngDeg preDir = 0;
@@ -63,11 +46,6 @@ Step::Step( bool isLeft,
 		preSizeAcc = preStep->sizeAcc();
 		preDir = preStep->dir();
 	}
-
-	LOG_PRINTF("new","PreStep: %.3f, %.3f, %.3f ==> %.3f, %.3f, %.3f",
-			   preSize.x(), preSize.y(), preDir,
-			   size.x(), size.y(), dir);
-
 	mSize = size;
 	/////////////////////////////////////////////////////////////
 	/// restrict the step size and direction
@@ -78,33 +56,13 @@ Step::Step( bool isLeft,
 	AngDeg maxDir = mIsLeft?mMaxDir:-mMinDir;
 	AngDeg minDir = mIsLeft?mMinDir:-mMaxDir;
 
-#ifdef ENABLE_SPEED_UP
-	// AngDeg standTurningDist2 = pow2(0.05f);
-	// if ( (abs(dir)>mMaxDir && preSize.squareLength() < standTurningDist2&&
-	//       size.squareLength() < standTurningDist2 )
-	//      || abs(preDir) > mMaxDir ){
-	//     // speed up the turnning
-	//     maxDir = 8.0f*0.75f;
-	//     maxDirAcc = 2.0f*0.75f;
-	//     mSize = preSize*0.3f;
-	//     LOG_PRINT("speedUp","turnning!");
-	// }
-#endif
-
 	AngDeg dirAcc = calClipAng( dir, preDir );
-	LOG_PRINTF("new","dirAcc: %.3f", dirAcc);
 	dirAcc = clamp(dirAcc, -maxDirAcc, maxDirAcc);
-	LOG_PRINTF("new","clamped dirAcc: %.3f", dirAcc);
 	float maxsizelen = mMaxSize.length();
 	float presizelen = preSize.length();
 	dirAcc *= max(0.5f, 1-presizelen/maxsizelen );
-	LOG_PRINTF("new","restricted by Size dirAcc: %.3f", dirAcc);
 	mDir = dirAcc + preDir;
-	LOG_PRINTF("new","calculated mDir: %.3f", mDir);
-
-	LOG_PRINTF("new","max dir: %.3f", maxDir);
 	mDir = clamp(mDir, minDir, maxDir);
-	LOG_PRINTF("new","final mDir: %.3f", mDir);
 	Vector2f rotateMov;
 	float halfFeetWidth = HUMANOID.getHalfFeetWidth();
 	rotateMov.x() = (mIsLeft?1:-1) * sign(mDir)
@@ -119,53 +77,20 @@ Step::Step( bool isLeft,
 	maxSize.y() = mMaxSize.y() * cosDeg(mDir);
 	minSize.x() = (mIsLeft?-mMaxSize.y():mMinSize.y());
 	minSize.y() = mMinSize.y() * cosDeg(mDir);
-#ifdef ENABLE_SPEED_UP
-	if ( ( abs(mSize.y()) > abs(mMaxSize.y()) && abs(mDir) < 2
-		   && abs(preDir) < 2 && abs(mSize.x()) < 0.05f )
-		 /*|| abs(preSize.y()) > mMaxSize.y()*/ ){
-		// speed up for/backward
-		mSize.x() = preSize.x();
-		maxSize.y() = 0.25f;
-		minSize.y() = -maxSize.y();
-		// but should decrease the ratio of speed
-		mSize.x() *= 0.3f;
-		mDir = preDir*0.3f;
-		LOG_PRINT("speedUp","running!");
-	}
-	else if ( ( abs(mSize.x())>abs(mMaxSize.x()) && abs(mDir) < 2
-				&& abs(preDir) < 2 && abs(mSize.y()) < 0.05f )
-			  /*|| abs(preSize.x()) > mMaxSize.x()*/ ){
-		// speed up sideward
-		maxSize.x() = 0.2f;
-		mSize.y() = preSize.y();
-		mSize.y() *= 0.3f;
-		mDir = preDir*0.3f;
-		LOG_PRINT("speedUp","side walking!");
-	}
-#endif
+	
 	if ( mSize.squareLength() > 1 ){
 		// to avoid side walk by noise data
 		mSize.normalize();
 		mSize*=2;
-		LOG_PRINTF("new","avoid noise, mSize: %.3f, %.3f",
-				   mSize.x(), mSize.y());
 	}
 
 	mSize += rotateMov;
-	LOG_PRINTF("new","add rotateMov, mSize: %.3f, %.3f",
-				   mSize.x(), mSize.y());
-
 	mSizeAcc = mSize - preSize;
-	LOG_PRINTF("new","mSizeAcc: %.3f, %.3f", mSizeAcc.x(), mSizeAcc.y());
 	mSizeAcc.x() = clamp( mSizeAcc.x(),
 						  -mMaxSizeAcc.x(), mMaxSizeAcc.x());
 	mSizeAcc.y() = clamp( mSizeAcc.y(),
 						  -mMaxSizeAcc.y(), mMaxSizeAcc.y());
-	LOG_PRINTF("new","clamped mSizeAcc: %.3f, %.3f",
-			   mSizeAcc.x(), mSizeAcc.y());
 	mSizeAcc *= cosDeg(mDir);
-	LOG_PRINTF("new","restircted by turning mSizeAcc: %.3f, %.3f",
-			   mSizeAcc.x(), mSizeAcc.y());
 	mSize = preSize + mSizeAcc;
 
 	// restric walk side according to forward or backward
@@ -179,18 +104,9 @@ Step::Step( bool isLeft,
 		LOG_PRINTF("new","slow down");
 		slowDown = true;
 	}
-
-	LOG_PRINTF("new","restricted by X-Y, mSize: %.3f, %.3f",
-			   mSize.x(),mSize.y());
-
-	mSize.y() = clamp(mSize.y(), minSize.y(), maxSize.y());
 	mSize.x() = clamp(mSize.x(), minSize.x(), maxSize.x());
-	LOG_PRINTF("new","final mSize: %.3f, %.3f", mSize.x(), mSize.y());
 	mSizeAcc = mSize - preSize;
-	LOG_PRINTF("new","final mSizeAcc: %.3f, %.3f",
-			   mSizeAcc.x(), mSizeAcc.y());
 
-	//////////////////////////////////////////////////////////
 	// create sequences of one step
 	const float loft_foot_height = HUMANOID.getMinFootHeight();
 	float swingHeight = slowDown?(loft_foot_height):(loft_foot_height*1.8f);
@@ -212,10 +128,7 @@ Step::Step( bool isLeft,
 	startPoint.x() = t2.p().x() + feetx;
 	startPoint.y() = t2.p().y();
 
-	LOG_PRINTF("new","swing start: %.3f, %.3f, %.3f",startPoint.x(),startPoint.y(),-preDir);
 	Vector2f swingVec = mSize - startPoint;
-	LOG_PRINT_VECTOR3("new",swingVec);
-	LOG_PRINTF("new","swingVec.len=%.3f",swingVec.length());
 	float totalTime = 0.2;// allen change from 0.2 to 0.15 June 18
 	float stepTime = 2 * ceil(WM.getAverageStepTime() / serversetting::sim_step) * serversetting::sim_step;
 	int n = max(3, int(ceil(totalTime/stepTime)));
@@ -252,16 +165,7 @@ bool Step::isDone() const
 {
 	return Task::isDone();
 
-	if ( !Task::isDone() ){
-		return false;
 	}
-
-	// see if the leg is on the ground after step
-	bool supported = WM.lastPerception().forceResistance().isTouch(
-		/*mIsLeft?FRID_LEFT_FOOT:FRID_RIGHT_FOOT TODO*/0);
-	return supported;
-}
-
 
 shared_ptr<Action> Step::perform()
 {

@@ -24,8 +24,6 @@ namespace task{
                  float duration,
                  Task* primary);
 
-        MoveFoot(bool isLeft, float duration, Task* primary);
-
         static void setPitchRatio( const math::Vector2f& v )
             {
                 mPitchRatio = v;

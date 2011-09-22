@@ -1,3 +1,7 @@
+2011-9-22 20:09 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.0.25
+clear the some unused funtions in task dir. I try to make the walking code
+clear to be read, but more works are needed in the future;
 2011-9-15 22:25 Duan Pengfei<bestdpf@gmail.com>
 seu3d-1.0.24
 correct the wrong name mGameSate to mGameState in Perception.*

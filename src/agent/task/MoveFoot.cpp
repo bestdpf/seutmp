@@ -47,35 +47,6 @@ namespace task{
         mDesiredFootL.p().z() += HUMANOID.getMinFootHeight();
         mDesiredFootR.p().z() += HUMANOID.getMinFootHeight();
 
-        if (mIsLeft){
-            avoidFootCollide(mDesiredFootL, mDesiredFootR);
-        }
-        else{
-            avoidFootCollide(mDesiredFootR, mDesiredFootL);
-        }
-    }
-
-    MoveFoot::MoveFoot(bool isLeft, float duration, Task* primary)
-        :LowerLimbsMotion(duration, primary),
-         mIsLeft(isLeft)
-    {
-        if ( mIsLeft ){
-            mDesiredFootR.identity();
-            mDesiredFootR.p().x() += HUMANOID.getHalfFeetWidth();
-            mDesiredFootR.p().z() += HUMANOID.getMinFootHeight();
-        }
-        else{
-            mDesiredFootL.identity();
-            mDesiredFootL.p().x() -= HUMANOID.getHalfFeetWidth();
-            mDesiredFootL.p().z() += HUMANOID.getMinFootHeight();
-        }
-
-        if (mIsLeft){
-            avoidFootCollide(mDesiredFootL, mDesiredFootR);
-        }
-        else{
-            avoidFootCollide(mDesiredFootR, mDesiredFootL);
-        }
-    }
-    
+   }
+   
 } // namespace task
