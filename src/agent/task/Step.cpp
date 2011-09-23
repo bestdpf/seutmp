@@ -127,9 +127,7 @@ Step::Step( bool isLeft,
 	Vector2f startPoint;
 	startPoint.x() = t2.p().x() + feetx;
 	startPoint.y() = t2.p().y();
-	//printf startPoint
-	std::cout<<"start point ... "<<std::endl;
-	std::cout<<startPoint.x()<<"\t"<<startPoint.y()<<std::endl;
+	
 	Vector2f swingVec = mSize - startPoint;
 	float totalTime = 0.2;// allen change from 0.2 to 0.15 June 18
 	float stepTime = 2 * ceil(WM.getAverageStepTime() / serversetting::sim_step) * serversetting::sim_step;
