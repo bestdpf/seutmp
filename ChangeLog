@@ -1,3 +1,11 @@
+2011-9:23 14:23 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.0.26
+add a bool value in WalkRel.
+In old source code, TT writes stop() not very good, I add a mMustStop to work
+with TT's mShouldStop, then when we should stop, we must take a more step, in
+order to keep blance;
+But it needs to be tested, and it works not clearly in low speed walking, but
+when speed is very fast, it is very fine, I think.
 2011-9-22 20:09 Duan Pengfei<bestdpf@gmail.com>
 seu3d-1.0.25
 clear the some unused funtions in task dir. I try to make the walking code

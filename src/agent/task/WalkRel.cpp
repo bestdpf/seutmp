@@ -11,8 +11,6 @@
 #include <list>
 #include "core/WorldModel.h"
 #include "configuration/Configuration.h"
-//#include "MoveCoM.h"
-//#include "MoveFoot.h"
 #include "Step.h"
 #include "WalkRel.h"
 
@@ -49,6 +47,7 @@ WalkRel::WalkRel(const Vector2f& target, AngDeg direction, bool avoidBall, Task*
 
 	mPreSize.zero();
 	mShouldStop=false;
+	mMustStop=false;
 }
 
 
@@ -109,24 +108,20 @@ void WalkRel::updateSubTaskList()
 		}
 	}
 
+	Vector2f size;
 	//TT, for Walk and WalkRel
-	if( mShouldStop /*&& mPreSize.length()<0.01f*/ )
-		return;
-
-	//new step
-	Vector2f size=mTarget*0.5; //NOTE: the real step size is double "size"
-
-	//judge if it's necessary to add a new step
-	/*const Vector3f& bodyAcc=WM.getMyAcc();//////////////////////////////////////////////////////
-	if( fabs(size[0])+fabs(size[1])<0.012f &&//0.01f
-		fabs(mPreSize[0])+fabs(mPreSize[1])<0.012f &&//0.01f
-		fabs(mDirection)<8.0f &&
-		fabs(bodyAcc.y())<2.0f &&
-		fabs(bodyAcc.x())<1.5f )
+	if( mShouldStop &&mMustStop==false )
+	//	return;
 	{
-		return;///////////////////////////////////////////////////////////////////////////////////
-	}*/
-
+		size=Vector2f(0.0f,0.0f);
+		mMustStop=true;
+	}
+	else if(mMustStop){
+		return;
+	}
+	else{
+	size=mTarget*0.5; //NOTE: the real step size is double "size"
+		}
 	shared_ptr<Task> mstep( new Step(isLeft,
 									 size,
 									 mDirection,
