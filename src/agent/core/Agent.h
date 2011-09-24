@@ -134,7 +134,7 @@ private:
     /// logging all the message from the server
     std::ofstream mSenseLog;
 	//added by dpf to test multithread
-	int dpfThreadCounter;
+	//int dpfThreadCounter;
 };
 
 } // namespace core

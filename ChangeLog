@@ -1,4 +1,11 @@
-2011-9:23 14:23 Duan Pengfei<bestdpf@gmail.com>
+2011-9-24 11:41 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.0.27
+we found that when we test the source code in multi-machines, it is very easy
+that the agent is disconnected with the sever. We think, the bug comes from
+the change of multi-threads in early days before. I only wrote test source
+that time, now I write it more regularly.
+But works need to do to test bugs.
+2011-9-23 14:23 Duan Pengfei<bestdpf@gmail.com>
 seu3d-1.0.26
 add a bool value in WalkRel.
 In old source code, TT writes stop() not very good, I add a mMustStop to work
