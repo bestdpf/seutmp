@@ -15,7 +15,6 @@
 #include "task/Task.h"
 #include "core/Agent.h"
 #include "task/KeepBalance.h"
-#include "task/Kick.h"
 #include "task/Fall.h"
 #include "SoccerDefines.h"
 #include "task/BasicKick.h"

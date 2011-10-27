@@ -36,21 +36,10 @@ KickTask::KickTask( const string& firstTaskName, Task* primary ):
 	static bool isFirstTime = true;
 	mRaiseRFootTask=firstTaskName;
 	mDuration=FAT.calTaskTime(mRaiseRFootTask) + mSquatDuration;
-	//mDuration=FAT.calTaskTime(mRaiseRFootTask) + mMoveCoMDuration*2 + mSquatDuration; //calculated in BasicKick
-
 	if(isFirstTime)
 	{
 		isFirstTime=false;
-		//generateAnkleDistTable();
-		//generateDurationDistTable();
 	}
-
-	/*BEGIN_ADD_STATIC_LOG_LAYER(KickTask)
-	ADD_LOG_LAYER("supportfoot");
-	ADD_LOG_LAYER("DesiredTorso");
-	ADD_LOG_LAYER("terrymimi");
-	ADD_LOG_LAYER("dura");
-	END_ADD_STATIC_LOG_LAYER(KickTask);*/
 }
 
 
@@ -143,7 +132,6 @@ shared_ptr<Action> KickTask::perform()
 		mIsFirstTime=false;
 		if(mStartTime<0)
 		{
-			//FAT.setCurrentTask(mRaiseRFootTask);//????????????????????????????
 			mStartTime=WM.getSimTime();
 		}
 
@@ -169,12 +157,8 @@ shared_ptr<Action> KickTask::perform()
 
 
 	string currentTaskName=FAT.currentTaskName();
-	//cout<<"--------"<<currentTaskName<<"---------"<<endl;
-
-	////////////////////////////////////////////////////
 	if( "null"==currentTaskName || "squat"==currentTaskName || "*"==currentTaskName ) /////////////// * ???
 	{
-		//cout<<"xxxxxxxxxxxx "<<currentTaskName<<" xxxxxxxxxxxxxx"<<endl;
 		return FAT.controlPreferThan("squat", "*");
 	}
 	else

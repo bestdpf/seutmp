@@ -1,3 +1,6 @@
+2011-10-27 15:32
+seu3d-1.0.28
+complete remove class Kick and Kick.h
 2011-9-24 11:41 Duan Pengfei<bestdpf@gmail.com>
 seu3d-1.0.27
 we found that when we test the source code in multi-machines, it is very easy

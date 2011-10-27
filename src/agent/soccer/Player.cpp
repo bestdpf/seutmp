@@ -17,7 +17,6 @@
 #include "configuration/Configuration.h"
 #include "controller/FixedAngleTrace.h"
 #include "task/WalkRel.h"
-#include "task/Kick.h"
 #include "math/TLine2.hpp"
 #include "math/Math.hpp"
 #include "math/TConvexPolygon.hpp"

@@ -15,7 +15,6 @@
 #include "controller/FixedAngleTrace.h"
 #include "TeamPlayer.h"
 #include "task/KeepBalance.h"
-#include "task/Kick.h"
 #include "perception/Vision.h"
 #include "task/CameraMotion.h"
 #include "core/PassModel.h"

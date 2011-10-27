@@ -16,7 +16,7 @@
 #include "Task.h"
 #include "math/Math.hpp"
 #include "perception/JointPerception.h"
-#include "Kick.h"
+//#include "Kick.h"
 #include "robot/humanoid/Humanoid.h"
 #ifdef ENABLE_TASK_BASIC_KICK_LOG
 #include "logger/Logger.h"
@@ -25,6 +25,15 @@
 #endif
 
 namespace task{
+	using namespace math;
+class KickParameter
+	{
+		public:
+			AngDeg errLength;
+			AngDeg errAng;
+			Vector2f movePos;
+			AngDeg bodyAng;
+	};
 
 class BasicKick: public Task
 {
