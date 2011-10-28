@@ -17,7 +17,7 @@
 #include "task/KeepBalance.h"
 #include "task/Fall.h"
 #include "SoccerDefines.h"
-#include "task/BasicKick.h"
+#include "task/KickTask.h"
 
 namespace soccer {
 
@@ -180,9 +180,9 @@ namespace soccer {
          *
          * @param goal where want to kick to
          *
-         * @return a shared_ptr<BasicKick>
+         * @return a shared_ptr<KickTask>
          */
-        boost::shared_ptr<task::BasicKick> chooseKickType(const math::Vector2f& goal, bool useMaxForceMotion, Vector2f* pPos, AngDeg* pDir, Vector2f* pRelPosToStopWalk);
+        boost::shared_ptr<task::KickTask> chooseKickType(const math::Vector2f& goal, bool useMaxForceMotion, Vector2f* pPos, AngDeg* pDir, Vector2f* pRelPosToStopWalk);
 
 
     protected:

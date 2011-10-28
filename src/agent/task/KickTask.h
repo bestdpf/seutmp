@@ -14,7 +14,7 @@
 
 #define ENABLE_TASK_KICKTASK_LOG
 
-#include "BasicKick.h"
+#include "Task.h"
 #ifdef ENABLE_TASK_KICKTASK_LOG
 #include "logger/Logger.h"
 #else
@@ -25,31 +25,19 @@ namespace task{
 
 using namespace std;
 
-class KickTask: public BasicKick
+class KickTask: public Task
 {
 public:
 	KickTask( const string& firstTaskName, Task* primary=NULL );
 
 	virtual boost::shared_ptr<action::Action> perform();
-
-
-private:
-
-	virtual void generateAnkleDistTable();
-
-	virtual void generateDurationDistTable();
-
-	virtual AngDeg getDesiredAnkleAngle();
-
-	virtual float getDesiredDuration();
+	bool isDone () const;
 
 private:
-	float mAcc2Duration;
-	bool mMaxForce;
-
 	///////////////////////////////////// TT test
 	bool mIsFirstTime;
 	////////////////////
+	std::string mRaiseFootTask;
 
 	DECLARE_STATIC_GRAPHIC_LOGGER;
 };

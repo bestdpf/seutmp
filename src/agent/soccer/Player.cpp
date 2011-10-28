@@ -340,7 +340,7 @@ namespace soccer {
 
         //is kicking
         shared_ptr<Task> curTask = mTask.getFirstSubTask();
-        shared_ptr<BasicKick> curKick = shared_dynamic_cast<BasicKick > (curTask);
+        shared_ptr<KickTask> curKick = shared_dynamic_cast<KickTask > (curTask);
         if (NULL != curKick.get()) {
             act = mTask.perform();
             if (NULL != act.get()) {
@@ -364,7 +364,7 @@ namespace soccer {
         Vector2f myDesiredPos;
         AngDeg myDesiredBodyDir;
         Vector2f relPosToStopWalk;
-        shared_ptr<BasicKick> kick = chooseKickType(goal, useMaxForceMotion, &myDesiredPos, &myDesiredBodyDir, &relPosToStopWalk);
+        shared_ptr<KickTask> kick = chooseKickType(goal, useMaxForceMotion, &myDesiredPos, &myDesiredBodyDir, &relPosToStopWalk);
 
         if ((WM.getBallRelPos2D() + relPosToStopWalk).length() < 0.013f) //kick //0.01f 0.02f
         {
@@ -390,7 +390,7 @@ namespace soccer {
         }
     }
 
-    boost::shared_ptr<task::BasicKick> Player::chooseKickType(const math::Vector2f& goal, bool useMaxForceMotion, Vector2f* pPos, AngDeg* pDir, Vector2f* pRelPosToStopWalk) {
+    boost::shared_ptr<task::KickTask> Player::chooseKickType(const math::Vector2f& goal, bool useMaxForceMotion, Vector2f* pPos, AngDeg* pDir, Vector2f* pRelPosToStopWalk) {
         //compare dist and choose a motion
         int i = 0, motionNum = 0; //select motionNum
         float targetDistToGoal = 100.0f;
@@ -522,7 +522,7 @@ namespace soccer {
 
         //is kicking
         shared_ptr<Task> curTask = mTask.getFirstSubTask();
-        shared_ptr<BasicKick> curKick = shared_dynamic_cast<BasicKick > (curTask);
+        shared_ptr<KickTask> curKick = shared_dynamic_cast<KickTask > (curTask);
 
         if (NULL != curKick.get()) {
             act = mTask.perform();
@@ -576,9 +576,9 @@ namespace soccer {
                 }
             }
             printf("===========%s============\n", "new kick in kickRel");
-            shared_ptr<BasicKick> kick = useRightFoot ? shared_ptr<KickTask > (new KickTask("BTTL_t1")) :
+            shared_ptr<KickTask> kick = useRightFoot ? shared_ptr<KickTask > (new KickTask("BTTL_t1")) :
                     shared_ptr<KickTask > (new KickTask("BTT_t1"));
-            //shared_ptr<BasicKick> kick= shared_ptr<Shoot>( new Shoot(Vector2f(0,0)) );
+            //shared_ptr<KickTask> kick= shared_ptr<Shoot>( new Shoot(Vector2f(0,0)) );
 
             //printf("size=%d\n",mTask.getSubTaskListSize()); //1 or sometimes 0
             mTask.clear();
@@ -739,7 +739,7 @@ namespace soccer {
     shared_ptr<Action> Player::fallToGetBall(int dir) {
         shared_ptr<Action> act;
         shared_ptr<Task> curTask = mTask.getFirstSubTask();
-        shared_ptr<BasicKick> curKick = shared_dynamic_cast<BasicKick > (curTask);
+        shared_ptr<KickTask> curKick = shared_dynamic_cast<KickTask > (curTask);
 
         if (NULL != curKick.get()) {
             act = mTask.perform();
@@ -771,25 +771,25 @@ namespace soccer {
             }
         }
         if (-1 == dir) {
-            shared_ptr<BasicKick> kick = shared_ptr<KickTask > (new KickTask("leftfall_pt_init_squat"));
+            shared_ptr<KickTask> kick = shared_ptr<KickTask > (new KickTask("leftfall_pt_init_squat"));
             mTask.clear();
             mTask.append(kick);
             act = mTask.perform();
             return act;
         } else if (1 == dir) {
-            shared_ptr<BasicKick> kick = shared_ptr<KickTask > (new KickTask("rightfall_pt_init_squat"));
+            shared_ptr<KickTask> kick = shared_ptr<KickTask > (new KickTask("rightfall_pt_init_squat"));
             mTask.clear();
             mTask.append(kick);
             act = mTask.perform();
             return act;
         } else if (-2 == dir) {
-            shared_ptr<BasicKick> kick = shared_ptr<KickTask > (new KickTask("LFToLie1_wcy"));
+            shared_ptr<KickTask> kick = shared_ptr<KickTask > (new KickTask("LFToLie1_wcy"));
             mTask.clear();
             mTask.append(kick);
             act = mTask.perform();
             return act;
         } else if (2 == dir) {
-            shared_ptr<BasicKick> kick = shared_ptr<KickTask > (new KickTask("RFToLie1_wcy"));
+            shared_ptr<KickTask> kick = shared_ptr<KickTask > (new KickTask("RFToLie1_wcy"));
             mTask.clear();
             mTask.append(kick);
             act = mTask.perform();
