@@ -15,9 +15,7 @@
 
 #include "Singleton.hpp"
 #include "../perception/Perception.h"
-#include "Proportion.h"
 #include "Timing.h"
-#include "FootAdjuster.h"
 #ifdef ENABLE_FIXED_ANGLE_TRACE_LOG
 #include "logger/Logger.h"
 #else
