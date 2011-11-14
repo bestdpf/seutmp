@@ -2,7 +2,7 @@
  * File:   SayAndHearModel.h
  * Author: robocup
  *
- * Created on 2011年7月1日, 上午4:01
+ * Created on 7/1/2011 14:13
  */
 
 #ifndef SAYANDHEARMODEL_H

@@ -20,10 +20,10 @@ public:
     {
     }
 	
-	/** 分析sExp单元中的值/parse the value of the sExp atom 
-	*  @param [in] sexp sExp单元/sExp atom pointer
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+	/** parse the value of the sExp atom 
+	*  @param [in] sexp sExp atom pointer
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
 	static bool parseValue( const sexp_t* sexp, std::string& res )
 	{
@@ -35,10 +35,10 @@ public:
 		return false;
 	}
 	
-	/** 分析sExp单元中的值/parse the value of the sExp atom 
-	*  @param [in] sexp sExp单元/sExp atom pointer
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+	/** parse the value of the sExp atom 
+	*  @param [in] sexp sExp atom pointer
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
 	static bool parseValue( const sexp_t* sexp, char &res )
 	{
@@ -50,10 +50,10 @@ public:
 		return false;
 	}
 
-	/** 分析sExp单元中的值/parse the value of the sExp atom 
-	*  @param [in] sexp sExp单元/sExp atom pointer
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+	/** parse the value of the sExp atom 
+	*  @param [in] sexp sExp atom pointer
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
 	static bool parseValue( const sexp_t* sexp, int &res )
 	{
@@ -65,10 +65,10 @@ public:
 		return false;
 	}
 	
-	/** 分析sExp单元中的值/parse the value of the sExp atom 
-	*  @param [in] sexp sExp单元/sExp atom pointer
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+	/** parse the value of the sExp atom 
+	*  @param [in] sexp sExp atom pointer
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
 	static bool parseValue( const sexp_t* sexp, unsigned int &res )
 	{
@@ -80,10 +80,10 @@ public:
 		return false;
 	}
 	
-	/** 分析sExp单元中的值/parse the value of the sExp atom 
-	*  @param [in] sexp sExp单元/Exp atom pointer
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+	/** parse the value of the sExp atom 
+	*  @param [in] sexp Exp atom pointer
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
 	static bool parseValue( const sexp_t* sexp, float &res )
 	{
@@ -95,10 +95,10 @@ public:
 		return false;
 	}
 
-    /** 分析sExp单元中的值/parse the value of the sExp atom 
-	*  @param [in] sexp sExp单元/Exp atom pointer
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+    /** parse the value of the sExp atom 
+	*  @param [in] sexp Exp atom pointer
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
 	static bool parseValue( const sexp_t* sexp, bool &res )
 	{
@@ -110,10 +110,10 @@ public:
 		return false;
 	}
 		
-	/** 分析sExp单元中的值/parse the value of the sExp atom 
-	*  @param [in] sexp sExp单元/sExp atom pointer
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+	/** parse the value of the sExp atom 
+	*  @param [in] sexp sExp atom pointer
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
     template <typename DATATYPE, size_t ELEMENTS>
 	static bool parseValue( const sexp_t* sexp, math::TVector<DATATYPE,ELEMENTS> &res )
@@ -130,10 +130,10 @@ public:
 		return true;
 	}
 	
-	/** 分析sExp单元中的值/parse the value of the sExp atom 
-	*  @param [in] sexp sExp单元/sExp atom pointer
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+	/** parse the value of the sExp atom 
+	*  @param [in] sexp sExp atom pointer
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
 	static bool parseValue( const sexp_t* sexp, math::TransMatrixf &res )
 	{
@@ -152,11 +152,11 @@ public:
 		return true;
 	}
 	
-	/** 分析sExp列表中的值/parse the given value of the sExp list 
-	*  @param [in] sexp sExp列表/sExp list pointer
-	*  @param [in] given 指定的名称/the name of given value
-	*  @param [out] res 解析出的值/the value
-	*  @return 如果该列表值名称与指定名称相同,且解析成功返回TRUE,否则返回FALSE/if the value name is the same with given name, and successfully get the value, return TRUE, otherwise return FALSE
+	/** parse the given value of the sExp list 
+	*  @param [in] sexp sExp list pointer
+	*  @param [in] given the name of given value
+	*  @param [out] res the value
+	*  @return if the value name is the same with given name, and successfully get the value, return TRUE, otherwise return FALSE
 	*/
 	template <class T>
 	static bool parseGivenValue( const sexp_t* sexp, const char* given, T &res )
@@ -183,11 +183,11 @@ public:
         }
     
     
-	/** 分析sExp单元中的值/parse a array value of the sExp atom 
-	*  @param [in] sexp sExp单元/Exp atom pointer
+	/** parse a array value of the sExp atom 
+	*  @param [in] sexp Exp atom pointer
 	*  @param [in] size the size of array
-	*  @param [out] res 解析出的值/the value
-	*  @return 如有任何异常返回FALSE,否则返回TRUE/if there is anything wrong FALSE, else TRUE
+	*  @param [out] res the value
+	*  @return if there is anything wrong FALSE, else TRUE
 	*/
 	static bool parseArrayValue( const sexp_t* sexp, unsigned int size, float *res )
 	{

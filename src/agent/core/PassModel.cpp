@@ -1,8 +1,8 @@
 /* 
  * File:   PassModel.cpp
  * Author: robocup
- * 传球的对象位置，传球前可以锁定，踢球后解锁
- * Created on 2011年6月11日, 下午4:21
+ * test source code for passing ball, not very good to use now
+ * Created on 6/11/2011
  */
 
 #include <algorithm>

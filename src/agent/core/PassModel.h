@@ -2,7 +2,7 @@
  * File:   PassModel.h
  * Author: robocup
  *
- * Created on 2011年6月11日, 下午4:21
+ * Created on 6/11/2011
  */
 
 #ifndef PASSMODEL_H

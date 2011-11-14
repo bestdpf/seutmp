@@ -49,10 +49,10 @@ public:
 		LYING_STATE,				//lying state
 		DIVED_STATE,				//dived state
 		DIVING_STATE,				//diving state
-		//LRROLLED_STATE,				//×óÓÒÇãµ¹µÄ×´Ì¬
+		//LRROLLED_STATE,				
 		LEFTFALL_STATE,
 		RIGHTFALL_STATE,
-		BALANCE_STATE				//Æ½ºâ×´Ì¬
+		BALANCE_STATE				
 	};
 
 	typedef KeepBalanceState KBS;

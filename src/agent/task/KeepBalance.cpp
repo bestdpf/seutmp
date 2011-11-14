@@ -56,7 +56,7 @@ KeepBalance::~KeepBalance()
 
 void KeepBalance::updateState()
 {
-	//为避免边界效应，引入死区时间。每次判断当前所处状态时，如果状态有变化，必须等此状态已持续0.1s后才进行更新
+	//to do better, change value after the situation has changed 0.1secs.
 	if ( WM.isLeftFall() ) {mPossibleState=LEFTFALL_STATE;LOG_PRINT("vision-me","11");}
 	else if ( WM.isRightFall() ) {mPossibleState = RIGHTFALL_STATE;LOG_PRINT("vision-me","22");}
 	else if ( WM.isDived() ) {mPossibleState = DIVED_STATE;LOG_PRINT("vision-me","33");}
@@ -85,11 +85,11 @@ void KeepBalance::updateState()
 	}
 	else
 	{
-		mStateKeepingStartTime = WM.getSimTime();	//状态变化，将状态持续时间置零
+		mStateKeepingStartTime = WM.getSimTime();	
 		LOG_PRINTF("keepBalance","stateKeepingTime %f",WM.getSimTime()-mStateKeepingStartTime);
 	}
 
-	mLastPossibleState = mPossibleState;	//将本次判断出来的状态存下，留待下周期使用
+	mLastPossibleState = mPossibleState;	
 	mCurrentState = ( WM.getSimTime()-mStateKeepingStartTime > 0.09f ) ? mPossibleState : mCurrentState; //根据状态持续时间判断是否需要更新当前状态
 
 	LOG_PRINTF("keepBalance","mCurrentState is %d",mCurrentState);
@@ -99,13 +99,6 @@ void KeepBalance::analysisWhatToDo()
 {
 	shared_ptr<Task> getUp;
 	shared_ptr<Task> bufferAct;
-	//如下代码保证只new一次task
-	//if ( unBalanceTime > 10.0f )		//to long time of unBalance, the agent must be in the die field
-	//{
-	//	unBalanceTime = 0.0f;
-	//	getUp = shared_ptr<Task> (new ShakeBody(this));
-     //   LOG_PRINT("whatToDo","ShakeBody");
-	//}
 
 	if(mDuration>2.0f)
 		{
@@ -126,14 +119,14 @@ void KeepBalance::analysisWhatToDo()
 		LOG_PRINTF("whatToDo","RightFallToLie keeptime=%.3f",stateKeepingTime);
 	}
 	else if ( mCurrentState == LIED_STATE && stateKeepingTime > 0.3f ){
-        //判断是否超时
+        // if it is timeout.
 // 		cerr<<"GetUpFromLie"<<endl;
-		getUp = shared_ptr<Task> (new GetUpFromLie(this));//持续时间0.3s则不再等待，直接撑地
+		getUp = shared_ptr<Task> (new GetUpFromLie(this));// if the situation is 0.3 secs long.
         LOG_PRINTF("whatToDo","GetUpFromLie keeptime=%.3f",stateKeepingTime);
     }
 	else if ( mCurrentState == DIVED_STATE && stateKeepingTime > 0.3f ){
 // 		cerr<<"GetUpFromDive"<<endl;
-        getUp = shared_ptr<Task> ( new GetUpFromDive(this) );//持续时间0.3s则不再等待，直接撑地
+        getUp = shared_ptr<Task> ( new GetUpFromDive(this) );
         LOG_PRINTF("whatToDo","GetUpFromDive keepTime=%.3f",stateKeepingTime);
     }
 	if ( 0 != getUp.get() )
@@ -150,7 +143,7 @@ void KeepBalance::analysisWhatToDo()
 
 shared_ptr<action::Action> KeepBalance::perform()
 {
-	updateState();		//更新目前状态
+	updateState();		
 
 #ifdef ENABLE_LOG
 	float leftLegHeight = 0;// TODO WM.getJointTrans(JID_LEG_L_4).p().z();

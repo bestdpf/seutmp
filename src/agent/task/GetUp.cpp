@@ -30,7 +30,7 @@ PushUpDirectly::PushUpDirectly(Task* primary)
     END_ADD_STATIC_LOG_LAYER(PushUpDirectly)*/
 
 	if ( isNotReady() )mTaskName = "push-upNotReady0.0";
-	else if ( WM.getJointTrans(0/*JID_LEG_L_5 TODO*/).p().z() > 2.0f )//澶翠笅鑴氫笂鐨勭姸鎬�
+	else if ( WM.getJointTrans(0/*JID_LEG_L_5 TODO*/).p().z() > 2.0f )
 		mTaskName = "LRRolled";
 	else mTaskName = "push-upPrepared1.0";
 
@@ -49,14 +49,14 @@ bool PushUpDirectly::shouldDo(int currentState, int possibleState)
 	float leftArmHeight = 0; //TODO WM.getJointTrans(JID_ARM_L_4).p().z();
 	float rightArmHeight = 0;//TODO WM.getJointTrans(JID_ARM_R_4).p().z();
 
-	if ( FAT.isPoseReached( "push-upPrepared0.1", AngDeg(3.5f)) )		//鍏宠妭鍒颁綅
+	if ( FAT.isPoseReached( "push-upPrepared0.1", AngDeg(3.5f)) )		
 	{
 		if ( abs( leftLegHeight - 0.70f ) < ( 0.12f ) && abs( rightLegHeight - 0.70f ) < ( 0.12f )
 			&& abs( leftArmHeight - 0.72f ) < ( 0.12f ) && abs( rightArmHeight - 0.72f ) < ( 0.12f )
 			&& ( abs( leftLegHeight - rightLegHeight ) < 0.02f )
-			&& ( abs( leftArmHeight - rightArmHeight ) < 0.02f ) )	//鎵嬭剼楂樺害鍒颁綅
+			&& ( abs( leftArmHeight - rightArmHeight ) < 0.02f ) )	
 		{
-			if ( currentState == possibleState && currentState == 2 )		//鐘舵€佹寔缁�
+			if ( currentState == possibleState && currentState == 2 )		
 				return true;
 		}
 	}
@@ -66,12 +66,6 @@ bool PushUpDirectly::shouldDo(int currentState, int possibleState)
 bool PushUpDirectly::isNotReady()
 {
 	return !FAT.isPoseReached("push-upPrepared0.1",30.0f);
-        /*
-		//push-upPrepared1.0鍔ㄤ綔鍦ㄨ繘琛岀殑鏃跺€�,涓嶈兘璁や负鑷繁Not Ready
-		&& !( ( abs(WM.lastPerception().joints().jointAng(JID_ARM_R_4) - (AngDeg) (135.0) ) <= 30.0 )
-		&& ( abs(WM.lastPerception().joints().jointAng(JID_ARM_L_4) - (AngDeg) (135.0) ) <= 30.0 )
-		&& ( abs(WM.lastPerception().joints().jointAng(JID_ARM_R_1) ) <= 30.0 )
-		&& ( abs(WM.lastPerception().joints().jointAng(JID_ARM_L_1) ) <= 30.0 ) );*/
 }
 
 boost::shared_ptr<action::Action> PushUpDirectly::perform()
@@ -97,7 +91,7 @@ boost::shared_ptr<action::Action> PushUpDirectly::perform()
 			if (!( abs(mGyroRate.x()) > 50.0f && abs(mGyroRate.y()) <10.0f && abs(mGyroRate.z()) < 10.0f ))	//涓嶆垚鍔�
 			{
 				LOG_PRINT("pushUpDirectly","cancel the push-up");
-				mDuration = 0.0f;			//姝よ捣韬姩浣滀笉鑳芥垚鍔燂紝鍒犻櫎涔�
+				mDuration = 0.0f;			
 				LOG_FLUSH
 				return FAT.controlPreferThan("push-upPrepared0.1","*");
 			}
@@ -134,7 +128,7 @@ boost::shared_ptr<action::Action> PushUpDirectly::perform()
 PushUpPre::PushUpPre(int currentState, int possibleState, Task* primary):Task(-1, primary)
 {
 	if ( abs ((WM.lastPerception().joints().jointAng(/*JID_ARM_L_1 TODO*/0))
-			- 165.0f ) < 20.0f )		//璁や负韬綋宸茬粡澶勪簬鑳岃韩鍊掑湴鐨勪繚鎶ゅ姩浣滀笅
+			- 165.0f ) < 20.0f )		
 	{
 		taskName = "push-upPrepared0.0";
 		mTerminable = false;
@@ -212,11 +206,11 @@ bool MantodeaUpDirectly::shouldDo(int currentState, int possibleState)
 	if ( abs( leftLegHeight - 0.80f ) < ( 0.06f ) && abs( rightLegHeight - 0.80f ) < ( 0.06f )
 			&& abs( leftArmHeight - 0.92f ) < ( 0.06f ) && abs( rightArmHeight - 0.92f ) < ( 0.06f )
 			&& ( abs( leftLegHeight - rightLegHeight ) < 0.04f )
-			&& ( abs( leftArmHeight - rightArmHeight ) < 0.04f ) )	//鎵嬭剼楂樺害鍒颁綅
+			&& ( abs( leftArmHeight - rightArmHeight ) < 0.04f ) )	
 	{
 		if ( FAT.isPoseReached( "mantodea_lied1", 3.5f ) )
 		{
-			if ( currentState == possibleState )		//闈炰复鐣�
+			if ( currentState == possibleState )		
 			{
 				return true;
 			}
@@ -240,7 +234,7 @@ boost::shared_ptr<action::Action> MantodeaUpDirectly::perform()
 		{
 			if (!( abs(mGyroRate.x()) > 100.0f && abs(mGyroRate.y()) < 26.0f && abs(mGyroRate.z()) < 26.0f ))	//涓嶆垚鍔�
 			{
-				mDuration = 0.0f;			//姝よ捣韬姩浣滀笉鑳芥垚鍔燂紝鍒犻櫎涔�
+				mDuration = 0.0f;			
 				return FAT.controlPreferThan("mantodea_lied1","*");
 			}
 		}
@@ -277,7 +271,7 @@ MantodeaUpPre::MantodeaUpPre(int currentState, int possibleState, Task* primary)
 {
 	if ( FAT.isPoseReached("push-upPrepared0.1",30.0f) )
 	{
-		taskName = "mantodea_lied0";	//鐩存帴鍒ゆ柇鑷繁浣嶅Э鏉ュ喅瀹氭槸鍚﹀彲鑳芥姳澶�
+		taskName = "mantodea_lied0";	
 		mTerminable = false;
 	}
 	else

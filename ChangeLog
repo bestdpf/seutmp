@@ -1,3 +1,7 @@
+2011-11-14 15:06 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.0.32
+delete some chinese characters in the source code, i don't know how much
+chinese characters should be delete in future.
 2011-11-14 14:41 Duan Pengfei<bestdpf@gmail.com>
 seu3d-1.0.31
 remove some unused classes in controller

@@ -574,7 +574,7 @@ namespace core {
 
         const math::Vector3f& getBallLaPol()const //jia
         {
-            return ballLaPol; //得到球的视觉极坐标
+            return ballLaPol; //get ball's pol pos.
         }
 
         void setSearchSpeedX(float speed) /////terry

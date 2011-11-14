@@ -2,7 +2,7 @@
  * File:   SayAndHearModel.cpp
  * Author: robocup
  * 
- * Created on 2011年7月1日, 上午4:01
+ * Created on 7/1/2011
  */
 
 #include "SayAndHearModel.h"

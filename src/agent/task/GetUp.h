@@ -34,7 +34,7 @@ public:
 	virtual bool isTerminable() const { return false; }
 
 private:
-	bool isNotReady();		//鏄惁闇€瑕佸仛push-upNotReady鍔ㄤ綔
+	bool isNotReady();		
 
 	std::string mTaskName;
 
@@ -58,7 +58,7 @@ public:
 	virtual bool isTerminable() const { return mTerminable; }
 
 private:
-	bool isNotReady();		//鏄惁闇€瑕佸仛push-upNotReady鍔ㄤ綔
+	bool isNotReady();		
 
 	std::string taskName;
 
