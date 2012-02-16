@@ -203,9 +203,9 @@ namespace core {
         }
         int flagsNumber = getFlagNumbersISee();
 	
-	if(calcVisionBodyAngZ(*vp)){
-	  cout<<"vision body angZ\t"<<mVisionBodyAngZ<<endl;
-	}
+	//if(calcVisionBodyAngZ(*vp)){
+	  //cout<<"vision body angZ\t"<<mVisionBodyAngZ<<endl;
+	//}
 	// 0.4 added by dpf update local transMatrix of joints;
 	//see it below
 	 map<unsigned int, AngDeg> angles = lastPerception().joints().jointAngles();
@@ -242,8 +242,6 @@ namespace core {
          mMyBodyAng.y() = getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngY();
          mMyBodyAng.z() = getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngZ();
 	
-	 //cout test by dpf
-	 cout<<"gyro body angZ\t"<<mMyBodyAng.z()<<endl;
 	 // dpf ,calc rel trans, not lean rel
 	 
 	 mBoneRelTrans.clear();
@@ -290,21 +288,21 @@ namespace core {
         if (forceResistance.isTouch(lfid)) {
             mMySupportBone = Humanoid::L_FOOT;
             const perception::ForceResistance::FeedBack& lfrp = forceResistance.feedBack(lfid);
-            const TransMatrixf& lfm = getBoneLocalTrans(Humanoid::L_FOOT);//dpf change it to lean rel trans
-	    cout<<"lf force pos"<<lfrp.pos<<endl;
+            TransMatrixf lfm = getBoneLocalTrans(Humanoid::L_FOOT);//dpf change it to lean rel trans
             mLeftFootForceCenter = lfm.transform(lfrp.pos);
-            mFeetForce = lfrp.force;
+	    mLeftFootForce=lfm.transform(lfrp.force);
+            mFeetForce = mLeftFootForce;
             mFeetForcePoint = mLeftFootForceCenter;
         }
 
         if (forceResistance.isTouch(rfid)) {
             const perception::ForceResistance::FeedBack& rfrp = forceResistance.feedBack(rfid);
-            const TransMatrixf& rfm = getBoneLocalTrans(Humanoid::R_FOOT);//dpf change it to lean rel trans
-            cout<<"rf fore pos"<<rfrp.pos<<endl;
+            TransMatrixf rfm = getBoneLocalTrans(Humanoid::R_FOOT);//dpf change it to lean rel trans
 	    mRightFootForceCenter = rfm.transform(rfrp.pos);
+	    mRightFootForce=rfm.transform(rfrp.pos);
             if (Humanoid::ILLEGAL == mMySupportBone) {
                 mMySupportBone = Humanoid::R_FOOT;
-                mFeetForce = rfrp.force;
+                mFeetForce = mRightFootForce;
                 mFeetForcePoint = mRightFootForceCenter;
             } else {
                 // double support, choose the bigger force foot as support foot
@@ -313,7 +311,7 @@ namespace core {
                 if (lf < rf) {
                     mMySupportBone = Humanoid::R_FOOT;
                 }
-                mFeetForce += rfrp.force;
+                mFeetForce += mRightFootForce;
                 mFeetForcePoint = (mLeftFootForceCenter * lf + mRightFootForceCenter * rf) / (lf + rf);
             }
         }

@@ -1,5 +1,9 @@
-seu3d-1.1.42
+2012-2-16 20:16 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.1.43
+correct some error of feet force calculation
+and add some functions to get feet force and its point
 2012-2-15 14:11 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.1.42
 this is a stable branch
 add vision body direction calculation in WM, called mVisionBodyAngZ;
 re add old src about feet force and vision locazion method, but make a small

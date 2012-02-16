@@ -349,12 +349,39 @@ namespace core {
         /**
          * get the sum force that applied to the feet
          *
-         * @return the vector of force
+         * @return the vector of force, in the lean rel coordination;
          */
         const math::Vector3f& getFeetForce() const {
             return mFeetForce;
         }
-
+	/**
+	 * get the left foot force, in the lean rel coordination
+	 */
+	const math::Vector3f& getLeftFootForce() const{
+	    return mLeftFootForce;
+	}
+	/**
+	 * get the right foot force, in the lean rel coordination
+	 */
+	const math::Vector3f& getRightFootForce() const{
+	    return mRightFootForce;
+	}
+        /**
+         * get the point of sum force that applied to the feet
+         *
+         * @return the force point
+         */
+        const math::Vector3f& getLeftFootForcePoint() const {
+            return mLeftFootForceCenter;
+        }
+        /**
+         * get the point of sum force that applied to the feet
+         *
+         * @return the force point
+         */
+        const math::Vector3f& getRightFootForcePoint() const {
+            return mRightFootForceCenter;
+        }
         /**
          * get the point of sum force that applied to the feet
          *
@@ -981,9 +1008,11 @@ namespace core {
         math::TransMatrixf mDpfBodyTransMatrix;//dpf test, torso global transMatrix
        
 
-        /// the global position of the force center in feet
+        /// the lean rel position of the force center in feet
         math::Vector3f mLeftFootForceCenter;
         math::Vector3f mRightFootForceCenter;
+	math::Vector3f mLeftFootForce;
+	math::Vector3f mRightFootForce;
         /// the force of feet, dpf change the coordination to lean rel coordination;
         math::Vector3f mFeetForcePoint;
         math::Vector3f mFeetForce;
