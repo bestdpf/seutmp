@@ -244,9 +244,17 @@ namespace soccer {
          * If I am the fastes, shoot the ball,
          * otherwise run to the strategic position
          */
-        Vector2f oppGoal(half_field_length, 0);
+	/*
+	///test cout by dpf
+	cout<<"gyro info\t"<<WM.getMyGyroRate()*0.02<<endl;
+	cout<<"acc info \t"<<WM.getMyAcc()<<endl;
+	cout<<"bodyang\t"<<WM.getMyBodyAng()<<endl;
+	*/
+	Vector2f oppGoal(half_field_length, 0);
         if (WM.amIFastestToBallOfOurTeam()) {
-            return kickTo(oppGoal);
+            //return goToRel(Vector2f(-1,0),0);
+	    //return FAT.controlPreferThan("init", "*");
+	    return kickTo(oppGoal);
         } else {
             return runStrategicPos();
         }

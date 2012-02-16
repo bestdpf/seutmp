@@ -20,6 +20,11 @@ template<typename DATATYPE>
 class TransMatrix
 {
 public:
+  /**
+   * comment by dpf
+   * the trans matrix here is not similar with the common one, it is inv of common one
+   * so the left-product and right-product is revised compared to commone situation
+   * */
 	//
 	// @note the 4*4 matrix is row order, that is
 	//  | n_x, n_y, n_z, 0 | // x-axis right
@@ -79,7 +84,10 @@ public:
         mP.zero();
         return *this;
     }
-
+  /**
+   * comment by dpf
+   * the trans matirx is inv of a common one 
+   * */
 	// sets up a X-rotation matrix with inAngle degrees
 	f_inline void rotationX(AngDeg inAngle)
     {
@@ -119,7 +127,12 @@ public:
         mP -= T.p();
         return *this;
     }
-
+    f_inline TransMatrix& operator=(const TransMatrix & T)
+    {
+       mR=T.R();
+       mP=T.p();
+       return *this;
+    }
     f_inline TransMatrix& operator*=(const TransMatrix& T)
     {
         mR *= T.R();
@@ -143,10 +156,13 @@ public:
 	/** 
      * calculate the global matrix of T, which is the local matrix in
      * this coordinate
-     * 
+     * *this is global to rel trans matrix; comment by dpf
      * @param T the local matrix
      * 
      * @return the global matrix
+     * comment by dpf
+     * this func in fact is *this = T*(*this) is *this right-product T
+     * but in common situation, it should be left-product in global transfer
      */
     f_inline TransMatrix& transfer(const TransMatrix& T)
     {
@@ -273,7 +289,12 @@ public:
                                 x*n().y() + y*o().y() + z*a().y(),
                                 x*n().z() + y*o().z() + z*a().z());
     }
-
+/**
+ * comment by dpf
+ * *this is a transfer matrix from A to B, and inVector is a vector in A, the 
+ * result is the value of inVector in coordinate system B.
+ * like global to rel transfer
+ **/
     f_inline TVector<DATATYPE,3> transform(const TVector<DATATYPE,3>& inVector) const
     {
 		TVector<DATATYPE,3> res = rotate(inVector);

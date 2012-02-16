@@ -236,8 +236,14 @@ namespace soccer {
 
     shared_ptr<Action> Player::goTo(const Vector2f& destPos, AngDeg bodyDir, bool avoidBall) {
         Vector2f relTarget;
+	//Vector2f tmpDestPos=Vector2f(-destPos.y(),destPos.x());//test by dpf
         float turnAng;
-        Vector2f destRelPos = WM.transGlobalPosToRelPos(WM.getMyGlobalPos2D(), destPos);
+	//dpf change , comment: dpf want to use new transGlobalPosToRelPos() but it seems bad.
+	//dpf once want to change myPos to torso's global pos, but failed, because we use myPos before
+	// to test the FAT, now we must use it too, though it is good to undstand to use torso's global pos
+	Vector2f myPos=WM.getMyGlobalPos2D();
+	Vector2f destRelPos=WM.transGlobalPosToRelPos(destPos);
+	// Vector2f destRelPos = WM.transGlobalPosToRelPos(WM.getMyGlobalPos2D(), destPos);
         if (destRelPos.length() > 0.2f) //far enough, so don't care about body direction, just turn to destination
         {
             turnAng = -atan2Deg(destRelPos.x(), destRelPos.y());
@@ -314,7 +320,14 @@ namespace soccer {
         mBalance.perform();
         mBalance.reset();
         mTask.clear();
-
+	Vector3f initPos=Vector3f(beamPos.x(),beamPos.y(),0.35f);
+	
+	//dpf test, bodyreset when squat
+	WM.bodyReset(Vector3f(-9.665f,0.0f,-90.0f));
+	///test by dpf, reset acc
+	WM.accGlobalPosRest(initPos);
+	WM.accVecGlobalReset();
+	
         shared_ptr<Action> bAct = shared_ptr<Action > (new BeamAction(beamPos));
         shared_ptr<Action> jAct = FAT.controlPreferThan("init", "*");
 
@@ -323,7 +336,7 @@ namespace soccer {
         beamPos2D = beamPos;
 
         shared_ptr<Actions> acts = shared_ptr<Actions > (new Actions);
-        if ((beamPos2D - posMe).length() < 0.05) {
+        if ((beamPos2D - posMe).length() < 0.5) {
             // if we have beam to the given position, stop beaming
             jAct = FAT.controlPreferThan("squat", "*");
             acts->add(jAct);
@@ -402,7 +415,10 @@ namespace soccer {
         } else {
 
             FOR_EACH(iter, mKickMotionVector) {
-                kickTarget = WM.transRelPosToGlobalPos(WM.getMyGlobalPos2D(), iter->kickTargetRel);
+                kickTarget = WM.transRelPosToGlobalPos( iter->kickTargetRel);
+		//kickTarget = WM.transRelPosToGlobalPos(WM.getMyGlobalPos2D(), iter->kickTargetRel);
+                //dpf test it 
+                //kickTarget=*(Vector2f*)(WM.transRelPosToGlobalPos(Vector3f(iter->kickTargetRel.x(),iter->kickTargetRel.y(),0.0f)).get());
                 tempFloat = (kickTarget - goal).length();
                 if (tempFloat < targetDistToGoal) {
                     targetDistToGoal = tempFloat;
@@ -417,8 +433,12 @@ namespace soccer {
 
         //calculate pos and dir to go
         const Vector2f& ballPos = WM.getBallGlobalPos2D();
-        Vector2f myDesiredPos = WM.transRelPosToGlobalPos(ballPos, mKickMotionVector[motionNum].myDesiredRelPosToBall);
-        AngDeg myDesiredBodyDir = (goal - ballPos).angle() + atan2Deg(mKickMotionVector[motionNum].kickTargetRel.x(),
+	Vector2f myDesiredRelPosToBall=mKickMotionVector[motionNum].myDesiredRelPosToBall;
+	myDesiredRelPosToBall.y()+=-0.0278;//0.155*sinDeg(-10);//a patch, old my glbal pos is eye pos, but now is torso.0.155 is length from eye to torso, -10 is bodyAng
+        Vector2f myDesiredPos = WM.transRelPosToGlobalPos(ballPos,myDesiredRelPosToBall);
+	//Vector2f myDesiredPos = WM.transRelPosToGlobalPos(ballPos, mKickMotionVector[motionNum].myDesiredRelPosToBall);
+	//rewrited by dpf, just for test
+	AngDeg myDesiredBodyDir = (goal - ballPos).angle() + atan2Deg(mKickMotionVector[motionNum].kickTargetRel.x(),
                 mKickMotionVector[motionNum].kickTargetRel.y());
         *pPos = myDesiredPos;
         *pDir = myDesiredBodyDir;

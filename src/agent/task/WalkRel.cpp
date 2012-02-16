@@ -47,7 +47,7 @@ WalkRel::WalkRel(const Vector2f& target, AngDeg direction, bool avoidBall, Task*
 
 	mPreSize.zero();
 	mShouldStop=false;
-	mMustStop=false;
+	//mMustStop=false;
 }
 
 
@@ -110,13 +110,7 @@ void WalkRel::updateSubTaskList()
 
 	Vector2f size;
 	//TT, for Walk and WalkRel
-	if( mShouldStop &&mMustStop==false )
-	//	return;
-	{
-		size=Vector2f(0.0f,0.0f);
-		mMustStop=true;
-	}
-	else if(mMustStop){
+	if(mShouldStop){
 		return;
 	}
 	else{

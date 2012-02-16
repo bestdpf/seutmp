@@ -177,7 +177,7 @@ namespace perception {
         {
                 return mPosMap;
         }*/
-
+/** this function in fact is calculate rel pos to vision */
         static math::Vector3f calLocalRelPos(const math::Vector3f& pol);
 
         /** get debug information from the server */
@@ -271,6 +271,7 @@ namespace perception {
 
         // mapping from object id to object's position
         TIDVecMap mPolMap;
+	//this is in fact rel to vision position
         TIDVecMap mPosMap; //TT test clean
 
         TTeamPolMap mOurPol;

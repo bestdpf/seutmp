@@ -31,44 +31,6 @@ namespace task{
     bool LowerLimbsMotion::isDone() const
     {
         return isTimeOut();
-
-        if ( isTimeOut() ) return true;
-
-
-        map<unsigned int, math::AngDeg> jc = WM.predictedPerception().joints().jointAngles();
-
-        map<unsigned int, math::AngDeg>::const_iterator end = mDesiredJoints.end();
-        for( map<unsigned int, math::AngDeg>::const_iterator iter=mDesiredJoints.begin();
-             iter!=end; ++iter )
-        {
-            if ( fabs( calClipAng(
-                          jc[iter->first],
-                          iter->second ) ) > 1.0f ){
-                return false;
-            }
-        }
-
-        const static float errThrehold = 0.001;
-        const TransMatrixf& myOig = WM.getMyOriginTrans();
-        // body
-        TransMatrixf err = myOig;
-        err.transfer( mDesiredBody );
-        err -= WM.getBoneTrans(robot::humanoid::Humanoid::TORSO);
-        if ( err.squareLength() > errThrehold ) return false;
-
-        // left foot
-        err = myOig;
-        err.transfer( mDesiredFootL );
-        err -= WM.getBoneTrans(robot::humanoid::Humanoid::L_FOOT);
-        if ( err.squareLength() > errThrehold ) return false;
-
-        // right foot
-        err = myOig;
-        err.transfer( mDesiredFootR );
-        err -= WM.getBoneTrans(robot::humanoid::Humanoid::R_FOOT);
-        if ( err.squareLength() > errThrehold ) return false;
-
-        return true;
     }
 
     boost::shared_ptr<action::Action> LowerLimbsMotion::perform()
@@ -76,7 +38,7 @@ namespace task{
         Task::perform();
         mDesiredJoints = WM.predictedPerception().joints().jointAngles();
         calJoints(mDesiredJoints);
-
+	/*
         const TransMatrixf& myOigMat = WM.getMyOriginTrans();
         TransMatrixf temp = myOigMat;
         temp.transfer(mDesiredBody);
@@ -84,6 +46,7 @@ namespace task{
         temp.transfer(mDesiredFootL);
         temp = myOigMat;
         temp.transfer(mDesiredFootR);
+        */
         float t = getRemainTime();
 
         shared_ptr<const LowerLimbsMotion> next =
@@ -113,11 +76,11 @@ namespace task{
     {
         bool suc = true;
         if ( !HUMANOID.legInverseKinematics(true, mDesiredBody, mDesiredFootL, angles) ){
-             //cerr<<"Left Leg IK failed!"<<endl;
+             cerr<<"Left Leg IK failed!"<<endl;
             suc = false;
         }
         if ( !HUMANOID.legInverseKinematics(false, mDesiredBody, mDesiredFootR, angles) ) {
-            //cerr<<"Right Leg IK failed!"<<endl;
+            cerr<<"Right Leg IK failed!"<<endl;
             suc = false;
         }
         // controller::ArmMotion::control(mDesiredJoints);

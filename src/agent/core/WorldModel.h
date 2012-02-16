@@ -62,19 +62,43 @@ namespace core {
         // ===========================
 
         /**
-         * @return the global position of the upper torso
+         * @return the global position of the eye (camera)
          */
         const math::Vector3f& getMyGlobalPos() const {
-            return getVisionTrans().pos();
+          return getMyTorsoGlobalPos();  
+	  //return getVisionTrans().pos();
         }
-
+	/**added by dpf
+	 * get my torso global pos, not the eye (ie camera)
+	 * */
+	const math::Vector3f& getMyTorsoGlobalPos() const{
+	    return getBoneTrans(robot::humanoid::Humanoid::HEAD).pos();
+	}
+	
+	const math::Vector2f& getMyTorsoGlobalPos2D() const{
+	    return *(const math::Vector2f*)(getBoneTrans(robot::humanoid::Humanoid::HEAD).pos().get());
+	}
+	
         const math::Vector2f& getMyGlobalPos2D() const {
-            return *(const math::Vector2f*)(getVisionTrans().pos().get());
+          return getMyTorsoGlobalPos2D();  
+	  //return *(const math::Vector2f*)(getVisionTrans().pos().get());
         }
 
+	//dpf test
+	//attention, its p() is not glboal pos, but matrix is global matrix
+	//use getBoneTrans(TORSO) as soon as possible;
+	const math::TransMatrixf getDpfBodyTransMatrix() const {
+	  return mDpfBodyTransMatrix;
+	}
+	
+	//dpf test
+	const math::TransMatrixf updateDpfBodyTransMatrix() const;
         /**
          * @return the global velocity of the upper torso
          */
+	///dpf test, calculate the mVisionBodyAngZ, if no flags can be seen, return false;
+	///attention this method is not very good to use, espcially when the body is not stand up straitly.
+	bool calcVisionBodyAngZ(const Vision &p);
         const math::Vector3f& getMyGlobalVel() const {
             return mMyGlobalVel;
         }
@@ -109,28 +133,36 @@ namespace core {
         const math::Vector3f& getMyCenterOfMass() const {
             return mMyCenterOfMass;
         }
-
+        /**
+	 * by dpf
+	 * get my Rel com, not lean rel!!!
+	 */
+	const math::Vector3f& getMyRelCenterOfMass() const {
+            return mMyRelCenterOfMass;
+        }
+        
         const math::Vector3f& getMyGyroRate() const {
             return lastPerception().gyroRate().rate(0);
         }
-
-        math::Vector3f calMyBodyAngRate(math::Vector3f myRot); //计算mMyBodyAng的变化率， mMyBodyAng即姿态的角度，全局旋转矩阵的欧拉角（YPR顺序，又ZYX）
-
-        math::Vector3f calMyBodyRotatedAng(math::Vector3f MyBodyAngRate); //计算mMyBodyAng的改变量
-
+        
         /***********************************end******************************************/
         /////////////////////////add by allen 2010.3.15
 
         const math::Vector3f& getMyAcc() const {
             return mMyAcc;
         }
+          //test by dpf reset the global pos from acc-sensor to pos given
+        void accGlobalPosRest(const math::Vector3f pos){
+	     mMyAccPosGlobal=pos;
+	}
+        //test by dpf reset the global vec from acc-sensor to zero;
+        void accVecGlobalReset(){
+	     mMyAccVelGlobal.zero();
+	}
         ////////////////////////////////////////////////
 
         math::AngDeg getMyBodyDirection() const {
-            if (seenFlagsNum() >= 3)
-                return mMyBodyDirection;
-            else
-                return mMyBodyDirWithFlags;
+	   return mMyBodyDirection;
         }
 
         robot::humanoid::Humanoid::ESkeleton getMySupportFoot() const {
@@ -179,10 +211,6 @@ namespace core {
             return mOpponentGlobalPos;
         }
 
-        /*   const math::Vector2f& getOppGlobalVel(int depth) const				/////terrymimi
-                   {
-                           return mOpponentGlobalPos2D[0] - mOpponentGlobalPos2D[depth]/0.02/depth;
-                   }*/
         const math::Vector2f& getOppGlobalPos2D(unsigned int i) const {
             return *(const math::Vector2f*)(getOppGlobalPos(i).get());
         }
@@ -198,30 +226,28 @@ namespace core {
         ////////////////////////////////////////////////////
 
         const math::Vector3f& getBallGlobalPos() const {
+	  /*
             if (seenFlagsNum() >= 3)
                 return mBallGlobalPos;
             else {
                 return mBallGlobalPos3DWithRelInfo;
             }
+            */
+	  //dpf comment the above old lines, i think it is useless and may make mistakes.
+	  return mBallGlobalPos;
         }
-
-        const math::Vector3f& getG2RGlobalPos() const {
-            return mG2RGlobalPos;
-        } //terry
-
-        const math::Vector3f& getG1RGlobalPos() const {
-            return mG1RGlobalPos;
-        } //terry
-
         const math::Vector3f& getBallAveragePos() const {
             return mBallAveragePos;
         }
 
         const math::Vector2f& getBallGlobalPos2D() const {
+	  /*
             if (seenFlagsNum() >= 3)
                 return *(const math::Vector2f*)(mBallGlobalPos.get());
             else
                 return mBallGlobalPos2DWithRelInfo;
+	    */
+	  return *(const math::Vector2f*)(mBallGlobalPos.get());
         }
 
         const math::Vector3f& getBallGlobalVel() const {
@@ -244,11 +270,25 @@ namespace core {
         {
             return *(const math::Vector2f*)(mInterceptBallGlobalPos.get());
         }
-
         const math::TransMatrixf& getVisionTrans() const {
-            return mMyVisionMatrix;
+	  //test by dpf
+	  return mDpfMyVisionMatrix;
+          // return mMyVisionMatrix;
         }
-
+	//dpf test
+	void bodyReset() {
+	  //rotationZ -90 degrees because the x-y plane not same between two coordination systems;
+	  mDpfBodyTransMatrix.rotationZ(-90);;
+	  return ;
+	}
+	//dpf test, reset to bodyAng Vector3f bodyAng(xAng,yAng,zAng),order Y-X-Z, in degrees
+	int bodyReset(math::Vector3f bodyAng){
+	  mDpfBodyTransMatrix.rotationZ(-90);
+	  mDpfBodyTransMatrix.rotateLocalY(bodyAng.y());
+	  mDpfBodyTransMatrix.rotateLocalX(bodyAng.x());
+	  mDpfBodyTransMatrix.rotateLocalZ(bodyAng.z()+90);
+	  return 0; 
+	}
         const math::TransMatrixf& getLeftFootTrans() const;
 
         const math::TransMatrixf& getRightFootTrans() const;
@@ -256,7 +296,14 @@ namespace core {
         const std::map<unsigned int, math::TransMatrixf>& getBoneTrans() const {
             return mBoneTrans;
         }
-
+	//added by dpf, lean rel trans
+	const std::map<unsigned int, math::TransMatrixf>& getBoneLocalTrans() const {
+            return mBoneLocalTrans;
+        }
+        //rel trans, not lean rel
+        const std::map<unsigned int, math::TransMatrixf>& getBoneRelTrans() const {
+            return mBoneRelTrans;
+        }
         // this function name is out date, do not use!!!
 
         const math::TransMatrixf& getJointTrans(unsigned int id) const {
@@ -266,12 +313,29 @@ namespace core {
         const math::TransMatrixf& getBoneTrans(unsigned int id) const {
             return mBoneTrans.find(id)->second;
         }
-
+	//added by dpf, lean rel trans
+	const math::TransMatrixf& getBoneLocalTrans(unsigned int id) const {
+            return mBoneLocalTrans.find(id)->second;
+        }
+        //added by dpf, rel trans, not lean rel
+        //added by dpf
+	const math::TransMatrixf& getBoneRelTrans(unsigned int id) const {
+            return mBoneRelTrans.find(id)->second;
+        }
         const math::TransMatrixf& getBoneTrans(robot::humanoid::Humanoid::ESkeleton eid) const {
             unsigned int id = HUMANOID.getBoneId(eid);
             return getBoneTrans(id);
         }
-
+	//added by dpf, lean rel trans
+	const math::TransMatrixf& getBoneLocalTrans(robot::humanoid::Humanoid::ESkeleton eid) const {
+            unsigned int id = HUMANOID.getBoneId(eid);
+            return getBoneLocalTrans(id);
+        }
+        //rel trans, not lean rel
+        const math::TransMatrixf& getBoneRelTrans(robot::humanoid::Humanoid::ESkeleton eid) const {
+            unsigned int id = HUMANOID.getBoneId(eid);
+            return getBoneRelTrans(id);
+        }
         math::AngDeg getJointAngle(unsigned int jid) {
             //const perception::Perception& p=lastPerception();
             //const perception::JointPerception& jp=p.joints();
@@ -299,7 +363,12 @@ namespace core {
         const math::Vector3f& getFeetForcePoint() const {
             return mFeetForcePoint;
         }
-
+	/**
+	 * comment by dpf
+	 * x() is forward-backward lean angle, when we stand it is 0
+	 * y() is left-right angle
+	 * z() is bodyDirection, but when we face to opp goal, it is 90, not zero
+	 */
         const math::Vector3f& getMyBodyAng() const {
             return mMyBodyAng;
         }
@@ -331,9 +400,10 @@ namespace core {
         const TPerceptionDeque& getPerceptions() const {
             return mPerceptions;
         }
-
-        math::Vector3f getBallPosToBone() const;
-
+//dpf comment here, this function return
+//        math::Vector3f getBallPosToBone() const;
+//global pos to body rel pos, but it maybe useless, take care before you use it 
+//because you are more often use rel pos to cal global pos
         math::Vector3f getPosToBone(math::Vector3f) const;
         // ==========================
         // get game information
@@ -405,7 +475,7 @@ namespace core {
         }
 
         // ==========================
-        // high levle judgement
+        // high levle judgement, don't use them (comment by dpf)
         // ==========================
         bool isGroundBall() const;
 
@@ -523,11 +593,6 @@ namespace core {
                 return false;
         }
 
-        void setCameraRot(math::Vector3f& rot) //vision-me
-        {
-            cameraRot = rot;
-        }
-
         int getFlagNumbersISee()const //vision-me
         {
             const Vision* v = lastPerception().vision().get();
@@ -540,37 +605,6 @@ namespace core {
 
             return 0;
         }
-
-        /*bool canISeeTheBall()const //vision-me
-        {
-                //shared_ptr<const Vision> vp = lastPerception().vision();
-                const Vision* v = lastPerception().vision().get();
-                if (v != NULL) {
-                        return v->canISeeBall();
-                }
-                return false;
-        }*/
-
-        /*bool canISeeTheBallYu()//YuRobo 在得不到视觉的两个周期内，返回上次的值
-        {
-                //shared_ptr<const Vision> vp = lastPerception().vision();
-                const Vision* v = lastPerception().vision().get();
-                if (v != NULL) {
-                        lastCanISeeBall = v->canISeeBall();
-                        return v->canISeeBall();
-                }
-                return lastCanISeeBall;
-        }*/
-
-        /*bool canISee(perception::Vision::FID fid)const //YuRobo
-        {
-                //shared_ptr<const Vision> vp = lastPerception().vision();
-                const Vision* v = lastPerception().vision().get();
-                if (v != NULL) {
-                        return v->canISee(fid);
-                }
-                return false;
-        }*/
 
         const math::Vector3f& getBallLaPol()const //jia
         {
@@ -592,15 +626,6 @@ namespace core {
             return mSearchSpeed;
         }
 
-        math::Vector3f genWalkSizeLackFlag() const; //terry
-
-        math::Vector3f genWalkDirLackFlag() const; //terry
-
-        /*boost::shared_ptr<const perception::Vision> getLatestVision() const //terry
-        {
-                return mLatestV;
-        }*/
-
         float getLatestFlagNumISee() //terry
         {
             const Vision* v = lastPerception().vision().get();
@@ -611,60 +636,9 @@ namespace core {
             return latestFlagNum;
         }
 
-
-        //--------------------------------------------------TT
-
-        bool isItInOurPenaltyZone(Vector2f& a) const {
-            if (a[0]>-half_field_length && a[0]<-half_field_length + penalty_length
-                    && abs(a[1]) < half_penalty_width)
-                return true;
-            else
-                return false;
-        }
-
         float timeAfterLastSeeEnoughFlags() const {
             return getSimTime() - mLastTimeSeeEnoughFlags;
         }
-
-        int FindOneInFrontMe() {
-            Vector2f myPos = getMyGlobalPos2D();
-            //int max=-1;
-            Vector2f temp;
-            for (int i = 1; i < 10; i++) {
-                temp = getOurGlobalPos2D(i);
-                if (temp.x() > half_field_length || temp.x()<-half_field_length || temp.y() > half_field_width || temp.y() < half_field_width)
-                    continue;
-                if (temp.x() > myPos.x()) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        void setLocalWalkSign(bool b) {
-            localWalkSign = b;
-        }
-
-        bool getLocalWalkSign() const {
-            return localWalkSign;
-        } //used only in Walk
-
-        void setRushToGoalSign(bool b) {
-            rushToGoalSign = b;
-        }
-
-        bool getRushToGoalSign() const {
-            return rushToGoalSign;
-        } //used only in Walk
-
-        void setIsLeftFootKick(bool b) {
-            isLeftFootKick = b;
-        }//////////////////////////////
-
-        bool getIsLeftFootKick() const {
-            return isLeftFootKick;
-        }///////////////////////////////
-        //===================================================================
 
         void setNowFormation(configuration::Formation::FormationType p_ft) {
             nowFT = p_ft;
@@ -673,7 +647,10 @@ namespace core {
         configuration::Formation::FormationType getNowFormation() {
             return nowFT;
         }
-
+/** comment by dpf, i don't know what's the below function
+ * don't use them before ask allen, maybe allen's work.
+ * i think it needs deleted!
+ * */
         void setBestZone(int p_X, int p_Y) {
             bestZoneX = p_X;
             bestZoneY = p_Y;
@@ -767,19 +744,13 @@ namespace core {
             return mBlockList;
         }
 
-        //you should use this function only when you see only 2 flags
-        //TT, March, MMXI
-        Vector2f calMyGlobalPos2DWithTwoFlags();
-
-        //TT, July, MMXI
-        void calMyBodyDirWithFlags();
-
-        //TT, July, MMXI
-        void calBallGlobalPos2DWithRelInfo();
-
-        //TT, April, MMXI
-        //different from old function, this will return an old num if there was no vision
-
+       // Vector2f calMyGlobalPos2DWithTwoFlags();
+	//dpf added, one could in fact get the pos when only 1 flags is seen
+	//Vector3f calDpfGlobalPosWithOneFlags(const Vision& v);
+	//dpf added, use new method to calc vision global pos
+	Vector3f calDpfVisionGlobalPos(const Vision&v);
+	//dpf added, one could get the pos when only ball is seen, we guess ball is not moved
+	Vector3f calDpfGlobalPosWithOnlyBall();
         int seenFlagsNum() const {
             int num = 0;
 
@@ -790,37 +761,90 @@ namespace core {
             return num;
         }
 
-        int seenRightFlagsNum() const {
-            int num = 0;
-
-            FOR_EACH(iter, mFlagRelInfoMap) {
-                if (true == iter->second.canSee) {
-                    if (Vision::F1R == iter->first ||
-                            Vision::F2R == iter->first ||
-                            Vision::G1R == iter->first ||
-                            Vision::G2R == iter->first) {
-                        num++;
-                    }
-                }
-            }
-            return num;
-        }
-
-
         Vector2f calObjRelPos2D(const Vector3f& objPolToVisionSensor);
-
+	Vector3f calObjRelPos(const Vector3f& objPolToVisionSensor);
+	/**
+	  * calculate originGlobalPos's rel pos relPos 's globalPos;
+	  * used in goTo before kick, by TT
+	   */
         math::Vector2f transRelPosToGlobalPos(const Vector2f& originGlobalPos, const Vector2f& relPos) {
-            AngDeg theta = getMyBodyDirection() - 90.0f;
+	    AngDeg theta = getMyBodyDirection() - 90.0f;
             return originGlobalPos + Vector2f(relPos.x() * cosDeg(theta) - relPos.y() * sinDeg(theta),
                     relPos.x() * sinDeg(theta) + relPos.y() * cosDeg(theta));
-        }
+	  
+	}
 
         math::Vector2f transGlobalPosToRelPos(const Vector2f& originPos, const Vector2f& destPos) {
-            AngDeg theta = 90.0f - getMyBodyDirection();
+	  AngDeg theta =90.0f-getMyBodyDirection();
             Vector2f deltaV2f = destPos - originPos;
             return Vector2f(deltaV2f.x() * cosDeg(theta) - deltaV2f.y() * sinDeg(theta),
                     deltaV2f.x() * sinDeg(theta) + deltaV2f.y() * cosDeg(theta));
         }
+        /**
+	 * dpf rewrite
+	 */
+        math::Vector2f transRelPosToGlobalPos(const Vector2f& relPos){
+	  return *(math::Vector2f*)(transRelPosToGlobalPos(Vector3f(relPos.x(),relPos.y(),0.0f))).get();
+	}
+	/**
+	 * dpf rewrite
+	 */
+	math::Vector2f transGlobalPosToRelPos(const Vector2f& globalPos){
+	  return *(math::Vector2f*)(transGlobalPosToRelPos(Vector3f(globalPos.x(),globalPos.y(),0.0f))).get();
+	}
+        /**dpf rewrite it using transfer matrix
+          *from the global pos to the eye-rel pos, ie position relative to the camera
+          *there are three types of position
+          *first, global position with the center of the playground is zero point
+          *second, camera rel pos, position relative to the camera
+          *third, body rel pos, which is often called rel pos, with is relative to the \
+          *body,
+	  *there are two kinds of body rel pos, 
+	  *1. only consider body's rotationZ
+	  *2. also consider other's rotation
+	  *below two funcitons is about 2, but it works more near to 1, maybe it is more stable.
+	  **/
+	math::Vector3f transGlobalPosToRelPos(const Vector3f &destPos){
+	  math::TransMatrixf relToGlobalTrans;
+	  float bodyDirZ=getMyBodyAng().z();//rotation angle of body;
+	  //relToGlobalTrans.rotationZ(-90);
+	  relToGlobalTrans.rotationZ(bodyDirZ);
+	  relToGlobalTrans.p()=getMyOrigin();
+	  relToGlobalTrans.p().z()=0;
+	  return relToGlobalTrans.inverseTransform(destPos);
+	}
+	/**added by dpf
+	 * look above, you konws...^_^
+	 * the rel is not  lean rel
+	 * */
+	math::Vector3f transRelPosToGlobalPos(const Vector3f &destPos){
+	  math::TransMatrixf relToGlobalTrans;
+	  float bodyDirZ=getMyBodyAng().z();//rotation angle of body;
+	  //relToGlobalTrans.rotationZ(-90);
+	  relToGlobalTrans.rotationZ(bodyDirZ);
+	  relToGlobalTrans.p()=getMyOrigin();
+	  relToGlobalTrans.p().z()=0;
+	  return relToGlobalTrans.transform(destPos);
+	 
+	}
+	/** 
+	 * added by dpf
+	 * from lean rel pos to rel pos
+	 */
+	math::Vector3f transLeanRelPosToRelPos(const Vector3f&destPos){
+	  math::TransMatrixf leanRelToRelTrans=getBoneRelTrans(robot::humanoid::Humanoid::TORSO);
+	  return leanRelToRelTrans.transform(destPos);
+	}
+	/**
+	 * from rel to lean rel pos
+	 */
+	math::Vector3f transRelPosToLeanRelPos(const Vector3f&destPos){
+	  //rotated trans from rel to lean rel, is leanRelToRelTrans, see our documents for details
+	  //this name means, it can transfer the lean rel pos to rel pos, so call it leanRelToRelTrans;
+	  //leanRelPos*leanRelToRelTrans=relPos,so relPos*(~leanRelToRelTrans)=leanRelPos;
+	  math::TransMatrixf leanRelToRelTrans=getBoneRelTrans(robot::humanoid::Humanoid::TORSO);
+	  return leanRelToRelTrans.inverseTransform(destPos);
+	}
         //TT for test
         void logPrintSeenFlags();
 
@@ -836,8 +860,14 @@ namespace core {
         bool updatePerception(boost::shared_ptr<perception::Perception> newP);
 
         void localization();
-
-        math::Matrix3x3f calcVisionSensorRotation(const math::Vector3f& myPos,
+	
+	//test by dpf
+	math::TransMatrixf calcDpfVisionSensorRotation() const;
+	///old function using flags
+	///set mMyVisionMatrixUsingFlags, if no enough flags is seen return flase
+	bool calcVisionSensorRotationUsingFlags(const Vision&v);
+	///the lower function
+        math::Matrix3x3f calcVisionSensorRotationUsingFlags(const math::Vector3f& myPos,
                 const Vision& v,
                 Vision::FID flagA,
                 Vision::FID flagB,
@@ -850,21 +880,6 @@ namespace core {
          *
          * @return the global position of vision sensor
          */
-        math::Vector3f calcVisionSensorPosition(const Vision& v);
-
-        math::Vector3f calcVisionSensorPositionWith2Flags(const Vision& v);
-
-        math::Vector3f calcVisionPositionWithThreeFlags(const math::Vector3f& posA, const math::Vector3f& polA, const math::Vector3f& lposA,
-                const math::Vector3f& posB, const math::Vector3f& polB, const math::Vector3f& lposB,
-                const math::Vector3f& posC, const math::Vector3f& polC, const math::Vector3f& lposC) const;
-
-        math::Vector3f calcVisionPositionWithThreeFlags(const Vision& v, Vision::FID fA, Vision::FID fB, Vision::FID fC) const;
-
-        math::Vector3f calcVisionPositionWithTwoFlags(const math::Vector3f& posA, const math::Vector3f& polA,
-                const math::Vector3f& posB, const math::Vector3f& polB) const;
-
-        math::Vector3f calcVisionPositionWithTwoFlags(const Vision& v, Vision::FID fA, Vision::FID fB) const;
-
         void updateBall();
 
         void updateSelf();
@@ -895,7 +910,10 @@ namespace core {
         Vector2f calObjPol2D(const Vector2f& relPos2D);
         void buildBlocks();
 
-
+	//test by dpf
+	void setDpfBodyTransMatrix(const math::TransMatrixf& rel){
+	  mDpfBodyTransMatrix=rel;
+	}
     private:
         unsigned int mSimCycle;
 
@@ -910,16 +928,21 @@ namespace core {
         const static unsigned int max_perception_size;
 
         std::map<unsigned int, math::TransMatrixf> mBoneTrans;
+	
+	//added by dpf local transfer matrix of jonits. ie. torso is identify matrix,lean rel trans
+	std::map<unsigned int, math::TransMatrixf> mBoneLocalTrans;
+	//added by dpf rel transfer matrix of joints, rel trans, not lean rel
+	std::map<unsigned int, math::TransMatrixf> mBoneRelTrans;
 
         /////////// Illegal Position ///////
         const static math::Vector3f mIllegalPos;
 
         /////////// Ball ///////////////
         math::Vector3f mBallGlobalPos;
-        math::Vector2f mBallGlobalPos2DWithRelInfo; //TT
-        math::Vector3f mBallGlobalPos3DWithRelInfo; //TT
-        math::Vector3f mG2RGlobalPos; //terry
-        math::Vector3f mG1RGlobalPos; //terry
+        //math::Vector2f mBallGlobalPos2DWithRelInfo; //TT
+        //math::Vector3f mBallGlobalPos3DWithRelInfo; //TT
+        //math::Vector3f mG2RGlobalPos; //terry
+        //math::Vector3f mG1RGlobalPos; //terry
         math::Vector3f mBallGlobalVel;
         math::Vector3f mBallAveragePos;
         math::TVector<PVExtenedKalmanFilter<float>, 3 > mBallPvekf;
@@ -935,27 +958,33 @@ namespace core {
         unsigned int mOppClosestToMe;
         float mOppClosestToMeDist;
 
-        /// the matrix of the vision sensor
-        math::TransMatrixf mMyVisionMatrix;
-
+        /// the matrix of the vision sensor using flags
+        math::TransMatrixf mMyVisionMatrixUsingFlags;
+	///test by dpf
+	math::TransMatrixf mDpfMyVisionMatrix;
+	///test by dpf, the body ang Z caculated from vision, init pos is -90 degree
+	math::AngDeg mVisionBodyAngZ;
         math::Vector3f mMyGlobalVel;
         math::AngDeg mMyFaceDirection;
         math::Vector3f mMyCenterOfMass;
-        math::Vector3f mMyBodyAng;
+	math::Vector3f mMyRelCenterOfMass;
+        math::Vector3f mMyBodyAng;//torso's rotation angles
         math::Vector3f mMyLastBodyAng; //dubai
         math::Vector3f cameraRot; //vision-me
         math::Vector3f mMyGlobalPos; //vision-me
         math::Vector3f ballLaPol; //jia
 
         /// the coordination for self motion
-        math::TransMatrixf mMyOriginMatrix;
+        math::TransMatrixf mMyOriginMatrix;//it is just mDpfBodyTransMatrix;
         math::AngDeg mMyBodyDirection;
         math::AngDeg mMyBodyDirWithFlags; //TT
+        math::TransMatrixf mDpfBodyTransMatrix;//dpf test, torso global transMatrix
+       
 
         /// the global position of the force center in feet
         math::Vector3f mLeftFootForceCenter;
         math::Vector3f mRightFootForceCenter;
-        /// the force of feet
+        /// the force of feet, dpf change the coordination to lean rel coordination;
         math::Vector3f mFeetForcePoint;
         math::Vector3f mFeetForce;
 
@@ -989,9 +1018,9 @@ namespace core {
         float latestFlagNum; //terry
 
         //-------------------------------------------TT xxxxxxxxxxxxxxxxxxxxxxxxxx
-        bool localWalkSign;
-        bool rushToGoalSign;
-        bool isLeftFootKick;
+       // bool localWalkSign;
+        //bool rushToGoalSign;
+        //bool isLeftFootKick;
         //----------------------------------------------
 
         //==================================================TT REL
@@ -1011,6 +1040,16 @@ namespace core {
         int bestZoneX;
         int bestZoneY;
         bool isAttacking;
+	///dpf test acc
+	//test acc by dpf, rel
+	math::Vector3f mMyRealAccRel;
+	//global
+	math::Vector3f mMyRealAccGlobal;
+	//pos from acc calculate, global
+	math::Vector3f mMyAccPosGlobal;
+	//velocity from acc-sensor,global
+	math::Vector3f mMyAccVelGlobal;
+	
         /////////////////////////
 
 

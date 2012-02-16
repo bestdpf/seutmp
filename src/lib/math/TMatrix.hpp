@@ -64,7 +64,7 @@ public:
     f_inline ~TMatrix()
     {}
 
-    // assignment operator
+    // assignment  
     f_inline TMatrix& operator = (const TMatrix& rm)
     {
         for ( size_t i=0; i<ROW; i++ )

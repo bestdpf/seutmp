@@ -103,7 +103,7 @@ private:
 	//TT, for Walk and WalkRel
 	bool mShouldStop;
 	//dpf, mShouldStop is to stop, but need one more step.mMustStop is no more steps;
-	bool mMustStop;
+	//bool mMustStop;
 	// this class handls logging
 	DECLARE_STATIC_GRAPHIC_LOGGER;
 }; //end of class WalkRel

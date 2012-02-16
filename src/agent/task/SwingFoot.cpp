@@ -17,6 +17,7 @@
 
 namespace task{
     using namespace math;
+    using namespace std;
 
     SwingFoot::SwingFoot(bool isLeft,
                          const Vector2f& p,
@@ -26,8 +27,29 @@ namespace task{
                          float bodyHeight,
                          float duration,
                          Task* primary)
-        :MoveFoot(isLeft, Vector3f(p.x(),p.y(),footHeight), ang, duration, primary)
+        :LowerLimbsMotion(duration, primary),
+         mIsLeft(isLeft)
     {
+       if ( mIsLeft ){
+            // left foot
+            mDesiredFootL.rotationZ(ang);
+            mDesiredFootL.p() = Vector3f(p.x(),p.y(),footHeight);
+            // right foot
+            mDesiredFootR.identity();
+        }
+        else{
+            // right foot
+            mDesiredFootR.rotationZ(ang);
+            mDesiredFootR.p() = Vector3f(p.x(),p.y(),footHeight);
+            // left foot
+            mDesiredFootL.identity();
+        }
+
+        mDesiredFootL.p().x() -= HUMANOID.getHalfFeetWidth();
+        mDesiredFootR.p().x() += HUMANOID.getHalfFeetWidth();
+        mDesiredFootL.p().z() += HUMANOID.getMinFootHeight();
+        mDesiredFootR.p().z() += HUMANOID.getMinFootHeight();
+
         // body
         AngDeg dirR = mDesiredFootR.rotatedAngZ();
         AngDeg dirL = mDesiredFootL.rotatedAngZ();
@@ -35,11 +57,13 @@ namespace task{
             std::swap(dirR, dirL);
         }
         AngDeg dirBody = calBisectorTwoAngles(dirR,dirL);
-        mDesiredBody.rotationX( -10 ); // pitch
+	mDesiredBody.rotationX(-10);
         mDesiredBody.rotateLocalZ( dirBody );
         mDesiredBody.pos() = (mDesiredFootL.p()+mDesiredFootR.p())*0.5f;
         // mDesiredBody.pos().x() = 0;
         mDesiredBody.pos().z() = bodyHeight;
+	//dynamic step
+	//mDesiredBody.p().y()-=addStepY;
 
         if ( p.y()>0 ){
             if(mIsLeft){
@@ -50,5 +74,4 @@ namespace task{
             }
         }
     }
-
 } // namespace task

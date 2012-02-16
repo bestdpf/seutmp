@@ -43,17 +43,7 @@ namespace core {
 
         //===========================================TT Rel
         mFlagRelInfoMap.clear();
-        //rewrited by dpf to avoid errors on some OSs like FreeBSD
-        /*
-        mFlagRelInfoMap[Vision::F1L] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-        mFlagRelInfoMap[Vision::F2L] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-        mFlagRelInfoMap[Vision::F1R] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-        mFlagRelInfoMap[Vision::F2R] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-        mFlagRelInfoMap[Vision::G1L] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-        mFlagRelInfoMap[Vision::G2L] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-        mFlagRelInfoMap[Vision::G1R] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-        mFlagRelInfoMap[Vision::G2R] = ObjectRelInfo{false, Vector2f(0, 0), Vector2f(0, 0)};
-         */
+        //rewrited by dpf to avoid errors on somecout< OSs like FreeBSD
         ObjectRelInfo tmpObjectRelInfo = newObjectRelInfo(false, Vector2f(0, 0), Vector2f(0, 0));
         mFlagRelInfoMap[Vision::F1L] = tmpObjectRelInfo;
         mFlagRelInfoMap[Vision::F2L] = tmpObjectRelInfo;
@@ -104,6 +94,14 @@ namespace core {
         // game info (score)
         mOurGoal = 0;
         mOppGoal = 0;
+	
+	//dpf test
+	bodyReset();
+	
+	mMyVisionMatrixUsingFlags.identity();
+	
+	//dpf test acc
+	accVecGlobalReset();
     }
 
     WorldModel::~WorldModel() {
@@ -204,50 +202,86 @@ namespace core {
             mLatestV = vp; //terry
         }
         int flagsNumber = getFlagNumbersISee();
-
-
-        // 1. calculate the global position and rotation of torso
+	
+	if(calcVisionBodyAngZ(*vp)){
+	  cout<<"vision body angZ\t"<<mVisionBodyAngZ<<endl;
+	}
+	// 0.4 added by dpf update local transMatrix of joints;
+	//see it below
+	 map<unsigned int, AngDeg> angles = lastPerception().joints().jointAngles();
+	 //lean rel trans
+	 
+	 TransMatrixf zeroTrans;
+	 zeroTrans.identity();
+	 mBoneLocalTrans.clear();
+	 HUMANOID.forwardKinematics(robot::humanoid::Humanoid::TORSO, zeroTrans, angles, mBoneLocalTrans);
+	 
+	 // 0.5 added by dpf update the body transfer matrix
+	mDpfBodyTransMatrix=updateDpfBodyTransMatrix();
+	 // 1. calculate the global position and rotation of torso
         localization();
         const TransMatrixf& vt = getVisionTrans();
+	//face direction maybe meaningless. comment by dpf
         mMyFaceDirection = atan2Deg(vt.o().y(), vt.o().x());
 
 
         // 2. forward Kinematics, then we got position and rotation of every body
         mBoneTrans.clear();
-        map<unsigned int, AngDeg> angles = lastPerception().joints().jointAngles();
+	//mBoneLocalTrans.clear();
+      //  map<unsigned int, AngDeg> angles = lastPerception().joints().jointAngles();
         TransMatrixf visionTrans = getVisionTrans(); //vision-me
-        if (flagsNumber >= 3)
-            visionTrans = getVisionTrans();
+	//TransMatrixf zeroTrans;
+	//zeroTrans.identity();
         HUMANOID.forwardKinematics(robot::humanoid::Humanoid::HEAD, visionTrans, angles, mBoneTrans); //vision-me
-
+	//HUMANOID.forwardKinematics(robot::humanoid::Humanoid::TORSO, zeroTrans, angles, mBoneLocalTrans);
 
         // 3. calculate the center of mass
-        mMyCenterOfMass = HUMANOID.calcCenterOfMass(mBoneTrans);
-
-
-        // 4. there are so many heroes x_x
-        //vision-me
-        Vector3f tempAng = Vector3f(getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngX(),
-                getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngY(),
-                getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngZ());
-        Vector3f deltaAng = tempAng - mMyLastBodyAng;
-        //jia
-        Vector3f myRot = getMyGyroRate();
-        if (abs(getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngY()) != 90
-                && flagsNumber >= 3
-                && (abs(deltaAng.y()) < 50 || abs(getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngY()) < 45)) {
-            mMyBodyAng.x() = getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngX();
-            mMyBodyAng.y() = getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngY();
-            mMyBodyAng.z() = getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngZ();
-        } else {
-            mMyBodyAng += calMyBodyRotatedAng(calMyBodyAngRate(myRot));
-        }//YuRobo
-        //dubai
-        mMyLastBodyAng = mMyBodyAng;
-
-
-        // 5. calculate my center, this position is relative to the support foot
-        mMySupportBone = Humanoid::ILLEGAL;
+         mMyCenterOfMass = HUMANOID.calcCenterOfMass(mBoneTrans);
+	 //dpf rewrite it
+	 mMyBodyAng.x() = getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngX();
+         mMyBodyAng.y() = getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngY();
+         mMyBodyAng.z() = getBoneTrans(humanoid::Humanoid::TORSO).rotatedAngZ();
+	
+	 //cout test by dpf
+	 cout<<"gyro body angZ\t"<<mMyBodyAng.z()<<endl;
+	 // dpf ,calc rel trans, not lean rel
+	 
+	 mBoneRelTrans.clear();
+	 TransMatrixf relTorsoTrans;
+	 relTorsoTrans.identity();
+	 //the order (Z-X-Y) is revised with create action (Y-X-Z)
+	 //relTorsoTrans.rotationZ(90);//when we init body, we rotate Z with a -90 angle, so we inverse do this
+	 //relTorsoTrans.rotationX(mMyBodyAng.x());
+	 relTorsoTrans.rotateLocalY(mMyBodyAng.y());
+	 relTorsoTrans.rotateLocalX(mMyBodyAng.x());
+	 relTorsoTrans.p().z()=getBoneTrans(humanoid::Humanoid::TORSO).p().z();//may have noise
+	 HUMANOID.forwardKinematics(robot::humanoid::Humanoid::TORSO, relTorsoTrans, angles, mBoneRelTrans);
+	 // dpf, calc rel center of mass, not lean rel
+	 mMyRelCenterOfMass=HUMANOID.calcCenterOfMass(mBoneRelTrans);
+	//rewrited by dpf use gyro-rate sensor to calc them
+	mMyOriginMatrix=getBoneTrans(humanoid::Humanoid::TORSO);
+	mMyBodyDirection=mMyOriginMatrix.rotatedAngZ();
+	mMyBodyDirection=normalizeAngle(mMyBodyDirection+90);
+        //Acc
+        //April, MMXI
+        const Vector3f& newAcc = lastPerception().accelerometer().rate(0);
+        mMyAcc = mMyAcc * 0.9f + newAcc * 0.1f;
+	//using acc calculate vec and pos, it is only right in 3-5 secs
+        mMyRealAccRel = newAcc;
+        math::TransMatrixf accTrans=mDpfBodyTransMatrix;
+        mMyRealAccGlobal = mDpfBodyTransMatrix.transform(mMyRealAccRel)-Vector3f(0,0,9.81f);
+	Vector3f oldAccVelGlobal=mMyAccVelGlobal;
+	mMyAccVelGlobal+=mMyRealAccGlobal*0.02f;
+	mMyAccPosGlobal+=(oldAccVelGlobal+mMyAccVelGlobal)*0.5f*0.02;
+	/*
+	///old vision matrix using flags
+	if (calcVisionSensorRotationUsingFlags(*vp)){
+	///test cout by dpf
+	cout<<"gyro vision matrix angz\n"<<getBoneTrans(robot::humanoid::Humanoid::HEAD).rotatedAngZ()<<endl;
+	cout<<"vision matrix direct angz\n"<<mMyVisionMatrixUsingFlags.rotatedAngZ()<<endl;
+      */
+	///old feet force part, need more work!!!
+	mMySupportBone = Humanoid::ILLEGAL;
         mFeetForce.zero();
         mFeetForcePoint.zero();
         const ForceResistance& forceResistance = lastPerception().forceResistance();
@@ -256,7 +290,8 @@ namespace core {
         if (forceResistance.isTouch(lfid)) {
             mMySupportBone = Humanoid::L_FOOT;
             const perception::ForceResistance::FeedBack& lfrp = forceResistance.feedBack(lfid);
-            const TransMatrixf& lfm = getBoneTrans(Humanoid::L_FOOT);
+            const TransMatrixf& lfm = getBoneLocalTrans(Humanoid::L_FOOT);//dpf change it to lean rel trans
+	    cout<<"lf force pos"<<lfrp.pos<<endl;
             mLeftFootForceCenter = lfm.transform(lfrp.pos);
             mFeetForce = lfrp.force;
             mFeetForcePoint = mLeftFootForceCenter;
@@ -264,8 +299,9 @@ namespace core {
 
         if (forceResistance.isTouch(rfid)) {
             const perception::ForceResistance::FeedBack& rfrp = forceResistance.feedBack(rfid);
-            const TransMatrixf& rfm = getBoneTrans(Humanoid::R_FOOT);
-            mRightFootForceCenter = rfm.transform(rfrp.pos);
+            const TransMatrixf& rfm = getBoneLocalTrans(Humanoid::R_FOOT);//dpf change it to lean rel trans
+            cout<<"rf fore pos"<<rfrp.pos<<endl;
+	    mRightFootForceCenter = rfm.transform(rfrp.pos);
             if (Humanoid::ILLEGAL == mMySupportBone) {
                 mMySupportBone = Humanoid::R_FOOT;
                 mFeetForce = rfrp.force;
@@ -281,41 +317,6 @@ namespace core {
                 mFeetForcePoint = (mLeftFootForceCenter * lf + mRightFootForceCenter * rf) / (lf + rf);
             }
         }
-
-        //vision-me
-        if (Humanoid::ILLEGAL != mMySupportBone && flagsNumber >= 3) {
-            mMyOriginMatrix = getBoneTrans(mMySupportBone);
-            if (Humanoid::L_FOOT == mMySupportBone) {
-                mMyOriginMatrix.transfer(HUMANOID.getFootSupportBias(true));
-            } else if (Humanoid::R_FOOT == mMySupportBone) {
-                mMyOriginMatrix.transfer(HUMANOID.getFootSupportBias(false));
-            }
-        }
-
-        // set in x-y plane
-        mMyBodyDirection = mMyOriginMatrix.rotatedAngZ();
-        Vector3f posOig = mMyOriginMatrix.pos();
-        if (posOig.z() < 0) {
-            // assume the z minimum value is 0
-            float z = -posOig.z();
-
-            FOR_EACH(iter, mBoneTrans) {
-                iter->second.p().z() += z;
-            }
-            posOig.z() = 0;
-        }
-        mMyOriginMatrix.rotationZ(mMyBodyDirection);
-        mMyOriginMatrix.pos() = posOig;
-        mMyBodyDirection = normalizeAngle(mMyBodyDirection + 90);
-
-        //Acc
-        //April, MMXI
-        const Vector3f& newAcc = lastPerception().accelerometer().rate(0);
-        mMyAcc = mMyAcc * 0.9f + newAcc * 0.1f;
-
-        //TT
-        //July, MMXI
-        calMyBodyDirWithFlags();
     }
 
     void WorldModel::updateBall() {
@@ -327,26 +328,26 @@ namespace core {
         // record the postion of ball before,to calculate the velocity of ball
         Vector3f oldPos = mBallGlobalPos;
         const Vector3f& localRelPosBall = vp->pos(Vision::BALL);
-        const Vector3f& localRelPosG2R = vp->pos(Vision::G2R);
-        const Vector3f& localRelPosG1R = vp->pos(Vision::G1R);
+        //const Vector3f& localRelPosG2R = vp->pos(Vision::G2R);
+        //const Vector3f& localRelPosG1R = vp->pos(Vision::G1R);
         ballLaPol = vp->pol(perception::Vision::BALL);
 
         Vector3f posSee = getVisionTrans().transform(localRelPosBall);
-        Vector3f posSeeG2R = getVisionTrans().transform(localRelPosG2R); //terry
-        Vector3f posSeeG1R = getVisionTrans().transform(localRelPosG1R); //terry
+        //Vector3f posSeeG2R = getVisionTrans().transform(localRelPosG2R); //terry
+        //Vector3f posSeeG1R = getVisionTrans().transform(localRelPosG1R); //terry
         Vector3f velSee = (posSee - oldPos) / (3 * sim_step);
 
         // simple simulation
         Vector3f velSim = mBallGlobalVel;
         Vector3f posSim = mBallGlobalPos;
-        predictBall(posSim, velSim);
+        predictBall(posSim, velSim); 
         Vector3f visionError(1, 1, 10);
         Vector3f diffVel = velSee - velSim;
         if (pow2(diffVel.x()) + pow2(diffVel.y()) > 16 / 9.0f) {
             // the ball is kicked or be moved
             mBallGlobalPos = posSee;
-            mG2RGlobalPos = posSeeG2R; //terry
-            mG1RGlobalPos = posSeeG1R; //terry
+            //mG2RGlobalPos = posSeeG2R; //terry
+            //mG1RGlobalPos = posSeeG1R; //terry
             mBallGlobalVel = velSee;
             if (mBallGlobalVel.squareLength() > 2500) {
                 mBallGlobalVel.zero();
@@ -361,8 +362,8 @@ namespace core {
                 mBallPvekf[i].update(mBallGlobalVel[i], mBallGlobalPos[i], velSim[i], sim_step * 3,
                     velSee[i], posSee[i], visionError[i]);
         }
-
-        mBallGlobalPos.z() = max(mBallGlobalPos.z(), minZ);
+      //comment by dpf, maybe useless!
+      //  mBallGlobalPos.z() = max(mBallGlobalPos.z(), minZ);
 
         posSim = mBallGlobalPos;
         velSim = mBallGlobalVel;
@@ -382,9 +383,52 @@ namespace core {
         mBallAveragePos = (mBallAveragePos * mSimCycle + mBallGlobalPos) / (mSimCycle + 1);
 
         //TT
-        calBallGlobalPos2DWithRelInfo();
-        mBallGlobalPos3DWithRelInfo.set(mBallGlobalPos2DWithRelInfo.x(), mBallGlobalPos2DWithRelInfo.y(), ball_radius);
+        //calBallGlobalPos2DWithRelInfo();
+        //mBallGlobalPos3DWithRelInfo.set(mBallGlobalPos2DWithRelInfo.x(), mBallGlobalPos2DWithRelInfo.y(), ball_radius);
     }
+//use flags only
+bool WorldModel::calcVisionSensorRotationUsingFlags(const perception::Vision& v)
+{
+  if(getFlagNumbersISee()<3)return false;//if no enough flags is seen
+  else{//flagsNumber>=3
+    mMyVisionMatrixUsingFlags.identity();
+    Vector3f myVisionPos=getBoneTrans(robot::humanoid::Humanoid::HEAD).p();
+    mMyVisionMatrixUsingFlags.p()=myVisionPos;
+	    set<Vision::FID>::iterator flags;
+	    int i;
+	    for(flags=v.getStaticFlagSet().begin(),i=3;// i used to use pointer, but i failed, may because the pointer++ is in mem, not in data_Structure;
+		i<=v.getStaticFlagSet().size();
+		flags++,i++){
+            Vision::FID f1 = *flags;
+            Vision::FID f2 = *(++flags);
+            Vision::FID f3 = *(++flags);
+            mMyVisionMatrixUsingFlags.R() += calcVisionSensorRotationUsingFlags(myVisionPos, v, f1, f2, f3);
+	      }// is there any good method except this to get its average? dpf ask here;
+	    mMyVisionMatrixUsingFlags.R()*=1.0f/(v.getStaticFlagSet().size()-2); 
+  }
+  return true;
+}
+
+//use flags only, myPos is visionPos
+Matrix3x3f WorldModel::calcVisionSensorRotationUsingFlags(const math::Vector3f& myPos, const perception::Vision& v, Vision::FID flagA, Vision::FID flagB, Vision::FID flagC) const
+{
+	Vector3f relPosFlagA = Vision::getFlagGlobalPos(flagA) - myPos;
+        Vector3f relPosFlagB = Vision::getFlagGlobalPos(flagB) - myPos;
+        Vector3f relPosFlagC = Vision::getFlagGlobalPos(flagC) - myPos;
+        Matrix3x3f relMat(relPosFlagA,
+                relPosFlagB,
+                relPosFlagC);
+        relMat.inv();
+        Vector3f localRelPosFlagA = v.pos(flagA);
+        Vector3f localRelPosFlagB = v.pos(flagB);
+        Vector3f localRelPosFlagC = v.pos(flagC);
+        Matrix3x3f localRelMat(localRelPosFlagA,
+                localRelPosFlagB,
+                localRelPosFlagC);
+        Matrix3x3f rotateMat = relMat * localRelMat;
+        rotateMat.transpose();
+        return rotateMat;
+}
 
     void WorldModel::updatePlayers() {
         shared_ptr<const Vision> vp = lastPerception().vision();
@@ -471,43 +515,25 @@ namespace core {
             }
         }
     }
-
+/** 
+ * calc the body rel pos from vision pol pos, take care is not vision rel pos.
+ * vision rel pos is always useless!!!
+ * rewritten by dpf
+ * */
     Vector2f WorldModel::calObjRelPos2D(const Vector3f& objPolToVisionSensor) {
-        float objDistToEye = objPolToVisionSensor.x();
-        float objAngX = objPolToVisionSensor.y();
-        float objAngY = objPolToVisionSensor.z();
-
-        TMatrix<float, 3, 1 > objPosToEye((float[3][1]) {
-            {objDistToEye * cosDeg(objAngY) * sinDeg(objAngX)},
-            {objDistToEye * cosDeg(objAngY) * cosDeg(objAngX)},
-            {objDistToEye * sinDeg(objAngY)}
-        });
-
-        const perception::JointPerception& jointPerception = WM.lastPerception().joints();
-        float neckAngZ = jointPerception[0].angle(); //rotate angle around z axis
-        float neckAngX = jointPerception[1].angle(); //rotate angke around x axis
-
-        float cx = cosDeg(neckAngX);
-        float sx = sinDeg(neckAngX);
-        float cz = cosDeg(neckAngZ);
-        float sz = sinDeg(neckAngZ);
-
-        TMatrix<float, 3, 3 > rx((float[3][3]) {
-            {1, 0, 0},
-            {0, cx, -sx},
-            {0, sx, cx}
-        });
-
-        TMatrix<float, 3, 3 > rz((float[3][3]) {
-            {cz, sz, 0},
-            {-sz, cz, 0},
-            {0, 0, 1}
-        });
-
-        TMatrix<float, 3, 3 > r = rz*rx; //rz*ry*rx, there is no angle turned around Y axis
-        TMatrix<float, 3, 1 > objPosToBody = r*objPosToEye;
-        return Vector2f(objPosToBody[0][0]*(-1), objPosToBody[1][0]);
+      return *(math::Vector2f*)(calObjRelPos(objPolToVisionSensor).get());
     }
+    //added by dpf,calculate the object body rel pos from vision pol pos, not vision rel pos.
+    //not body lean rel pos
+    //but attention, lean rel pos works better, I don't know why. may because when we want to kick ball
+    //the ball rel  pos is more accurate!!!
+Vector3f WorldModel::calObjRelPos(const math::Vector3f& objPolToVisionSensor)
+{
+	TransMatrixf visionLocalRelTrans=getBoneLocalTrans(humanoid::Humanoid::HEAD);//lean rel is not rel
+	//visionLocalRelTrans.p().z()=getBoneTrans(humanoid::Humanoid::HEAD).p().z();
+	Vector3f objRelToVisionSensor=Vision::calLocalRelPos(objPolToVisionSensor);
+	return visionLocalRelTrans.transform(objRelToVisionSensor);
+}
 
     Vector2f WorldModel::calObjPol2D(const Vector2f& relPos2D) {
         float x = relPos2D.x();
@@ -636,124 +662,38 @@ namespace core {
         mBlockList.sort(sortByDist);
 
     }
-
-    Vector2f WorldModel::calMyGlobalPos2DWithTwoFlags() {
-        Vector2f flagRelPos1, flagRelPos2;
-        Vector3f flagGlobalPos1, flagGlobalPos2;
-        Vision::FID fid1, fid2;
-        int i = 0;
-
-        FOR_EACH(iter, mFlagRelInfoMap) {
-            if ((iter->second).canSee) {
-                if (0 == i) {
-                    fid1 = iter->first;
-                    flagRelPos1 = (iter->second).relPos2D;
-                    flagGlobalPos1 = Vision::getFlagGlobalPos(fid1);
-                    i++;
-                    continue;
-                } else if (1 == i) {
-                    fid2 = iter->first;
-                    flagRelPos2 = (iter->second).relPos2D;
-                    flagGlobalPos2 = Vision::getFlagGlobalPos(fid2);
-                    i++;
-                    break;
-                }
-            }
-        }
-
-        //don't do this, please...
-        if (i < 2) {
-            return getMyGlobalPos2D();
-        }
-
-        //calculate
-        float a1 = flagRelPos1.x();
-        float b1 = flagRelPos1.y();
-        float a2 = flagRelPos2.x();
-        float b2 = flagRelPos2.y();
-        float x1 = flagGlobalPos1.x();
-        float y1 = flagGlobalPos1.y();
-        float x2 = flagGlobalPos2.x();
-        float y2 = flagGlobalPos2.y();
-        float x, y;
-        float B, C, Delta;
-
-        if ((x1 > 0 && x2 > 0) ||
-                (x1 < 0 && x2 < 0)) //front court or back court
-        {
-            y = 0.5f * ((y1 * y1)-(y2 * y2)-(a1 * a1 + b1 * b1 - a2 * a2 - b2 * b2)) / (y1 - y2);
-            B = -2 * x1;
-            C = x1 * x1 + (y - y1)*(y - y1) - a1 * a1 - b1*b1;
-            Delta = B * B - 4 * C; //TT: now, A=1
-            if (Delta < 0.0f) {
-                return getMyGlobalPos2D();
-            }
-
-            if (x1 > 0) //front court
-                x = (-B - sqrt(Delta)) / 2;
-            else //back court
-                x = (-B + sqrt(Delta)) / 2;
-            return Vector2f(x, y);
-        } else if ((Vision::F1L == fid1 && Vision::F1R == fid2) ||
-                (Vision::F2L == fid1 && Vision::F2R == fid2) ||
-                (Vision::G1L == fid1 && Vision::G1R == fid2) ||
-                (Vision::G2L == fid1 && Vision::G2R == fid2)) {
-            x = 0.5f * ((x1 * x1)-(x2 * x2)-(a1 * a1 + b1 * b1 - a2 * a2 - b2 * b2)) / (x1 - x2);
-            B = -2 * y1;
-            C = y1 * y1 + (x - x1)*(x - x1) - a1 * a1 - b1*b1;
-            Delta = B * B - 4 * C; //TT: now, A=1
-            if (Delta < 0.0f) {
-                //printf("%s\n","========= Delta<0 b ============");
-                return getMyGlobalPos2D();
-            }
-
-            if (a1 < a2)
-                y = (-B - sqrt(Delta)) / 2;
-            else
-                y = (-B + sqrt(Delta)) / 2;
-
-            return Vector2f(x, y);
-        } else {
-            //printf("%s\n","========= on different lines ============");
-            return getMyGlobalPos2D();
-        }
+//all in one function
+Vector3f WorldModel::calDpfVisionGlobalPos(const perception::Vision& v)
+{
+    //Pr*mR+mP=Pg; so mP=Pg-Pr*mR; the right-product is not a common understanding way;
+    //now vision Trans's R() is updated, but the p() is not
+    math::TransMatrixf notGoodTrans;
+    notGoodTrans.identity();
+    notGoodTrans.R()=getVisionTrans().R();
+    set<Vision::FID> flags = v.getStaticFlagSet();
+    set<Vision::FID>::iterator It = flags.begin();
+    Vector3f flagGlobalPos,flagLocalRelPos,ret=Vector3f(0,0,0);
+    for(;It!=flags.end();It++){
+    flagGlobalPos=Vision::getFlagGlobalPos(*It);
+    flagLocalRelPos=v.pos(*It);
+    ret+=flagGlobalPos-notGoodTrans.transform(flagLocalRelPos);
     }
+    ret*=1.0f/flags.size();
+    return ret;
+}
 
-    void WorldModel::calMyBodyDirWithFlags() {
-        if (NULL == lastPerception().vision().get() || 0 == seenFlagsNum())
-            return;
-
-        const Vector2f& myPos = getMyGlobalPos2D();
-        Vector2f flagRelPos;
-        Vector3f flagGlobalPos;
-        Vision::FID fid;
-        AngDeg myBodyDir = 0;
-        AngDeg alpha, beta;
-
-        int flagsNum = 0;
-
-        FOR_EACH(iter, mFlagRelInfoMap) {
-            if ((iter->second).canSee) {
-                flagsNum++;
-                fid = iter->first;
-                flagRelPos = (iter->second).relPos2D;
-                flagGlobalPos = Vision::getFlagGlobalPos(fid);
-
-                alpha = (Vector2f(flagGlobalPos.x(), flagGlobalPos.y()) - myPos).angle();
-                beta = atan2Deg(flagRelPos.x(), flagRelPos.y());
-                myBodyDir += alpha + beta;
-            }
-        }
-
-        if (0 == flagsNum)
-            return;
-
-        mMyBodyDirWithFlags = normalizeAngle(myBodyDir / ((float) flagsNum));
-    }
-
-    void WorldModel::calBallGlobalPos2DWithRelInfo() {
-        mBallGlobalPos2DWithRelInfo = transRelPosToGlobalPos(getMyGlobalPos2D(), getBallRelPos2D());
-    }
+Vector3f WorldModel::calDpfGlobalPosWithOnlyBall()
+{
+    //Pr*mR+mP=Pg; so mP=Pg-Pr*mR; the right-product is not a common understanding way;
+    //now vision Trans's R() is updated, but the p() is not
+    math::TransMatrixf notGoodTrans;
+    notGoodTrans.identity();
+    notGoodTrans.R()=getVisionTrans().R();
+    Vector3f ballGlobalPos=getBallGlobalPos();
+    Vector3f ballRelPos=Vector3f(getBallRelPos2D().x(),getBallRelPos2D().y(),ball_radius);
+    Vector3f ret=ballGlobalPos-notGoodTrans.transform(ballRelPos);
+    return ret;
+}
 
     float WorldModel::getAverageStepTime() const {
         shared_ptr<const Perception> pe = mPerceptions.back();
@@ -767,117 +707,32 @@ namespace core {
         //if there is no vision message, do nothing
         const Vision* v = lastPerception().vision().get();
         if (NULL == v) return;
-
+	//test by dpf
+	mDpfMyVisionMatrix.R()= calcDpfVisionSensorRotation().R();
         //calculate the golbal position
         int flagNumbers = seenFlagsNum();
+	if(flagNumbers>0){
+	  mLastTimeSeeEnoughFlags = WM.getSimTime();
+	  mMyGlobalPos=calDpfVisionGlobalPos(*v);
+	}
+	else if(canSeeBall()){
+	  mMyGlobalPos=calDpfGlobalPosWithOnlyBall();
+	}
+	else return;
+	mDpfMyVisionMatrix.p()=mMyGlobalPos;
 
-        if (flagNumbers >= 3) {
-            mMyGlobalPos = calcVisionSensorPosition(*v); //vision-me
-            mLastTimeSeeEnoughFlags = WM.getSimTime();
-        } else if (2 == flagNumbers) {
-            //mMyGlobalPos = calcVisionSensorPositionWith2Flags(*v); //gxx
-            Vector2f tempV2f = calMyGlobalPos2DWithTwoFlags(); //TT
-            mMyGlobalPos = Vector3f(tempV2f.x(), tempV2f.y(), 0.5f); //just about 0.5f
-            mLastTimeSeeEnoughFlags = WM.getSimTime();
-        }
-
-        mMyVisionMatrix.p() = mMyGlobalPos;
-
-        //calculate the body matrix //vision-me
-        if (flagNumbers >= 3) {
-            set<Vision::FID>::const_iterator flags = v->getStaticFlagSet().begin();
-            Vision::FID f1 = *flags;
-            Vision::FID f2 = *(++flags);
-            Vision::FID f3 = *(++flags);
-            mMyVisionMatrix.R() = calcVisionSensorRotation(mMyGlobalPos, *v, f1, f2, f3);
-        }
     }
-
-    Matrix3x3f WorldModel::calcVisionSensorRotation(const Vector3f& myPos, const Vision& v,
-            Vision::FID flagA, Vision::FID flagB, Vision::FID flagC) const {
-        Vector3f relPosFlagA = Vision::getFlagGlobalPos(flagA) - myPos;
-        Vector3f relPosFlagB = Vision::getFlagGlobalPos(flagB) - myPos;
-        Vector3f relPosFlagC = Vision::getFlagGlobalPos(flagC) - myPos;
-        Matrix3x3f relMat(relPosFlagA,
-                relPosFlagB,
-                relPosFlagC);
-        relMat.inv();
-        Vector3f localRelPosFlagA = v.pos(flagA);
-        Vector3f localRelPosFlagB = v.pos(flagB);
-        Vector3f localRelPosFlagC = v.pos(flagC);
-        Matrix3x3f localRelMat(localRelPosFlagA,
-                localRelPosFlagB,
-                localRelPosFlagC);
-        Matrix3x3f rotateMat = relMat * localRelMat;
-        rotateMat.transpose();
-        return rotateMat;
-    }
-
-    Vector3f WorldModel::calcVisionSensorPosition(const Vision& v) {
-        Vector3f myPos(0, 0, 0);
-        vector<Vector3f> pv;
-        set<Vision::FID> flags = v.getStaticFlagSet();
-
-        set<Vision::FID>::const_iterator fa = flags.begin();
-        set<Vision::FID>::const_iterator fend = flags.end();
-        while (fend != fa) {
-            set<Vision::FID>::const_iterator fb = fa;
-            ++fb;
-            while (fend != fb) {
-                set<Vision::FID>::const_iterator fc = fb;
-                ++fc;
-                while (fend != fc) {
-                    Vector3f p = calcVisionPositionWithThreeFlags(v, *fa, *fb, *fc);
-                    if (!p.isNan()) {
-                        pv.push_back(p);
-                    }
-                    ++fc;
-                }
-                ++fb;
-            }
-            ++fa;
-        }
-
-
-        if (!pv.empty()) {
-
-            FOR_EACH(iter, pv) {
-                myPos += *iter;
-            }
-            myPos /= pv.size();
-        }
-
-        return myPos;
-    }
-
-    Vector3f WorldModel::calcVisionSensorPositionWith2Flags(const Vision& v) {
-        Vector3f myPos(0, 0, 0);
-        vector<Vector3f> pv;
-        set<Vision::FID> flags = v.getStaticFlagSet();
-
-        set<Vision::FID>::const_iterator fa = flags.begin();
-        set<Vision::FID>::const_iterator fend = flags.end();
-        while (fend != fa) {
-            set<Vision::FID>::const_iterator fb = fa;
-            fb++;
-            while (fend != fb) {
-                Vector3f p = calcVisionPositionWithTwoFlags(v, *fa, *fb);
-                if (!p.isNan()) pv.push_back(p);
-                fb++;
-            }
-            fa++;
-        }
-
-        if (!pv.empty()) {
-
-            FOR_EACH(iter, pv) {
-                myPos += *iter;
-            }
-            myPos /= pv.size();
-        }
-
-        return myPos;
-    }
+    /**test by dpf
+      *only consider mR here excluing mP
+      **/
+    TransMatrixf WorldModel::calcDpfVisionSensorRotation() const
+  {
+   //the zero point, only take rotation into consideration, bodyTrans
+   math::TransMatrixf headLocalTrans=getBoneLocalTrans(robot::humanoid::Humanoid::HEAD);   
+   math::TransMatrixf myBodyTrans=getDpfBodyTransMatrix();
+   //the zero point , only take rotation into consideration, headTrans
+   return myBodyTrans.transfer(headLocalTrans);
+}
 
     void WorldModel::predictBall(Vector3f& p, Vector3f& v) const {
         static const float k = exp(-0.03f / ball_mass * sim_step);
@@ -886,11 +741,6 @@ namespace core {
             v.z() -= acceleration_of_gravity*sim_step;
         }
         p += v*sim_step;
-    }
-
-    Vector3f WorldModel::getBallPosToBone() const {
-        const TransMatrixf& tempMat = WM.getBoneTrans(robot::humanoid::Humanoid::TORSO);
-        return tempMat.inverseTransform(WM.getBallGlobalPos()); //获得球相对于人的位置
     }
 
     Vector3f WorldModel::getPosToBone(Vector3f pos) const {
@@ -1121,141 +971,13 @@ namespace core {
         }
         return false;
     }
-
-    Vector3f WorldModel::calcVisionPositionWithThreeFlags(const Vector3f& posA, const Vector3f& polA, const Vector3f& lposA,
-            const Vector3f& posB, const Vector3f& polB, const Vector3f& lposB,
-            const Vector3f& posC, const Vector3f& polC, const Vector3f& lposC) const {
-        float dA2 = pow2(polA[0]);
-        float dB2 = pow2(polB[0]);
-        float dC2 = pow2(polC[0]);
-
-        float cA = dA2 - posA.squareLength();
-        float cB = dB2 - posB.squareLength();
-        float cC = dC2 - posC.squareLength();
-
-        float A1 = 2.0 * (posA.x() - posB.x());
-        float B1 = 2.0 * (posA.y() - posB.y());
-        float C1 = 2.0 * (posA.z() - posB.z());
-        float D1 = cB - cA;
-
-        float A2 = 2.0 * (posA.x() - posC.x());
-        float B2 = 2.0 * (posA.y() - posC.y());
-        float C2 = 2.0 * (posA.z() - posC.z());
-        float D2 = cC - cA;
-
-        float a = A1 * B2 - A2*B1;
-        float bx = B2 * C1 - B1*C2;
-        float cx = B2 * D1 - B1*D2;
-        float by = A2 * C1 - A1*C2;
-        float cy = A2 * D1 - A1*D2;
-
-        float A = bx * bx + by * by + a*a;
-        float B = 2 * (-bx * cx + a * posA.x() * bx - by * cy - a * posA.y() * by - a * a * posA.z());
-        float C = cx * cx - 2 * a * posA.x() * cx + cy * cy + 2 * a * posA.y() * cy - a * a*cA;
-
-        float delta = sqrt(max(B * B - 4 * A*C, 0.0f));
-
-        Vector3f p1, p2;
-        p1.z() = (-B + delta) / (2 * A);
-        p2.z() = (-B - delta) / (2 * A);
-        // if a == 0 : this only happens that three flags in the line in horizontal plane
-        // in current server, this means that x1 == x2 == x3
-        if (abs(a) < EPSILON) {
-            p1.y() = (D2 - C2 * p1.z()) / B2;
-            p2.y() = (D2 - C2 * p2.z()) / B2;
-
-            float d = cA - pow2(p1.z()) + 2 * posA.z() * p1.z() - pow2(p1.y()) + 2 * posA.y() * p1.y();
-            float dd = sqrt(pow2(posA.x()) + d);
-
-            if (pow2(p1.z() - p2.z()) + pow2(p1.y() - p2.y()) < EPSILON) {
-                // p1.z and p2.z are equal
-                p1.x() = posA.x() + dd;
-                p2.x() = posA.x() - dd;
-            } else {
-                p1.x() = posA.x() + dd;
-                Vector3f tmp = p1;
-                tmp.x() = posA.x() - dd;
-                if (abs((p1 - posB).squareLength() - dB2) > abs((tmp - posB).squareLength() - dB2)) {
-                    p1.x() = tmp.x();
-                }
-
-                d = cA - pow2(p2.z()) + 2 * posA.z() * p2.z() - pow2(p2.y()) + 2 * posA.y() * p2.y();
-                dd = sqrt(pow2(posA.x()) + d);
-                p2.x() = posA.x() + dd;
-                tmp = p2;
-                tmp.x() = posA.x() - dd;
-                if (abs((p2 - posB).squareLength() - dB2) > abs((tmp - posB).squareLength() - dB2)) {
-                    p2.x() = tmp.x();
-                }
-            }
-        } else {
-            p1.x() = (cx - bx * p1.z()) / a;
-            p1.y() = (-cy + by * p1.z()) / a;
-            p2.x() = (cx - bx * p2.z()) / a;
-            p2.y() = (-cy + by * p2.z()) / a;
-        }
-
-        // eliminate repeated root
-        Vector3f globalPlane = (posB - posA).cross(posC - posA);
-        float globalAng1 = (posA - p1).dot(globalPlane);
-
-        Vector3f localPlane = (lposB - lposA).cross(lposC - lposA);
-        float localAng = lposA.dot(localPlane);
-
-        if (sign(globalAng1) == sign(localAng)) {
-            return p1;
-        } else {
-            return p2;
-        }
-    }
-
-    Vector3f WorldModel::calcVisionPositionWithThreeFlags(const Vision& v, Vision::FID fA, Vision::FID fB, Vision::FID fC) const {
-        return calcVisionPositionWithThreeFlags(Vision::getFlagGlobalPos(fA), v.pol(fA), v.pos(fA),
-                Vision::getFlagGlobalPos(fB), v.pol(fB), v.pos(fB),
-                Vision::getFlagGlobalPos(fC), v.pol(fC), v.pos(fC));
-    }
-
-    Vector3f WorldModel::calcVisionPositionWithTwoFlags(const Vector3f& posA, const Vector3f& polA,
-            const Vector3f& posB, const Vector3f& polB) const {
-        float d1 = polA.x();
-        float d2 = polB.x();
-        float z = 0.50f;
-        float c1 = d1 * d1 - posA.x() * posA.x() - posA.y() * posA.y()-(posA.z() - z)*(posA.z() - z);
-        float c2 = d2 * d2 - posB.x() * posB.x() - posB.y() * posB.y()-(posB.z() - z)*(posB.z() - z);
-        float a = (posB.x() - posA.x()) / (posA.y() - posB.y());
-        float b = (c2 - c1) / (2 * (posA.y() - posB.y()));
-
-        float A = a * a + 1;
-        float B = 2 * a * b - 2 * posA.x() - 2 * a * posA.y();
-        float C = b * b - 2 * b * posA.y() - c1;
-        float delta = sqrt(max((B * B - 4 * A * C), 0.0f));
-
-        Vector3f MyPos1, MyPos2;
-        MyPos1.x() = (-B + delta) / (2 * A);
-        MyPos2.x() = (-B - delta) / (2 * A);
-        MyPos1.y() = a * MyPos1.x() + b;
-        MyPos2.y() = a * MyPos2.x() + b;
-        MyPos1.z() = MyPos2.z() = z;
-
-        if (abs(MyPos1.x()) < half_field_length && abs(MyPos1.y()) < half_field_width) {
-            return MyPos1;
-        } else if (abs(MyPos2.x()) < half_field_length && abs(MyPos2.y()) < half_field_width) {
-            return MyPos2;
-        } else
-            return mMyGlobalPos;
-    }
-
-    Vector3f WorldModel::calcVisionPositionWithTwoFlags(const Vision& v, Vision::FID fA, Vision::FID fB) const {
-        return calcVisionPositionWithTwoFlags(Vision::getFlagGlobalPos(fA), v.pol(fA),
-                Vision::getFlagGlobalPos(fB), v.pol(fB));
-    }
-
-    const math::TransMatrixf& WorldModel::getLeftFootTrans() const {
-        return getBoneTrans(robot::humanoid::Humanoid::L_FOOT);
-    }
-
+    //not good, don't use it
     const math::TransMatrixf& WorldModel::getRightFootTrans() const {
         return getBoneTrans(robot::humanoid::Humanoid::R_FOOT);
+    }
+    //not good, don't use it
+    const math::TransMatrixf& WorldModel::getLeftFootTrans() const {
+        return getBoneTrans(robot::humanoid::Humanoid::L_FOOT);
     }
 
     bool WorldModel::isBallToOurGoal(void) {
@@ -1271,44 +993,71 @@ namespace core {
         return isAngInInterval(angOfBallVel, angOfBallAndLeftGoal, angOfBallAndRightGoal);
     }
 
-    /**
-     * @author YuRobo (03/28/2010)
-     */
-    math::Vector3f WorldModel::calMyBodyAngRate(math::Vector3f myRot) {
-        Vector3f lastAng = mMyLastBodyAng; //mMyLastViBodyAng;
-        float sinR = sinDeg(lastAng[0]), cosR = cosDeg(lastAng[0]); //R
-        float cosP = cosDeg(lastAng[1]), tanP = tanDeg(lastAng[1]); //P
+//dpf test
+/**X =
+ *
+ *[ 1,      0,       0]
+ *[ 0, cos(a), -sin(a)]
+ *[ 0, sin(a),  cos(a)]
+ * 
+ *Y =
+ *
+ *[  cos(b), 0, sin(b)]
+ *[       0, 1,      0]
+ *[ -sin(b), 0, cos(b)]
+ *Z =
+ *
+ *[ cos(c), -sin(c), 0]
+ *[ sin(c),  cos(c), 0]
+ *[      0,       0, 1]
+ *so the y-x-z convetion is Z*X*Y=
+ *[ cos(b)*cos(c) - sin(a)*sin(b)*sin(c), -cos(a)*sin(c), cos(c)*sin(b) + cos(b)*sin(a)*sin(c)]
+ *[ cos(b)*sin(c) + cos(c)*sin(a)*sin(b),  cos(a)*cos(c), sin(b)*sin(c) - cos(b)*cos(c)*sin(a)]
+ *[                       -cos(a)*sin(b),         sin(a),                        cos(a)*cos(b)]
+ * attention here, I write the transfer matrix in a common way, not the way used in our \
+ * source code; but in the below source code, i don't use the common way but our \
+ * behavior way. the two method are equal.(i have tested this using matlab)
+ * */
+const math::TransMatrixf WorldModel::updateDpfBodyTransMatrix() const
+{
+  math::TransMatrixf tmp,rel=getDpfBodyTransMatrix();
+  math::Vector3f myGyroRate=getMyGyroRate()*0.02;
+  tmp.rotationY(myGyroRate.y());
 
-        math::Vector3f mMyAngRate;
+  rel.transfer(tmp);
+  
+  tmp.rotationX(myGyroRate.x());
+  rel.transfer(tmp);
 
-        if (cosP == 0) {
-            // to be continued
-        } else {
-            //Vector3f myRot = getMyGyroRate();
-
-            //	R = mMyViBodyAngRate[0];
-            //	p = mMyViBodyAngRate[1];
-            //	Y = mMyViBodyAngRate[2];
-            //
-            //   |Y`|   |0   sinR/cosP    cosR/cosP|     |wx|
-            //   |P`| = |0     cosR         -sinR  |  *  |wy|
-            //   |R`|   |1   tanP*sinR    tanP*cosR|     |wz|
-            //
-            mMyAngRate[2] = myRot[1] * sinR / cosP + myRot[2] * cosR / cosP;
-            mMyAngRate[1] = myRot[1] * cosR - myRot[3] * sinR;
-            mMyAngRate[0] = myRot[0] + myRot[1] * tanP * sinR + myRot[2] * tanP*cosR;
-        }
-        return mMyAngRate;
+  tmp.rotationZ(myGyroRate.z());
+  rel.transfer(tmp);
+  return rel;
+}
+bool WorldModel::calcVisionBodyAngZ(const Vision&v)
+{
+  if((getFlagNumbersISee())==0)return false;//if no flags are seen, return false;
+  cout<<"seeflagnumbers:\t"<<getFlagNumbersISee()<<endl;
+  math::AngDeg nowFlagAngZ,initFlagAngZ;//the present and init pos's flag's angZ to body;
+  math::TransMatrixf initBodyRelToGlobalTrans;
+  initBodyRelToGlobalTrans.identity();//initBodyRelToGlobalTrans.rotationZ(-90);
+  initBodyRelToGlobalTrans.p()=getMyGlobalPos();
+  mVisionBodyAngZ=0;
+  math::TransMatrixf visionRelTrans=getBoneRelTrans(robot::humanoid::Humanoid::HEAD);
+  set<Vision::FID> flags = v.getStaticFlagSet();
+  set<Vision::FID>::iterator It = flags.begin();
+  Vector3f flagLocalRelPos,flagGlobalPos,flagInitRelPos;
+    for(;It!=flags.end();It++){
+    flagGlobalPos=Vision::getFlagGlobalPos(*It);
+    flagLocalRelPos=v.pos(*It);//rel to vision
+    flagLocalRelPos=visionRelTrans.transform(flagLocalRelPos);
+    nowFlagAngZ=atan2Deg(flagLocalRelPos.y(),flagLocalRelPos.x());
+    flagInitRelPos=initBodyRelToGlobalTrans.inverseTransform(flagGlobalPos);
+    initFlagAngZ=atan2Deg(flagInitRelPos.y(),flagInitRelPos.x());
+    mVisionBodyAngZ+=nowFlagAngZ-initFlagAngZ;
     }
-
-    /**
-     * @author YuRobo (03/28/2010)
-     */
-    math::Vector3f WorldModel::calMyBodyRotatedAng(math::Vector3f MyBodyAngRate) {
-        //MyViBodyAngRate = calMyBodyAngRate( myRot );
-        float deltaTime = lastPerception().time().now() - (*mPerceptions[mPerceptions.size() - 2]).time().now();
-        return MyBodyAngRate * deltaTime;
-    }
+    mVisionBodyAngZ*=-1.0f/flags.size();//attention here is negative
+  return true;
+}
 
     void WorldModel::logPrintSeenFlags() {
         char str[10];

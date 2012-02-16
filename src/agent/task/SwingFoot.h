@@ -10,11 +10,11 @@
 #ifndef _TASK_SWINGFOOT_H_
 #define _TASK_SWINGFOOT_H_
 
-#include "MoveFoot.h"
+#include "LowerLimbsMotion.h"
 
 namespace task{
 
-    class SwingFoot : public MoveFoot
+    class SwingFoot : public LowerLimbsMotion
     {
     public:
         SwingFoot(bool isLeft,
@@ -25,6 +25,8 @@ namespace task{
                   float bodyHeight,
                   float duration,
                   Task* primary);
+    private:
+      bool mIsLeft;
     };
 
 } // namespace task

@@ -125,16 +125,40 @@ namespace controller{
         unsigned int raid3 = HUMANOID.getJointSensorId("raj3");
         unsigned int laid4 = HUMANOID.getJointSensorId("laj4");
         unsigned int raid4 = HUMANOID.getJointSensorId("raj4");
-
-        angles[laid1] = -90+ry*1200;
+	/*
+	//fixed angle
+        angles[laid1] = -110+ry*200;//-90+ry*1200;
+        angles[raid1] = -110+ly*200;//-90+ly*1200;
+        angles[laid2] = 0;//rx*500;
+        angles[raid2] = 0;//lx*500;
+        angles[laid3] = -90;
+        angles[raid3] = 90;
+        angles[laid4] = -90;//-(angles[laid1]+120)*0.5;
+        angles[raid4] =  90;//(angles[raid1]+120)*0.5;
+	*/
+	/*
+	//dynamic test by dpf
+	angles[laid1] = -90+ry*800;
+        angles[raid1] = -90+ly*800;
+        angles[laid2] = 0;//rx*500;
+        angles[raid2] = 0;//lx*500;
+        angles[laid3] = -90;
+        angles[raid3] = 90;
+        angles[laid4] = -(angles[laid1]+120)*0.5;
+        angles[raid4] =  (angles[raid1]+120)*0.5;
+	*/
+  
+	//dynamic old good
+	angles[laid1] = -90+ry*1200;
         angles[raid1] = -90+ly*1200;
         angles[laid2] = 0;//rx*500;
         angles[raid2] = 0;//lx*500;
         angles[laid3] = -90;
         angles[raid3] = 90;
         angles[laid4] = -(angles[laid1]+120)*0.5;
-        angles[raid4] = (angles[raid1]+120)*0.5;
+        angles[raid4] =  (angles[raid1]+120)*0.5;
+
+	
+	
     }
-    
-    
 } // namespace controller

@@ -1,3 +1,36 @@
+seu3d-1.1.42
+2012-2-15 14:11 Duan Pengfei<bestdpf@gmail.com>
+this is a stable branch
+add vision body direction calculation in WM, called mVisionBodyAngZ;
+re add old src about feet force and vision locazion method, but make a small
+change. Now lack a locazion method of lines and points, we will add it future;
+add some test code in Step.cpp for a backup in comments.
+add acc test code, the code is not good, it will go to wrong after 3-5 secs
+2012-2-11 11:02 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.1.40
+correct mMaxSize in Step, and rewrite trans global and rel in a simple way, rewrite calObjRel using lean rel pos, not rel, because it works better
+in walk before kickTo, because it is more stable.
+but work still needs!!!
+2012-2-10 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.1.39
+this is just a test version
+remove mMustStop, which was added by me, but i think it works bad now!
+correct maxsize and minsize in Step
+add rel trans, not the same with local trans, but just for test. rel trans is  not stable!!!
+add some useful functions between lean rel pos , rel pos and global pos in
+add a patch for kick's goTo position
+much work still needs, espcially for Player's old getMyGlobalPos function, should be replaced
+new walk is still tested, it is in the comments in Step and others
+2012-2-9 11:48 Duan Pengfei<bestdpf@gmail.com>
+seu3d-1.1.37
+remove MoveFoot, merge old SwingFoot and MoveFoot into one new SwingFoot
+2012-2-8 17:04 Duan Pengfei<bestdpf@gmail.com>
+clean the world model!!!
+but avoidBlocks or dribble part still needs more work
+seu3d-1.1.36
+2012-2-6 20:29 Duan Pengfei<bestdpf@gmail.com>
+use gyro-rate sensor as the location method, but much work is still needed!
+cleaning src is still a comming work!
 2011-11-15 12:50 Zhao Bolu<zhaobl880704@gmail.com>
 seu3d-1.0.33
 modify authors 
